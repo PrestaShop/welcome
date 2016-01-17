@@ -1,0 +1,28 @@
+# Generic
+generic:
+  continue: 'Continue'
+
+# Content Welcome
+
+welcome:
+  text:   'Welcome to your shop, we will help you to create your first product'
+  button: 'Start'
+
+# Steps
+
+group1:
+  title: 'Welcome'
+
+  step1:
+    title: 'Hello from the PrestaShop team !'
+
+group2:
+  title: 'Product creation'
+
+  step1:
+    title: 'Set the name of the product'
+    text:  'Enter here the name of your new product'
+
+  step2:
+    title: 'Set the description of the product'
+    text:  'Explain here how awesome is your product'

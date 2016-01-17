@@ -1,0 +1,28 @@
+groups:
+
+  - title: { loc: group1.title }
+    steps:
+
+      - type:      popup
+        title:     { loc: group1.step1.title }
+        text:      { content: welcome }
+        options:   [savepoint, hideFooter]
+        page:      'index.php?controller=AdminDashboard'
+
+  - title: { loc: group1.title }
+    steps:
+
+      - type:      tooltip
+        title:     { loc: group2.step1.title }
+        text:      { loc: group2.step1.text  }
+        options:   [savepoint]
+        page:      ['product/new', 'product/form']
+        selector:  '#form_step1_name_1'
+        position:  left
+
+      - type:      tooltip
+        title:     { loc: group2.step2.title }
+        text:      { loc: group2.step2.text  }
+        page:      'product/form'
+        selector:  '#description'
+        position:  left

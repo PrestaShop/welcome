@@ -1,0 +1,10 @@
+.onboarding {
+    $separator:   #dfdfdf;
+    $popup-width: 300px;
+
+    @import 'advancement';
+
+    @import 'popup';
+    @import 'tooltip';
+}
+

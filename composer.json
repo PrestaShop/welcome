@@ -1,0 +1,33 @@
+{
+  "name": "prestashop/demoproducts",
+  "description": "PrestaShop module installing demo products",
+  "homepage": "https://github.com/shudrum/demoproducts",
+  "license": "AFL - Academic Free License (AFL 3.0)",
+  "authors": [
+    {
+      "name": "PrestaShop SA",
+      "email": "contact@prestashop.com"
+    }
+  ],
+  "repositories": [
+      {
+          "type": "vcs",
+          "url": "https://github.com/Shudrum/ArrayFinder"
+      }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "symfony/yaml": "~2.7",
+    "twig/twig": "~1.0",
+    "shudrum/array-finder": "~1.0"
+  },
+  "autoload": {
+    "psr-4": {"OnBoarding\\": "OnBoarding/"},
+    "exclude-from-classmap": [
+    ]
+  },
+  "config": {
+    "preferred-install": "dist"
+  },
+  "type": "prestashop-module"
+}

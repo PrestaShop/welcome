@@ -1,0 +1,25 @@
+&.popup {
+    position: fixed;
+    top:    0;
+    left:   0;
+    right:  0;
+    bottom: 0;
+    background: rgba(40, 43, 48, 0.7);
+
+    z-index: 1100;
+
+    .content {
+        position: absolute;
+        border-radius: 5px;
+
+        width: $popup-width;
+        left: 50%;
+        margin-left: -$popup-width / 2;
+        top: 200px;
+
+        padding: 20px;
+
+        background: white;
+        box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7);
+    }
+}

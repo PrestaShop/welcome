@@ -1,0 +1,50 @@
+&.tooltip {
+    position:   absolute;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 10px;
+    min-width:  100px;
+    max-width:  200px;
+    min-height: 84px;
+
+    z-index: 1100;
+
+    background: #49bad5;
+
+    &.left {
+        padding-right: 31px;
+        .preston-left {
+           display: none;
+        }
+    }
+
+    &.right {
+        padding-left: 31px;
+        .preston-right {
+            display: none;
+        }
+    }
+
+    .preston {
+        $width: 44px;
+        $height: 64px;
+        $distance: 15px;
+
+        width: $width;
+        height: $height;
+        background-repeat: no-repeat;
+        background-size: $width $height;
+
+        position: absolute;
+        top: 10px;
+
+        &.preston-left {
+            background-image: url('../images/puff-left.png');
+            left: -$distance;
+        }
+        &.preston-right {
+            background-image: url('../images/puff-right.png');
+            right: -$distance;
+        }
+    }
+}
