@@ -5,8 +5,12 @@ generic:
 # Content Welcome
 
 welcome:
-  text:   'Welcome to your shop, we will help you to create your first product'
+  text:   'Welcome to your shop, we will help you to create your first product, this will be awesome!'
   button: 'Start'
+
+end:
+  text:   'All is done! Thank you for working with us!'
+  button: 'Finished'
 
 # Steps
 
@@ -26,3 +30,20 @@ group2:
   step2:
     title: 'Set the description of the product'
     text:  'Explain here how awesome is your product'
+
+  step3:
+    title: 'Everything has a price'
+    text: 'Enter here the price of your product'
+
+  step4:
+    title: 'And some other options'
+    text:  'Here you can fin other options'
+
+  step5:
+    title: 'Finished'
+    text:  'Here is your new product! Wonderfull!'
+
+  step6:
+    title: 'Finished'
+    text:  'ALL IS DONE!'
+

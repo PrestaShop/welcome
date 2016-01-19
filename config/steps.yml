@@ -24,5 +24,32 @@ groups:
         title:     { loc: group2.step2.title }
         text:      { loc: group2.step2.text  }
         page:      'product/form'
-        selector:  '#description'
+        selector:  '#description .tabbable'
         position:  left
+
+      - type:      tooltip
+        title:     { loc: group2.step3.title }
+        text:      { loc: group2.step3.text  }
+        page:      'product/form'
+        selector:  '#form_step1_price_shortcut'
+        position:  left
+
+      - type:      tooltip
+        title:     { loc: group2.step4.title }
+        text:      { loc: group2.step4.text  }
+        page:      'product/form'
+        selector:  '.nav-tabs li:last-child'
+        position:  right
+
+      - type:      tooltip
+        title:     { loc: group2.step5.title }
+        text:      { loc: group2.step5.text  }
+        page:      'product/catalog'
+        selector:  '.checkbox-column'
+        position:  left
+
+      - type:      popup
+        title:     { loc: group2.step6.title }
+        text:      { content: end  }
+        page:      'product/catalog'
+        selector:  '.checkbox-column'
