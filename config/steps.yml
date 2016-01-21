@@ -41,15 +41,22 @@ groups:
         selector:  '.nav-tabs li:last-child'
         position:  right
 
-      - type:      tooltip
+      - type:      popup
         title:     { loc: group2.step5.title }
         text:      { loc: group2.step5.text  }
+        page:      'product/form'
+        selector:  '.nav-tabs li:last-child'
+        position:  right
+
+      - type:      tooltip
+        title:     { loc: group2.step6.title }
+        text:      { loc: group2.step6.text  }
         page:      'product/catalog'
         selector:  '.checkbox-column'
         position:  left
 
       - type:      popup
-        title:     { loc: group2.step6.title }
+        title:     { loc: group2.step7.title }
         text:      { content: end  }
         page:      'product/catalog'
         selector:  '.checkbox-column'

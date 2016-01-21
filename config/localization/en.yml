@@ -40,10 +40,14 @@ group2:
     text:  'Here you can fin other options'
 
   step5:
+    title: 'All is done …'
+    text:  'Now we will save your product and go to the products list'
+
+  step6:
     title: 'Finished'
     text:  'Here is your new product! Wonderfull!'
 
-  step6:
+  step7:
     title: 'Finished'
     text:  'ALL IS DONE!'
 
