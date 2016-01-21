@@ -1,7 +1,7 @@
 {
-    "name": "prestashop/demoproducts",
-    "description": "PrestaShop module installing demo products",
-    "homepage": "https://github.com/shudrum/demoproducts",
+    "name": "prestashop/onboarding",
+    "description": "Onboarding module for PrestaShop helping the users to create products.",
+    "homepage": "https://github.com/shudrum/onboarding",
     "license": "AFL - Academic Free License (AFL 3.0)",
     "authors": [
         {
