@@ -23,19 +23,55 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
-var OnBoarding = function(currentStep, steps, baseDir, baseAdminDir) {
+/**
+ * OnBoarding class.
+ *
+ * @param {int}    currentStep  Current step ID
+ * @param {object} steps        All steps configuration
+ * @param {string} baseDir      Base PrestaShop directory
+ * @param {string} baseAdminDir Base PrestaShop admin directory
+ */
+var OnBoarding = function(currentStep, steps, baseDir, baseAdminDir)
+{
+    /**
+     * @member {int}
+     */
+    this.currentStep = currentStep;
 
-    this.currentStep  = currentStep;
-    this.steps        = steps;
-    this.baseDir      = baseDir;
+    /**
+     * @member {object}
+     */
+    this.steps = steps;
+
+    /**
+     * @member {string}
+     */
+    this.baseDir = baseDir;
+
+    /**
+     * @member {string}
+     */
     this.baseAdminDir = baseAdminDir;
-    this.templates    = [];
 
+    /**
+     * @member {Array}
+     */
+    this.templates = [];
+
+    /**
+     * Add a template used by the steps.
+     *
+     * @param {string} name    Name of the template
+     * @param {string} content Content of the template
+     */
     this.addTemplate = function(name, content)
     {
         this.templates[name] = content;
     };
 
+    /**
+     * Display the needed elements for the current step.
+     */
     this.showCurrentStep = function()
     {
         var step = this.getStep(this.currentStep);
@@ -56,6 +92,11 @@ var OnBoarding = function(currentStep, steps, baseDir, baseAdminDir) {
         }
     };
 
+    /**
+     * Show a tooltip for a step.
+     *
+     * @param {object} step Step configuration
+     */
     this.placeToolTip = function(step)
     {
         var element = $(step.selector);
@@ -87,6 +128,9 @@ var OnBoarding = function(currentStep, steps, baseDir, baseAdminDir) {
         }
     };
 
+    /**
+     * Move to the next step.
+     */
     this.gotoNextStep = function()
     {
         var currentInstance = this;
@@ -94,7 +138,6 @@ var OnBoarding = function(currentStep, steps, baseDir, baseAdminDir) {
             if (!error) {
                 var nextStep = currentInstance.getStep(currentInstance.currentStep + 1);
                 if (null == nextStep) {
-                    console.log("Here");
                     $(".onboarding").remove();
                     return;
                 }
@@ -122,10 +165,12 @@ var OnBoarding = function(currentStep, steps, baseDir, baseAdminDir) {
     /**
      * Return true if the url correspond to the current page.
      *
-     * @param url Url to test.
-     * @return True if the url correspond to the current page.
+     * @param {string} url Url to test
+     *
+     * @return {bool} True if the url correspond to the current page
      */
-    this.isCurrentPage = function(url) {
+    this.isCurrentPage = function(url)
+    {
         var currentPage = window.location.href;
         var regex;
         if(Object.prototype.toString.call(url) === '[object Array]') {
@@ -142,14 +187,38 @@ var OnBoarding = function(currentStep, steps, baseDir, baseAdminDir) {
         return regex.exec(currentPage) !== null;
     };
 
-    this.getGroupForStep = function(stepID) {
+    /**
+     * Return a group configuration for a step ID.
+     *
+     * @param {int} stepID Step ID
+     *
+     * @return {object} Group configuration
+     */
+    this.getGroupForStep = function(stepID)
+    {
         return this.getElementForStep(stepID, 'group');
     };
 
-    this.getStep = function(stepID) {
+    /**
+     * Get the step configuration for a step ID.
+     *
+     * @param {int} stepID Step ID
+     *
+     * @return {object} Step configuration
+     */
+    this.getStep = function(stepID)
+    {
         return this.getElementForStep(stepID, 'step');
     };
 
+    /**
+     * Return the element configuration fot a step or a group.
+     *
+     * @param {int}    stepID      Step ID for the element to get
+     * @param {string} elementType Element type (step or group)
+     *
+     * @returns {(object|null)} Element configuration if it exists
+     */
     this.getElementForStep = function(stepID, elementType)
     {
         var currentStepID = 0;
@@ -177,8 +246,8 @@ var OnBoarding = function(currentStep, steps, baseDir, baseAdminDir) {
     /**
      * Call the save ajax api of the module.
      *
-     * @param settings Settings to save via POST.
-     * @param callback Callback method called after the execution.
+     * @param {object}   settings Settings to save via POST
+     * @param {callback} callback Callback function called after the execution
      */
     this.save = function(settings, callback)
     {
@@ -195,6 +264,9 @@ var OnBoarding = function(currentStep, steps, baseDir, baseAdminDir) {
         });
     };
 
+    /**
+     * Update the advancement footer.
+     */
     this.updateAdvancement = function()
     {
         var advancement = $(".onboarding.advancement");
@@ -213,5 +285,4 @@ var OnBoarding = function(currentStep, steps, baseDir, baseAdminDir) {
         advancement.find(".group-title").html(this.getGroupForStep(this.currentStep).title);
         advancement.find(".step-title").html(this.getStep(this.currentStep).title);
     };
-
 };
