@@ -80,6 +80,16 @@ class OnBoarding
         return \Configuration::updateValue('ONBOARDINGV2_CURRENT_STEP', $step);
     }
 
+    /**
+     * Return true if the OnBoarding is finished.
+     *
+     * @return bool True if the OnBoarding is finished.
+     */
+    public function isFinished()
+    {
+        return $this->getCurrentStep() >= $this->getTotalSteps();
+    }
+
     private function loadSteps($configPath, $languageIsoCode)
     {
         $this->localization = Yaml::parse(file_get_contents($configPath.'/localization/'.$languageIsoCode.'.yml'));

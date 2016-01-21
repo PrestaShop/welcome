@@ -89,8 +89,10 @@ class Onboardingv2 extends Module
 
     public function hookDisplayBackOfficeHeader()
     {
-        $this->context->controller->addCSS($this->_path.'style/css/onboarding.css', 'all');
-        $this->context->controller->addJS($this->_path.'js/onboarding.js', 'all');
+        if (!$this->onBoarding->isFinished()) {
+            $this->context->controller->addCSS($this->_path.'style/css/onboarding.css', 'all');
+            $this->context->controller->addJS($this->_path.'js/onboarding.js', 'all');
+        }
     }
 
     /**
@@ -100,6 +102,8 @@ class Onboardingv2 extends Module
      */
     public function hookDisplayAdminAfterHeader()
     {
-        $this->onBoarding->showModuleContent();
+        if (!$this->onBoarding->isFinished()) {
+            $this->onBoarding->showModuleContent();
+        }
     }
 }
