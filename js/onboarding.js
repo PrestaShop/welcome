@@ -48,6 +48,8 @@ var OnBoarding = function(currentStep, steps, baseDir, baseAdminDir) {
                 this.placeToolTip(step);
             }
 
+            $(".onboarding.advancement").toggle($.inArray('hideFooter', step.options) === -1);
+
             this.updateAdvancement();
         } else {
             // TODO: Show that it is not the current step and help the user to return to the current step
