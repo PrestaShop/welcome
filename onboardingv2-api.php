@@ -39,7 +39,6 @@ if (!isset($_POST['value'])) {
     throw new Exception('The value to set is not defined.');
 }
 
-
 switch ($_POST['action']) {
     case 'setCurrentStep':
         $onBoarding = new OnBoarding();

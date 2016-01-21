@@ -29,21 +29,40 @@ namespace OnBoarding;
 use Shudrum\Component\ArrayFinder\ArrayFinder;
 use Symfony\Component\Yaml\Yaml;
 
+/**
+ * OnBoarding main class.
+ */
 class OnBoarding
 {
+    /**
+     * @var \Twig_Loader_Filesystem
+     */
     private $loader;
+
+    /**
+     * @var \Twig_Environment
+     */
     private $twig;
 
-    /** @var ArrayFinder */
+    /**
+     * @var ArrayFinder
+     */
     private $localization;
+
+    /**
+     * @var array
+     */
     private $steps;
 
+    /**
+     * @var array
+     */
     private $configuration;
 
     /**
      * OnBoarding constructor.
      *
-     * @param string $languageIsoCode Language ISO code.
+     * @param string $languageIsoCode Language ISO code
      */
     public function __construct($languageIsoCode = 'en')
     {
@@ -55,25 +74,35 @@ class OnBoarding
         $this->loadSteps(__DIR__.'/../config', $languageIsoCode);
     }
 
+    /**
+     * Show the OnBoarding module content.
+     */
     public function showModuleContent()
     {
-        $templates = [];
+        $templates = array();
         foreach ($this->configuration['templates'] as $template) {
-            $templates[] = [
+            $templates[] = array(
                 'name'    => $template,
                 'content' => $this->getTemplateContent("templates/$template"),
-            ];
+            );
         }
 
-        echo $this->getTemplateContent('content', [
+        echo $this->getTemplateContent('content', array(
             'currentStep' => $this->getCurrentStep(),
             'totalSteps'  => $this->getTotalSteps(),
             'steps'       => $this->steps,
             'jsonSteps'   => json_encode($this->steps),
             'templates'   => $templates,
-        ]);
+        ));
     }
 
+    /**
+     * Set the current step.
+     *
+     * @param int $step Current step ID
+     *
+     * @return bool Success of the configuration update
+     */
     public function setCurrentStep($step)
     {
         // TODO: Find how to inject the Configuration if not done
@@ -83,13 +112,19 @@ class OnBoarding
     /**
      * Return true if the OnBoarding is finished.
      *
-     * @return bool True if the OnBoarding is finished.
+     * @return bool True if the OnBoarding is finished
      */
     public function isFinished()
     {
         return $this->getCurrentStep() >= $this->getTotalSteps();
     }
 
+    /**
+     * Load all the steps with the localized texts.
+     *
+     * @param string $configPath      Path where the configuration can be loaded
+     * @param string $languageIsoCode Iso code for the localization
+     */
     private function loadSteps($configPath, $languageIsoCode)
     {
         $this->localization = Yaml::parse(file_get_contents($configPath.'/localization/'.$languageIsoCode.'.yml'));
@@ -108,6 +143,13 @@ class OnBoarding
         $this->steps = $steps;
     }
 
+    /**
+     * Return a text from step text configuration.
+     *
+     * @param array $text Step text configuration
+     *
+     * @return string|null Text if it exists
+     */
     private function getTextFromSettings($text)
     {
         switch (array_keys($text)[0]) {
@@ -120,17 +162,25 @@ class OnBoarding
         return null;
     }
 
+    /**
+     * Echoes a template.
+     *
+     * @param string $templateName Template name
+     */
     public function showTemplate($templateName)
     {
         echo $this->getTemplateContent($templateName);
     }
 
     /**
-     * Display the current step.
+     * Return a template.
      *
-     * @return null
+     * @param string $templateName          Template name
+     * @param array  $additionnalParameters Additionnal parameters to inject on the Twig template
+     *
+     * @return string Parsed template
      */
-    private function getTemplateContent($templateName, $additionnalParameters = []) // TODO: Find a better name
+    private function getTemplateContent($templateName, $additionnalParameters = array()) // TODO: Find a better name
     {
         return $this->twig->render($templateName.'.twig', array_merge(
             $additionnalParameters,
@@ -141,7 +191,7 @@ class OnBoarding
     /**
      * Return the current step.
      *
-     * @return int Current step.
+     * @return int Current step
      */
     private function getCurrentStep()
     {
@@ -149,11 +199,16 @@ class OnBoarding
         return (int)\Configuration::get('ONBOARDINGV2_CURRENT_STEP');
     }
 
+    /**
+     * Return the steps count.
+     *
+     * @return int Steps count
+     */
     private function getTotalSteps()
     {
         $total = 0;
 
-        if ($this->steps != null) {
+        if (null != $this->steps) {
             foreach ($this->steps['groups'] as &$group) {
                 $total += count($group['steps']);
             }
