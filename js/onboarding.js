@@ -100,7 +100,8 @@ var OnBoarding = function(currentStep, steps, baseDir, baseAdminDir) {
                         window.location.href = currentInstance.baseAdminDir+nextStep.page;
                     }
                 } else {
-                    // TODO: Remove all popups
+                    $(".onboarding.popup").remove();
+                    $(".onboarding.tooltip").remove();
                     currentInstance.showCurrentStep();
                 }
             }
