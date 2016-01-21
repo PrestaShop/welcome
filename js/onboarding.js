@@ -29,7 +29,6 @@ var OnBoarding = function(currentStep, steps, baseDir, baseAdminDir) {
     this.steps        = steps;
     this.baseDir      = baseDir;
     this.baseAdminDir = baseAdminDir;
-    this.totalSteps   = 0;
     this.templates    = [];
 
     this.addTemplate = function(name, content)
@@ -182,20 +181,6 @@ var OnBoarding = function(currentStep, steps, baseDir, baseAdminDir) {
         }).fail(function() {
             callback(true);
         });
-    };
-
-    this.getTotalSteps = function()
-    {
-        if (this.totalSteps == 0) {
-            for (var idGroup = 0; idGroup < this.steps['groups'].length; idGroup++) {
-                var currentGroup = this.steps['groups'][idGroup];
-                for (var idStep = 0; idStep < currentGroup['steps'].length; idStep++) {
-                    this.totalSteps++;
-                }
-            }
-        }
-
-        return this.totalSteps;
     };
 
     this.updateAdvancement = function()
