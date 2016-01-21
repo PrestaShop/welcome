@@ -198,7 +198,7 @@ var OnBoarding = function(currentStep, steps, baseDir, baseAdminDir) {
         for (var idGroup = 0; idGroup < this.steps['groups'].length; idGroup++) {
             var currentGroup = this.steps['groups'][idGroup];
 
-            var positionOnChunk = Math.min(this.currentStep - totalSteps, currentGroup.steps.length);
+            var positionOnChunk = Math.min((this.currentStep + 1) - totalSteps, currentGroup.steps.length);
 
             advancement.find(".group-"+idGroup+" .progress-bar").css("width", ((positionOnChunk / currentGroup.steps.length)*100)+"%");
 
