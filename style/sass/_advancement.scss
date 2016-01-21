@@ -11,7 +11,7 @@
     right: 0;
     left: 210px;
 
-    z-index: 1000;
+    z-index: $minimum-z-index + 1;
 
     border-top: 1px solid $separator;
 
