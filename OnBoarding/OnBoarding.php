@@ -79,21 +79,21 @@ class OnBoarding
      */
     public function showModuleContent()
     {
-        $templates = [];
+        $templates = array();
         foreach ($this->configuration['templates'] as $template) {
-            $templates[] = [
+            $templates[] = array(
                 'name'    => $template,
                 'content' => $this->getTemplateContent("templates/$template"),
-            ];
+            );
         }
 
-        echo $this->getTemplateContent('content', [
+        echo $this->getTemplateContent('content', array(
             'currentStep' => $this->getCurrentStep(),
             'totalSteps'  => $this->getTotalSteps(),
             'steps'       => $this->steps,
             'jsonSteps'   => json_encode($this->steps),
             'templates'   => $templates,
-        ]);
+        ));
     }
 
     /**
@@ -180,7 +180,7 @@ class OnBoarding
      *
      * @return string Parsed template
      */
-    private function getTemplateContent($templateName, $additionnalParameters = []) // TODO: Find a better name
+    private function getTemplateContent($templateName, $additionnalParameters = array()) // TODO: Find a better name
     {
         return $this->twig->render($templateName.'.twig', array_merge(
             $additionnalParameters,
