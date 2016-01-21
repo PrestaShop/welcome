@@ -208,7 +208,7 @@ class OnBoarding
     {
         $total = 0;
 
-        if ($this->steps != null) {
+        if (null != $this->steps) {
             foreach ($this->steps['groups'] as &$group) {
                 $total += count($group['steps']);
             }

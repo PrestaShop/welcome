@@ -173,10 +173,10 @@ var OnBoarding = function(currentStep, steps, baseDir, baseAdminDir)
     {
         var currentPage = window.location.href;
         var regex;
-        if(Object.prototype.toString.call(url) === '[object Array]') {
+        if('[object Array]' === Object.prototype.toString.call(url)) {
             for (var id = 0; id < url.length; id++) {
                 regex = new RegExp(url[id].replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"));
-                if (regex.exec(currentPage) !== null) {
+                if (null !== regex.exec(currentPage)) {
                     return true;
                 }
             }
@@ -184,7 +184,7 @@ var OnBoarding = function(currentStep, steps, baseDir, baseAdminDir)
         }
 
         regex = new RegExp(url.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"));
-        return regex.exec(currentPage) !== null;
+        return null !== regex.exec(currentPage);
     };
 
     /**
@@ -230,9 +230,9 @@ var OnBoarding = function(currentStep, steps, baseDir, baseAdminDir)
                 var currentStep = currentGroup['steps'][idStep];
 
                 if (currentStepID == stepID) {
-                    if (elementType == 'step') {
+                    if ('step' == elementType) {
                         return currentStep;
-                    } else if (elementType == 'group') {
+                    } else if ('group' == elementType) {
                         return currentGroup;
                     }
                 }
@@ -258,7 +258,7 @@ var OnBoarding = function(currentStep, steps, baseDir, baseAdminDir)
             url: ajaxUrl,
             data: settings
         }).done(function(result) {
-            callback(result != '0');
+            callback('0' != result);
         }).fail(function() {
             callback(true);
         });
