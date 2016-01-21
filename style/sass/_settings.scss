@@ -1,5 +1,17 @@
-$minimum-z-index: 1000;
+//
+// Colors
+//
 
-$separator:   #dfdfdf;
-$popup-width: 300px;
+$color-separator: #dfdfdf; // Color used for the separators (like in the footer)
 
+//
+// Popups settings
+//
+
+$popup-width:     300px;   // Popups width
+
+//
+// Other settings
+//
+
+$minimum-z-index: 1000;    // Minimum z-index for the onboarding fixed & absolute elements
