@@ -46,7 +46,9 @@ groups:
         text:      { loc: group2.step5.text  }
         page:      'product/form'
         selector:  '.nav-tabs li:last-child'
-        position:  right
+        action:
+          selector: '.form-action-bar .btn-submit:first'
+          action:   'click'
 
       - type:      tooltip
         title:     { loc: group2.step6.title }
