@@ -32,11 +32,13 @@ require_once __DIR__.'/vendor/autoload.php';
 use \OnBoarding\OnBoarding;
 
 /**
- * Demo products module class.
+ * OnBoarding module entry class.
  */
 class Onboardingv2 extends Module
 {
-    /** @var OnBoarding */
+    /**
+     * @var OnBoarding
+     */
     private $onBoarding;
 
     /**
@@ -67,7 +69,7 @@ class Onboardingv2 extends Module
     /**
      * Module installation.
      *
-     * @return bool Success of the installation.
+     * @return bool Success of the installation
      */
     public function install()
     {
@@ -80,13 +82,16 @@ class Onboardingv2 extends Module
     /**
      * Uninstall the module.
      *
-     * @return bool Success of the uninstallation.
+     * @return bool Success of the uninstallation
      */
     public function uninstall()
     {
         return parent::uninstall();
     }
 
+    /**
+     * Hook called when the backoffice header is displayed.
+     */
     public function hookDisplayBackOfficeHeader()
     {
         if (!$this->onBoarding->isFinished()) {
@@ -96,9 +101,7 @@ class Onboardingv2 extends Module
     }
 
     /**
-     * Display the content for the hook 'displayAfterHeader'.
-     *
-     * @return Smarty_Internal_Template Smarty template to display.
+     * Hook called after the header of the backoffice.
      */
     public function hookDisplayAdminAfterHeader()
     {
