@@ -39,11 +39,17 @@ if (!isset($_POST['value'])) {
     throw new Exception('The value to set is not defined.');
 }
 
+$onBoarding = new OnBoarding();
+
 switch ($_POST['action']) {
     case 'setCurrentStep':
-        $onBoarding = new OnBoarding();
         if (!$onBoarding->setCurrentStep($_POST['value'])) {
             throw new Exception('The current step cannot be saved.');
+        }
+        break;
+    case 'setShutDown':
+        if (!$onBoarding->setShutDown($_POST['value'])) {
+            throw new Exception('The shut down status cannot be saved.');
         }
         break;
 }

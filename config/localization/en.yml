@@ -1,8 +1,9 @@
 # Generic
 generic:
-  continue: 'Continue'
-  resume:   'Resume'
-  launch:   'Launch your shop !'
+  continue:    'Continue'
+  resume:      'Resume'
+  launch:      'Launch your shop!'
+  setShutDown: 'Shut down the OnBoarding'
 
 # Content Welcome
 

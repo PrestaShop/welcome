@@ -28,11 +28,13 @@
  *
  * @param {int}    currentStep  Current step ID
  * @param {object} steps        All steps configuration
+ * @param {bool}   isShutDown   Did the OnBoarding is shut down ?
  * @param {string} baseDir      Base PrestaShop directory
  * @param {string} baseAdminDir Base PrestaShop admin directory
  */
-var OnBoarding = function(currentStep, steps, baseDir, baseAdminDir)
+var OnBoarding = function(currentStep, steps, isShutDown, baseDir, baseAdminDir)
 {
+    console.info(isShutDown);
     /**
      * @member {int}
      */
@@ -59,6 +61,11 @@ var OnBoarding = function(currentStep, steps, baseDir, baseAdminDir)
     this.templates = [];
 
     /**
+     * @member {bool}
+     */
+    this.isShutDown = isShutDown;
+
+    /**
      * Add a template used by the steps.
      *
      * @param {string} name    Name of the template
@@ -74,21 +81,27 @@ var OnBoarding = function(currentStep, steps, baseDir, baseAdminDir)
      */
     this.showCurrentStep = function()
     {
-        var step = this.getStep(this.currentStep);
-        if (this.isCurrentPage(step.page)) {
-            var newContent = $(this.templates[step.type]);
-            newContent.find(".content").html(step.text);
+        $(".onboarding.navbar-footer").toggle(this.isShutDown == true);
+        $(".onboarding.advancement").toggle(this.isShutDown == false);
+        $(".onboarding.popup").remove();
+        $(".onboarding.tooltip").remove();
 
-            var body = $("body").prepend(newContent);
-            if (step.type == 'tooltip') {
-                this.placeToolTip(step);
+        if (!this.isShutDown) {
+            var step = this.getStep(this.currentStep);
+            if (this.isCurrentPage(step.page)) {
+                var newContent = $(this.templates[step.type]);
+                newContent.find(".content").html(step.text);
+
+                var body = $("body").prepend(newContent);
+                if (step.type == 'tooltip') {
+                    this.placeToolTip(step);
+                }
+
+                $(".onboarding.advancement").toggle($.inArray('hideFooter', step.options) === -1);
+                this.updateAdvancement();
+            } else {
+                // TODO: Show that it is not the current step and help the user to return to the current step
             }
-
-            $(".onboarding.advancement").toggle($.inArray('hideFooter', step.options) === -1);
-
-            this.updateAdvancement();
-        } else {
-            // TODO: Show that it is not the current step and help the user to return to the current step
         }
     };
 
@@ -153,8 +166,6 @@ var OnBoarding = function(currentStep, steps, baseDir, baseAdminDir)
                             window.location.href = currentInstance.baseAdminDir+nextStep.page;
                         }
                     } else {
-                        $(".onboarding.popup").remove();
-                        $(".onboarding.tooltip").remove();
                         currentInstance.showCurrentStep();
                     }
                 }
@@ -239,7 +250,6 @@ var OnBoarding = function(currentStep, steps, baseDir, baseAdminDir)
 
                 currentStepID++;
             }
-
         }
     };
 
@@ -289,5 +299,21 @@ var OnBoarding = function(currentStep, steps, baseDir, baseAdminDir)
         var totalAdvancement = this.currentStep / totalSteps;
         advancementNav.find(".text").find(".text-right").html(Math.floor(totalAdvancement * 100)+"%");
         advancementNav.find(".progress-bar").width((totalAdvancement * 100)+"%");
+    };
+
+    /**
+     * Shut down or reactivate the onBoarding.
+     *
+     * @param {bool} value True to shut down, false to activate.
+     */
+    this.setShutDown = function(value)
+    {
+        var currentInstance = this;
+        this.save({action: 'setShutDown', value: value ? 1 : 0}, function(error) {
+            if (!error) {
+                currentInstance.isShutDown = value;
+                currentInstance.showCurrentStep();
+            }
+        });
     };
 };

@@ -90,6 +90,7 @@ class OnBoarding
         echo $this->getTemplateContent('content', array(
             'currentStep' => $this->getCurrentStep(),
             'totalSteps'  => $this->getTotalSteps(),
+            'isShutDown'  => $this->isShutDown(),
             'steps'       => $this->steps,
             'jsonSteps'   => json_encode($this->steps),
             'templates'   => $templates,
@@ -118,6 +119,19 @@ class OnBoarding
     {
         // TODO: Find how to inject the Configuration if not done
         return \Configuration::updateValue('ONBOARDINGV2_CURRENT_STEP', $step);
+    }
+
+    /**
+     * Set the shut down status.
+     *
+     * @param bool $status Onboarding shut downed or not
+     *
+     * @return bool Success of the configuration update
+     */
+    public function setShutDown($status)
+    {
+        // TODO: Find how to inject the Configuration if not done
+        return \Configuration::updateValue('ONBOARDINGV2_SHUT_DOWN', $status);
     }
 
     /**
@@ -226,5 +240,16 @@ class OnBoarding
         }
 
         return $total;
+    }
+
+    /**
+     * Return the shut down status.
+     *
+     * @return boot Shut down status
+     */
+    private function isShutDown()
+    {
+        // TODO: Find how to inject the Configuration if not done
+        return (int)\Configuration::get('ONBOARDINGV2_SHUT_DOWN');
     }
 }

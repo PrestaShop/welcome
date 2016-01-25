@@ -38,7 +38,12 @@ International Registered Trademark & Property of PrestaShop SA
         <div class="step-title"></div>
     </div>
     <div class="col-md-4 text-right">
-        <button class="btn btn-primary onboarding-button-next">{{ generic.continue }}</button>
+        <div>
+            <button class="btn btn-primary onboarding-button-next">{{ generic.continue }}</button>
+        </div>
+        <div>
+            <button class="btn btn-xs onboarding-button-shut-down">{{ generic.setShutDown }}</button>
+        </div>
     </div>
 </div>
 
@@ -49,7 +54,7 @@ International Registered Trademark & Property of PrestaShop SA
     $(function(){
 
         {% autoescape false %}
-            onBoarding = new OnBoarding({{ currentStep }}, {{ jsonSteps }}, baseDir, baseAdminDir);
+            onBoarding = new OnBoarding({{ currentStep }}, {{ jsonSteps }}, {{ isShutDown }}, baseDir, baseAdminDir);
 
             {% for template in templates %}
                 onBoarding.addTemplate('{{ template.name }}', '{{ template.content|replace({"\n":'', "\r":''}) }}');
@@ -60,6 +65,14 @@ International Registered Trademark & Property of PrestaShop SA
 
         $(".onboarding-button-next").on("click", function(){
             onBoarding.gotoNextStep();
+        });
+
+        $(".onboarding-button-shut-down").on("click", function(){
+            onBoarding.setShutDown(true);
+        });
+
+        $(".onboarding-button-resume").on("click", function(){
+            onBoarding.setShutDown(false);
         });
 
     });
