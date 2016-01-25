@@ -23,7 +23,7 @@ needs please refer to http://www.prestashop.com for more information.
 International Registered Trademark & Property of PrestaShop SA
 #}
 
-<div class="onboarding advancement">
+<div class="onboarding advancement" style="display: none">
     <div class="col-md-12">
         {% for group in steps.groups %}
             <div class="progress-group group-{{ loop.index0 }}" style="width: {{ (group.steps|length / totalSteps) * 100 }}%;">
