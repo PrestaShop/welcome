@@ -97,6 +97,17 @@ class OnBoarding
     }
 
     /**
+     * Show the OnBoarding content for the nav bar.
+     */
+    public function showModuleContentForNavBar()
+    {
+        echo $this->getTemplateContent('navbar', array(
+            'currentStep' => $this->getCurrentStep(),
+            'totalSteps'  => $this->getTotalSteps(),
+        ));
+    }
+
+    /**
      * Set the current step.
      *
      * @param int $step Current step ID

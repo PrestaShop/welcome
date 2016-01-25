@@ -1,6 +1,8 @@
 # Generic
 generic:
   continue: 'Continue'
+  resume:   'Resume'
+  launch:   'Launch your shop !'
 
 # Content Welcome
 

@@ -1,0 +1,31 @@
+@import "settings";
+
+&.navbar-footer {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    background: $color-navbar-footer;
+    position: absolute;
+    bottom: 36px;
+
+    .text {
+        color: $color-navbar-text;
+        padding-bottom: 10px;
+    }
+
+    .btn {
+        background: $color-navbar-progress-secondary;
+        color: $color-navbar-text;
+    }
+
+    .progress {
+        border-radius: $navbar-progress-size;
+        height: $navbar-progress-size;
+        background: $color-navbar-progress-secondary;
+
+        .progress-bar {
+            border-radius: $navbar-progress-size;
+            background: $color-navbar-progress-color;
+        }
+    }
+}

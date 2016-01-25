@@ -269,7 +269,8 @@ var OnBoarding = function(currentStep, steps, baseDir, baseAdminDir)
      */
     this.updateAdvancement = function()
     {
-        var advancement = $(".onboarding.advancement");
+        var advancementFooter = $(".onboarding.advancement");
+        var advancementNav = $(".onboarding.navbar-footer");
         var totalSteps = 0;
 
         for (var idGroup = 0; idGroup < this.steps['groups'].length; idGroup++) {
@@ -277,12 +278,16 @@ var OnBoarding = function(currentStep, steps, baseDir, baseAdminDir)
 
             var positionOnChunk = Math.min((this.currentStep + 1) - totalSteps, currentGroup.steps.length);
 
-            advancement.find(".group-"+idGroup+" .progress-bar").css("width", ((positionOnChunk / currentGroup.steps.length)*100)+"%");
+            advancementFooter.find(".group-"+idGroup+" .progress-bar").css("width", ((positionOnChunk / currentGroup.steps.length)*100)+"%");
 
             totalSteps += currentGroup.steps.length;
         }
 
-        advancement.find(".group-title").html(this.getGroupForStep(this.currentStep).title);
-        advancement.find(".step-title").html(this.getStep(this.currentStep).title);
+        advancementFooter.find(".group-title").html(this.getGroupForStep(this.currentStep).title);
+        advancementFooter.find(".step-title").html(this.getStep(this.currentStep).title);
+
+        var totalAdvancement = this.currentStep / totalSteps;
+        advancementNav.find(".text").find(".text-right").html(Math.floor(totalAdvancement * 100)+"%");
+        advancementNav.find(".progress-bar").width((totalAdvancement * 100)+"%");
     };
 };

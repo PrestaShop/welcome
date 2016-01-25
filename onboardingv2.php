@@ -109,4 +109,14 @@ class Onboardingv2 extends Module
             $this->onBoarding->showModuleContent();
         }
     }
+
+    /**
+     * Hook called before the end of the nav bar.
+     */
+    public function hookDisplayAdminNavBarBeforeEnd()
+    {
+        if (!$this->onBoarding->isFinished()) {
+            $this->onBoarding->showModuleContentForNavBar();
+        }
+    }
 }
