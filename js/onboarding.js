@@ -89,10 +89,9 @@ var OnBoarding = function(currentStep, steps, isShutDown, baseDir, baseAdminDir)
         if (!this.isShutDown) {
             var step = this.getStep(this.currentStep);
             if (this.isCurrentPage(step.page)) {
-                var newContent = $(this.templates[step.type]);
-                newContent.find(".content").html(step.text);
 
-                var body = $("body").prepend(newContent);
+                this.prependTemplate(step.type, step.text);
+
                 if (step.type == 'tooltip') {
                     this.placeToolTip(step);
                 }
@@ -101,8 +100,27 @@ var OnBoarding = function(currentStep, steps, isShutDown, baseDir, baseAdminDir)
                 this.updateAdvancement();
             } else {
                 // TODO: Show that it is not the current step and help the user to return to the current step
+                $(".onboarding.advancement").toggle(false);
+                this.prependTemplate('lost');
             }
         }
+    };
+
+    /**
+     * Prepend a template to a body and add the content to its '.content' element.
+     *
+     * @param {string} templateName Template name
+     * @param {string} content      Content to add
+     */
+    this.prependTemplate = function(templateName, content)
+    {
+        var newContent = $(this.templates[templateName]);
+
+        if (content != null) {
+            newContent.find(".content").html(content);
+        }
+
+        var body = $("body").prepend(newContent);
     };
 
     /**
