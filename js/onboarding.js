@@ -201,6 +201,18 @@ var OnBoarding = function(currentStep, steps, isShutDown, baseDir, baseAdminDir)
     };
 
     /**
+     * Stop the OnBoarding
+     */
+    this.stop = function()
+    {
+        this.save({action: 'setCurrentStep', value: this.getTotalSteps()}, function(error) {
+            if (!error) {
+                $(".onboarding").remove();
+            }
+        });
+    };
+
+    /**
      * Goto the last save point step.
      */
     this.gotoLastSavePoint = function()
