@@ -4,6 +4,7 @@ generic:
   resume:      'Resume'
   launch:      'Launch your shop!'
   setShutDown: 'Shut down the OnBoarding'
+  stop:        'Stop the OnBoarding'
 
 # Content Welcome
 
