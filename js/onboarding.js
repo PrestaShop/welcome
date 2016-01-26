@@ -388,11 +388,10 @@ var OnBoarding = function(currentStep, steps, isShutDown, baseDir, baseAdminDir)
         this.save({action: 'setShutDown', value: value ? 1 : 0}, function(error) {
             if (!error) {
                 currentInstance.isShutDown = value;
-
-                if (this.isCurrentPage(this.steps[this.currentStep].page)) {
+                if (currentInstance.isCurrentPage(currentInstance.getStep(currentInstance.currentStep).page)) {
                     currentInstance.showCurrentStep();
                 } else {
-                    this.gotoLastSavePoint();
+                    currentInstance.gotoLastSavePoint();
                 }
             }
         });
