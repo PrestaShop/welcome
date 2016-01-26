@@ -34,7 +34,6 @@
  */
 var OnBoarding = function(currentStep, steps, isShutDown, baseDir, baseAdminDir)
 {
-    console.info(isShutDown);
     /**
      * @member {int}
      */
@@ -89,10 +88,9 @@ var OnBoarding = function(currentStep, steps, isShutDown, baseDir, baseAdminDir)
         if (!this.isShutDown) {
             var step = this.getStep(this.currentStep);
             if (this.isCurrentPage(step.page)) {
-                var newContent = $(this.templates[step.type]);
-                newContent.find(".content").html(step.text);
 
-                var body = $("body").prepend(newContent);
+                this.prependTemplate(step.type, step.text);
+
                 if (step.type == 'tooltip') {
                     this.placeToolTip(step);
                 }
@@ -101,8 +99,27 @@ var OnBoarding = function(currentStep, steps, isShutDown, baseDir, baseAdminDir)
                 this.updateAdvancement();
             } else {
                 // TODO: Show that it is not the current step and help the user to return to the current step
+                $(".onboarding.advancement").toggle(false);
+                this.prependTemplate('lost');
             }
         }
+    };
+
+    /**
+     * Prepend a template to a body and add the content to its '.content' element.
+     *
+     * @param {string} templateName Template name
+     * @param {string} content      Content to add
+     */
+    this.prependTemplate = function(templateName, content)
+    {
+        var newContent = $(this.templates[templateName]);
+
+        if (content != null) {
+            newContent.find(".content").html(content);
+        }
+
+        var body = $("body").prepend(newContent);
     };
 
     /**
@@ -146,10 +163,20 @@ var OnBoarding = function(currentStep, steps, isShutDown, baseDir, baseAdminDir)
      */
     this.gotoNextStep = function()
     {
+        this.gotoStep(this.currentStep + 1);
+    };
+
+    /**
+     * Go to a step defined by its index.
+     *
+     * @param {int} stepIndex Step index
+     */
+    this.gotoStep = function(stepIndex)
+    {
         var currentInstance = this;
-        this.save({action: 'setCurrentStep', value: this.currentStep + 1}, function(error) {
+        this.save({action: 'setCurrentStep', value: stepIndex}, function(error) {
             if (!error) {
-                var nextStep = currentInstance.getStep(currentInstance.currentStep + 1);
+                var nextStep = currentInstance.getStep(stepIndex);
                 if (null == nextStep) {
                     $(".onboarding").remove();
                     return;
@@ -171,6 +198,41 @@ var OnBoarding = function(currentStep, steps, isShutDown, baseDir, baseAdminDir)
                 }
             }
         });
+    };
+
+    /**
+     * Stop the OnBoarding
+     */
+    this.stop = function()
+    {
+        this.save({action: 'setCurrentStep', value: this.getTotalSteps()}, function(error) {
+            if (!error) {
+                $(".onboarding").remove();
+            }
+        });
+    };
+
+    /**
+     * Goto the last save point step.
+     */
+    this.gotoLastSavePoint = function()
+    {
+        var lastSavePointStep = 0;
+        var stepCount = 0;
+        for (var idGroup = 0; idGroup < this.steps.groups.length; idGroup++) {
+            for (var idStep = 0; idStep < this.steps.groups[idGroup].steps.length; idStep++) {
+                if (stepCount <= this.currentStep) {
+                    if ($.inArray('savepoint', this.steps.groups[idGroup].steps[idStep].options) != -1) {
+                        lastSavePointStep = stepCount;
+                    }
+                }
+                stepCount++;
+            }
+        }
+
+        console.log(lastSavePointStep);
+
+        this.gotoStep(lastSavePointStep);
     };
 
     /**
@@ -296,9 +358,23 @@ var OnBoarding = function(currentStep, steps, isShutDown, baseDir, baseAdminDir)
         advancementFooter.find(".group-title").html(this.getGroupForStep(this.currentStep).title);
         advancementFooter.find(".step-title").html(this.getStep(this.currentStep).title);
 
-        var totalAdvancement = this.currentStep / totalSteps;
+        var totalAdvancement = this.currentStep / this.getTotalSteps();
         advancementNav.find(".text").find(".text-right").html(Math.floor(totalAdvancement * 100)+"%");
         advancementNav.find(".progress-bar").width((totalAdvancement * 100)+"%");
+    };
+
+    /**
+     * Return the total steps count.
+     *
+     * @return {int} Total steps.
+     */
+    this.getTotalSteps = function()
+    {
+        var total = 0;
+        for (var idGroup = 0; idGroup < this.steps['groups'].length; idGroup++) {
+            total += this.steps['groups'][idGroup].steps.length;
+        }
+        return total;
     };
 
     /**
@@ -312,7 +388,11 @@ var OnBoarding = function(currentStep, steps, isShutDown, baseDir, baseAdminDir)
         this.save({action: 'setShutDown', value: value ? 1 : 0}, function(error) {
             if (!error) {
                 currentInstance.isShutDown = value;
-                currentInstance.showCurrentStep();
+                if (currentInstance.isCurrentPage(currentInstance.getStep(currentInstance.currentStep).page)) {
+                    currentInstance.showCurrentStep();
+                } else {
+                    currentInstance.gotoLastSavePoint();
+                }
             }
         });
     };

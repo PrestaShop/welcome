@@ -75,6 +75,15 @@ International Registered Trademark & Property of PrestaShop SA
             onBoarding.setShutDown(false);
         });
 
+        $(".onboarding-button-goto-current").on("click", function(){
+            onBoarding.gotoLastSavePoint();
+        });
+
+        $(".onboarding-button-stop").on("click", function(){
+            console.log("STOP");
+            onBoarding.stop();
+        });
+
     });
 
 </script>
