@@ -230,8 +230,6 @@ var OnBoarding = function(currentStep, steps, isShutDown, baseDir, baseAdminDir)
             }
         }
 
-        console.log(lastSavePointStep);
-
         this.gotoStep(lastSavePointStep);
     };
 
