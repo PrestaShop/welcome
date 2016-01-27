@@ -205,7 +205,7 @@ class OnBoarding
      *
      * @return string Parsed template
      */
-    private function getTemplateContent($templateName, $additionnalParameters = array()) // TODO: Find a better name
+    private function getTemplateContent($templateName, $additionnalParameters = array())
     {
         return $this->twigEnvironment->render($templateName.'.twig', array_merge(
             $additionnalParameters,
