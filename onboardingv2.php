@@ -62,6 +62,7 @@ class Onboardingv2 extends Module
         $this->onBoarding = new OnBoarding('en'); // TODO: Get the language of the shop
 
         if (Tools::getIsset('resetonboarding')) {
+            $this->onBoarding->setShutDown(false);
             $this->onBoarding->setCurrentStep(0);
         }
     }
