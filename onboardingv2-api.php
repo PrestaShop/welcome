@@ -26,11 +26,7 @@
 
 require_once(__DIR__.'/../../config/config.inc.php');
 require_once(__DIR__.'/../../init.php');
-require_once(__DIR__.'/vendor/autoload.php');
-
-use OnBoarding\OnBoarding;
-
-$context = Context::getContext();
+require_once(__DIR__.'/onboardingv2.php');
 
 if (!isset($_POST['action'])) {
     throw new Exception('The action to call is not defined.');
@@ -39,19 +35,7 @@ if (!isset($_POST['value'])) {
     throw new Exception('The value to set is not defined.');
 }
 
-$onBoarding = new OnBoarding();
-
-switch ($_POST['action']) {
-    case 'setCurrentStep':
-        if (!$onBoarding->setCurrentStep($_POST['value'])) {
-            throw new Exception('The current step cannot be saved.');
-        }
-        break;
-    case 'setShutDown':
-        if (!$onBoarding->setShutDown($_POST['value'])) {
-            throw new Exception('The shut down status cannot be saved.');
-        }
-        break;
-}
+$onBoardingV2 = new Onboardingv2();
+$onBoardingV2->apiCall($_POST['action'], $_POST['value']);
 
 echo '0';

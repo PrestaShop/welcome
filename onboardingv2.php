@@ -126,4 +126,28 @@ class Onboardingv2 extends Module
             $this->onBoarding->showModuleContentForNavBar();
         }
     }
+
+    /**
+     * Execute an API like action for the OnBoarding.
+     *
+     * @param string $action Action to perform
+     * @param mixed  $value  Value to assign to the action
+     *
+     * @throws Exception
+     */
+    public function apiCall($action, $value)
+    {
+        switch ($action) {
+            case 'setCurrentStep':
+                if (!$this->onBoarding->setCurrentStep($value)) {
+                    throw new Exception('The current step cannot be saved.');
+                }
+                break;
+            case 'setShutDown':
+                if (!$this->onBoarding->setShutDown($value)) {
+                    throw new Exception('The shut down status cannot be saved.');
+                }
+                break;
+        }
+    }
 }
