@@ -181,7 +181,7 @@ class OnBoarding
             case 'loc':
                 return $this->localization[$text['loc']];
             case 'content':
-                return $this->getTemplateContent($text['content']);
+                return $this->getTemplateContent('contents/'.$text['content']);
         }
 
         return null;
