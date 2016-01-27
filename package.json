@@ -4,7 +4,8 @@
     "description": "Onboarding module for PrestaShop helping the users to create products.",
     "main": "onboardingv2.php",
     "scripts": {
-        "build": "babel src -d lib --compact=true --no-comments"
+        "build": "babel src -d lib --compact=true --no-comments",
+        "build-dev": "babel src -d lib --source-maps=true --watch"
     },
     "repository": {
         "type": "git",
