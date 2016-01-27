@@ -1,0 +1,25 @@
+{
+    "name": "onboardingv2",
+    "version": "1.0.0",
+    "description": "Onboarding module for PrestaShop helping the users to create products.",
+    "main": "onboardingv2.php",
+    "scripts": {
+        "build": "babel src -d lib --compact=true --no-comments",
+        "build-dev": "babel src -d lib --source-maps=true --watch"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Shudrum/onboarding.git"
+    },
+    "author": "PrestaShop",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Shudrum/onboarding/issues"
+    },
+    "homepage": "https://github.com/Shudrum/onboarding#readme",
+    "devDependencies": {
+        "babel-cli": "^6.4.5",
+        "babel-preset-es2015": "^6.3.13",
+        "babel-preset-stage-0": "^6.3.13"
+    }
+}
