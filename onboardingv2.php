@@ -65,7 +65,14 @@ class Onboardingv2 extends Module
             new Twig_Loader_Filesystem(__DIR__.'/views')
         );
 
-        $this->onBoarding = new OnBoarding($twigEnvironment, __DIR__.'/config', 'en'); // TODO: Get the language of the shop
+        $context = Context::getContext();
+        $isoCode = $context->language->iso_code;
+
+        $this->onBoarding = new OnBoarding(
+            $twigEnvironment,
+            __DIR__.'/config',
+            file_exists(__DIR__.'/config/localization/'.$isoCode.'.yml') ? $isoCode : 'en'
+        );
 
         if (Tools::getIsset('resetonboarding')) {
             $this->onBoarding->setShutDown(false);
