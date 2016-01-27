@@ -60,5 +60,6 @@ groups:
       - type:      popup
         title:     { loc: group2.step7.title }
         text:      { content: end  }
+        options:   [hideFooter]
         page:      'product/catalog'
         selector:  '.checkbox-column'
