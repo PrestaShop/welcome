@@ -1,4 +1,5 @@
 # Generic
+
 generic:
   continue:    'Continue'
   resume:      'Resume'
@@ -15,6 +16,12 @@ welcome:
 end:
   text:   'All is done! Thank you for working with us!'
   button: 'Finished'
+
+lost:
+  lost:            'Hey! Are you lost?'
+  continue:        'To continue, press this button:'
+  definitly:       'If you want to definitly stop the OnBoarding, press this button:'
+  definitlyButton: 'Definitly stop the onboarding'
 
 # Steps
 
