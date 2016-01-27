@@ -30,6 +30,8 @@ if (!defined('_PS_VERSION_'))
 require_once __DIR__.'/vendor/autoload.php';
 
 use \OnBoarding\OnBoarding;
+use \Twig_Loader_Filesystem;
+use \Twig_Environment;
 
 /**
  * OnBoarding module entry class.
@@ -59,7 +61,11 @@ class Onboardingv2 extends Module
             'max' => _PS_VERSION_,
         ];
 
-        $this->onBoarding = new OnBoarding('en'); // TODO: Get the language of the shop
+        $twigEnvironment = new Twig_Environment(
+            new Twig_Loader_Filesystem(__DIR__.'/views')
+        );
+
+        $this->onBoarding = new OnBoarding($twigEnvironment, __DIR__.'/config', 'en'); // TODO: Get the language of the shop
 
         if (Tools::getIsset('resetonboarding')) {
             $this->onBoarding->setShutDown(false);

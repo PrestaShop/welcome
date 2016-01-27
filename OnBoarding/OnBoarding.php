@@ -28,6 +28,9 @@ namespace OnBoarding;
 
 use Shudrum\Component\ArrayFinder\ArrayFinder;
 use Symfony\Component\Yaml\Yaml;
+use Configuration;
+use Twig_Environment;
+
 
 /**
  * OnBoarding main class.
@@ -35,14 +38,9 @@ use Symfony\Component\Yaml\Yaml;
 class OnBoarding
 {
     /**
-     * @var \Twig_Loader_Filesystem
+     * @var Twig_Environment
      */
-    private $loader;
-
-    /**
-     * @var \Twig_Environment
-     */
-    private $twig;
+    private $twigEnvironment;
 
     /**
      * @var ArrayFinder
@@ -62,16 +60,20 @@ class OnBoarding
     /**
      * OnBoarding constructor.
      *
-     * @param string $languageIsoCode Language ISO code
+     * @param Twig_Environment $twigEnvironment     Twig environment needed to manage the templates
+     * @param string           $configurationFolder Configuration folder
+     * @param string           $languageIsoCode     Language ISO code
      */
-    public function __construct($languageIsoCode = 'en')
-    {
-        $this->loader = new \Twig_Loader_Filesystem(realpath(__DIR__.'/../views')); // TODO: A injecter
-        $this->twig = new \Twig_Environment($this->loader);
+    public function __construct(
+        Twig_Environment $twigEnvironment,
+        $configurationFolder,
+        $languageIsoCode = 'en'
+    ) {
+        $this->twigEnvironment = $twigEnvironment;
 
-        $this->configuration = Yaml::parse(file_get_contents(__DIR__.'/../config/configuration.yml'));
+        $this->configuration = Yaml::parse(file_get_contents($configurationFolder.'/configuration.yml'));
 
-        $this->loadSteps(__DIR__.'/../config', $languageIsoCode);
+        $this->loadSteps($configurationFolder, $languageIsoCode);
     }
 
     /**
@@ -117,8 +119,7 @@ class OnBoarding
      */
     public function setCurrentStep($step)
     {
-        // TODO: Find how to inject the Configuration if not done
-        return \Configuration::updateValue('ONBOARDINGV2_CURRENT_STEP', $step);
+        return Configuration::updateValue('ONBOARDINGV2_CURRENT_STEP', $step);
     }
 
     /**
@@ -130,8 +131,7 @@ class OnBoarding
      */
     public function setShutDown($status)
     {
-        // TODO: Find how to inject the Configuration if not done
-        return \Configuration::updateValue('ONBOARDINGV2_SHUT_DOWN', $status);
+        return Configuration::updateValue('ONBOARDINGV2_SHUT_DOWN', $status);
     }
 
     /**
@@ -207,7 +207,7 @@ class OnBoarding
      */
     private function getTemplateContent($templateName, $additionnalParameters = array()) // TODO: Find a better name
     {
-        return $this->twig->render($templateName.'.twig', array_merge(
+        return $this->twigEnvironment->render($templateName.'.twig', array_merge(
             $additionnalParameters,
             $this->localization->get()
         ));
@@ -220,8 +220,7 @@ class OnBoarding
      */
     private function getCurrentStep()
     {
-        // TODO: Find how to inject the Configuration if not done
-        return (int)\Configuration::get('ONBOARDINGV2_CURRENT_STEP');
+        return (int)Configuration::get('ONBOARDINGV2_CURRENT_STEP');
     }
 
     /**
@@ -245,11 +244,10 @@ class OnBoarding
     /**
      * Return the shut down status.
      *
-     * @return boot Shut down status
+     * @return bool Shut down status
      */
     private function isShutDown()
     {
-        // TODO: Find how to inject the Configuration if not done
-        return (int)\Configuration::get('ONBOARDINGV2_SHUT_DOWN');
+        return (int)Configuration::get('ONBOARDINGV2_SHUT_DOWN');
     }
 }
