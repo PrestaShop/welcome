@@ -9,15 +9,15 @@ class OnBoarding
      * @param {int}     currentStep  Current step ID
      * @param {object}  steps        All steps configuration
      * @param {boolean} isShutDown   Did the OnBoarding is shut down ?
-     * @param {string}  baseDir      Base PrestaShop directory
+     * @param {string}  apiLocation  OnBoarding API location
      * @param {string}  baseAdminDir Base PrestaShop admin directory
      */
-    constructor(currentStep, steps, isShutDown, baseDir, baseAdminDir)
+    constructor(currentStep, steps, isShutDown, apiLocation, baseAdminDir)
     {
         this.currentStep = currentStep;
         this.steps = steps;
         this.isShutDown = isShutDown;
-        this.baseDir = baseDir;
+        this.apiLocation = apiLocation;
         this.baseAdminDir = baseAdminDir;
 
         this.templates = [];
@@ -219,11 +219,9 @@ class OnBoarding
      */
     save(settings, callback)
     {
-        var ajaxUrl = this.baseDir+"modules/onboardingv2/onboardingv2-api.php";
-
         $.ajax({
             method: "POST",
-            url: ajaxUrl,
+            url: this.apiLocation,
             data: settings
         }).done((result) => {
             callback('0' != result);
