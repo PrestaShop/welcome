@@ -30,8 +30,6 @@ if (!defined('_PS_VERSION_'))
 require_once __DIR__.'/vendor/autoload.php';
 
 use \OnBoarding\OnBoarding;
-use \Twig_Loader_Filesystem;
-use \Twig_Environment;
 
 /**
  * OnBoarding module entry class.
