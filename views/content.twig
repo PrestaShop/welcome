@@ -23,66 +23,53 @@ needs please refer to http://www.prestashop.com for more information.
 International Registered Trademark & Property of PrestaShop SA
 #}
 
-<div class="onboarding advancement" style="display: none">
-    <div class="col-md-12">
-        {% for group in steps.groups %}
-            <div class="progress-group group-{{ loop.index0 }}" style="width: {{ (group.steps|length / totalSteps) * 100 }}%;">
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 0%;"></div>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
-    <div class="col-md-8">
-        <h4 class="group-title"></h4>
-        <div class="step-title"></div>
-    </div>
-    <div class="col-md-4 text-right">
-        <div>
-            <button class="btn btn-primary onboarding-button-next">{{ generic.continue }}</button>
-        </div>
-        <div>
-            <button class="btn btn-xs onboarding-button-shut-down">{{ generic.setShutDown }}</button>
-        </div>
-    </div>
+<div class="onboarding-advancement" style="display: none">
+  <div class="advancement-groups">
+    {% for group in steps.groups %}
+      <div class="group group-{{ loop.index0 }}" style="width: {{ (group.steps|length / totalSteps) * 100 }}%;">
+        <div class="advancement" style="width: 0%;"></div>
+        <div class="id">{{ loop.index0 + 1 }}</div>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="col-md-8">
+    <h4 class="group-title"></h4>
+    <div class="step-title"></div>
+  </div>
+  <button class="btn btn-primary onboarding-button-next">{{ generic.continue }}</button>
+  <a class="onboarding-button-shut-down">{{ generic.setShutDown }}</a>
 </div>
 
 <script type="text/javascript">
 
-    var onBoarding;
+  var onBoarding;
 
-    $(function(){
+  $(function(){
 
-        {% autoescape false %}
-            onBoarding = new OnBoarding({{ currentStep }}, {{ jsonSteps }}, {{ isShutDown }}, baseDir+"modules/onboardingv2/onboardingv2-api.php", baseAdminDir);
+    {% autoescape false %}
+    onBoarding = new OnBoarding({{ currentStep }}, {{ jsonSteps }}, {{ isShutDown }}, baseDir+"modules/onboardingv2/onboardingv2-api.php", baseAdminDir);
 
-            {% for template in templates %}
-                onBoarding.addTemplate('{{ template.name }}', '{{ template.content|replace({"\n":'', "\r":''}) }}');
-            {% endfor %}
-        {% endautoescape %}
+    {% for template in templates %}
+    onBoarding.addTemplate('{{ template.name }}', '{{ template.content|replace({"\n":'', "\r":''}) }}');
+    {% endfor %}
+    {% endautoescape %}
 
-        onBoarding.showCurrentStep();
+    onBoarding.showCurrentStep();
 
-        $(".onboarding-button-next").on("click", function(){
-            onBoarding.gotoNextStep();
-        });
+    var body = $("body");
 
-        $(".onboarding-button-shut-down").on("click", function(){
-            onBoarding.setShutDown(true);
-        });
-
-        $(".onboarding-button-resume").on("click", function(){
-            onBoarding.setShutDown(false);
-        });
-
-        $(".onboarding-button-goto-current").on("click", function(){
-            onBoarding.gotoLastSavePoint();
-        });
-
-        $(".onboarding-button-stop").on("click", function(){
-            onBoarding.stop();
-        });
-
+    body.delegate(".onboarding-button-next", "click", function(){
+      onBoarding.gotoNextStep();
+    }).delegate(".onboarding-button-shut-down", "click", function(){
+      onBoarding.setShutDown(true);
+    }).delegate(".onboarding-button-resume", "click", function(){
+      onBoarding.setShutDown(false);
+    }).delegate(".onboarding-button-goto-current", "click", function(){
+      onBoarding.gotoLastSavePoint();
+    }).delegate(".onboarding-button-stop", "click", function(){
+      onBoarding.stop();
     });
+
+  });
 
 </script>

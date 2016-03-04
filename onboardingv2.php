@@ -107,8 +107,8 @@ class Onboardingv2 extends Module
     public function hookDisplayBackOfficeHeader()
     {
         if (!$this->onBoarding->isFinished()) {
-            $this->context->controller->addCSS($this->_path.'style/css/onboarding.css', 'all');
-            $this->context->controller->addJS($this->_path.'lib/onboarding.js', 'all');
+            $this->context->controller->addCSS($this->_path.'public/module.css', 'all');
+            $this->context->controller->addJS($this->_path.'public/module.js', 'all');
         }
     }
 

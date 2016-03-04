@@ -1,0 +1,46 @@
+.onboarding-navbar {
+  box-sizing: border-box;
+  width: 100%;
+  padding: rem(10px);
+  background: $navbar-footer-color;
+  position: absolute;
+  bottom: 0;
+  font-size: rem(11px);
+  text-align: center;
+
+  > .text {
+    text-align: left;
+    color: $navbar-text-color;
+    padding-bottom: rem(10px);
+  }
+
+  > .btn {
+    background: $navbar-progress-secondary-color;
+    color: $navbar-text-color;
+    margin: 0 auto;
+    font-size: rem(10px);
+    padding: rem(6px) rem(15px);
+
+  }
+  > .btn.-small {
+    margin-top: rem(2px);
+    font-size: rem(8px);
+    padding: rem(4px);
+    text-transform: none;
+    background: $navbar-footer-color;
+  }
+  > .btn.-small:hover {
+    text-decoration: underline;
+  }
+
+  > .progress {
+    border-radius: $navbar-progress-size;
+    height: $navbar-progress-size;
+    background: $navbar-progress-secondary-color;
+  }
+  > .progress > .bar {
+    border-radius: $navbar-progress-size;
+    background: $navbar-progress-primary-color;
+    height: $navbar-progress-size;
+  }
+}

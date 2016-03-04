@@ -1,0 +1,51 @@
+.onboarding-popup {
+  position: fixed;
+  top:    0;
+  left:   0;
+  right:  0;
+  bottom: 0;
+  background: rgba($dark-color, 0.5);
+
+  z-index: $minimum-z-index;
+
+  > .content {
+    position: absolute;
+
+    width: $popup-width;
+    left: 50%;
+    margin-left: -$popup-width / 2;
+    top: rem(200px);
+
+    padding: rem(20px);
+
+    background: white;
+    box-shadow: rem(2px) rem(2px) rem(3px) 0 rgba(0, 0, 0, 0.1);
+  }
+}
+
+.onboarding-welcome {
+
+  > .welcome {
+    background: url('../images/ruban.png') center center no-repeat;
+    background-size: rem(385px) rem(52px);
+    padding: rem(8px);
+    height: rem(52px);
+    color: white;
+    font-size: rem(24px);
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  > .content {
+    min-height: rem(188px);
+    font-size: rem(14px);
+    background: url('../images/preston.png') left center no-repeat;
+    background-size: rem(149px) rem(188px);
+    padding-left: rem(170px);
+  }
+
+  > .welcome,
+  > .content {
+    margin-bottom: rem(40px);
+  }
+}

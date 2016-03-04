@@ -31,7 +31,6 @@ use Symfony\Component\Yaml\Yaml;
 use Configuration;
 use Twig_Environment;
 
-
 /**
  * OnBoarding main class.
  */

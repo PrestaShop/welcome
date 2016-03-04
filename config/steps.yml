@@ -18,14 +18,7 @@ groups:
         options:   [savepoint]
         page:      ['product/new', 'product/form']
         selector:  '#form_step1_name_1'
-        position:  left
-
-      - type:      tooltip
-        title:     { loc: group2.step2.title }
-        text:      { loc: group2.step2.text  }
-        page:      'product/form'
-        selector:  '#description .tabbable'
-        position:  left
+        position:  right
 
       - type:      tooltip
         title:     { loc: group2.step3.title }

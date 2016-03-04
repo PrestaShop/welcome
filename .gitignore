@@ -1,5 +1,4 @@
 .idea
-.DS_Store
 
 composer.lock
 composer.phar
@@ -7,6 +6,4 @@ vendor
 node_modules
 config_*
 
-.sass-cache
-style/css
-lib
+public

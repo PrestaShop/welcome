@@ -23,26 +23,18 @@ needs please refer to http://www.prestashop.com for more information.
 International Registered Trademark & Property of PrestaShop SA
 #}
 
-<div class="onboarding navbar-footer" style="display: none">
-    <div class="row text">
-        <div class="col-md-8">
-            {{ generic.launch }}
-        </div>
-        <div class="col-md-4 text-right">
-            {{ ((currentStep / totalSteps) * 100)|round(0, 'floor') }}%
-        </div>
+<div class="onboarding-navbar" style="display: none">
+  <div class="row text">
+    <div class="col-md-8">
+      {{ generic.launch }}
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: {{ (currentStep / totalSteps) * 100 }}%;"></div>
-            </div>
-        </div>
+    <div class="col-md-4 text-right text-md-right">
+      {{ ((currentStep / totalSteps) * 100)|round(0, 'floor') }}%
     </div>
-    <div class="row">
-        <div class="col-md-12 text-center">
-            <button class="btn btn-main btn-sm onboarding-button-resume">{{ generic.resume }}</button>
-            <button class="btn btn-main btn-sm onboarding-button-stop">{{ generic.stop }}</button>
-        </div>
-    </div>
+  </div>
+  <div class="progress">
+    <div class="bar" role="progressbar" style="width: {{ (currentStep / totalSteps) * 100 }}%;"></div>
+  </div>
+  <button class="btn btn-main btn-sm onboarding-button-resume">{{ generic.resume }}</button>
+  <a class="btn -small btn-main btn-sm onboarding-button-stop">{{ generic.stop }}</a>
 </div>
