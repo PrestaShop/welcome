@@ -9,7 +9,7 @@ groups:
         options:   [savepoint, hideFooter]
         page:      'index.php?controller=AdminDashboard'
 
-  - title: { loc: group1.title }
+  - title: { loc: group2.title }
     steps:
 
       - type:      tooltip
@@ -21,38 +21,56 @@ groups:
         position:  right
 
       - type:      tooltip
+        title:     { loc: group2.step2.title }
+        text:      { loc: group2.step2.text  }
+        page:      'product/form'
+        selector:  '#tab_step1'
+        position:  right
+
+      - type:      tooltip
         title:     { loc: group2.step3.title }
         text:      { loc: group2.step3.text  }
         page:      'product/form'
-        selector:  '#form_step1_price_shortcut'
-        position:  left
+        selector:  '#product-images-dropzone'
+        position:  right
 
       - type:      tooltip
         title:     { loc: group2.step4.title }
         text:      { loc: group2.step4.text  }
         page:      'product/form'
-        selector:  '.nav-tabs li:last-child'
-        position:  right
-
-      - type:      popup
-        title:     { loc: group2.step5.title }
-        text:      { loc: group2.step5.text  }
-        page:      'product/form'
-        selector:  '.nav-tabs li:last-child'
+        selector:  '#form_step1_price_shortcut'
+        position:  left
         action:
-          selector: '.form-action-bar .btn-submit:first'
+          selector: '#product_form_save_go_to_catalog_btn'
           action:   'click'
 
       - type:      tooltip
-        title:     { loc: group2.step6.title }
-        text:      { loc: group2.step6.text  }
+        title:     { loc: group2.step5.title }
+        text:      { loc: group2.step5.text  }
         page:      'product/catalog'
-        selector:  '.checkbox-column'
+        selector:  '#product_catalog_list table tr:last-child td:nth-child(3)'
         position:  left
 
-      - type:      popup
-        title:     { loc: group2.step7.title }
-        text:      { content: end  }
-        options:   [hideFooter]
-        page:      'product/catalog'
-        selector:  '.checkbox-column'
+  - title: { loc: group3.title }
+    steps:
+
+      - type:      tooltip
+        title:     { loc: group3.step1.title }
+        text:      { loc: group3.step1.text  }
+        options:   [savepoint]
+        page:      '?controller=AdminThemes'
+        selector:  '#js_theme_form_container .row .btn:first-child'
+        position:  left
+
+      - type:      tooltip
+        title:     { loc: group3.step2.title }
+        text:      { loc: group3.step2.text  }
+        options:   [savepoint]
+        page:      '?controller=AdminThemes'
+        selector:  '.tab-pane.active .dummyfile'
+        position:  right
+
+
+
+
+

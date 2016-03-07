@@ -26,39 +26,41 @@ lost:
 # Steps
 
 group1:
-  title: 'Welcome'
+  title: TODO
 
   step1:
-    title: 'Hello from the PrestaShop team !'
+    title: TODO
 
 group2:
-  title: 'Product creation'
+  title: Let's create your first product
 
   step1:
-    title: 'Set the name of the product'
-    text:  'Enter here the name of your new product'
+    title: TODO
+    text:  Give your product a catchy name
 
   step2:
-    title: 'Set the description of the product'
-    text:  'Explain here how awesome is your product'
+    title: TODO
+    text:  Fill in the essential details in this tab. The other tabs are for more advanced information.
 
   step3:
-    title: 'Everything has a price'
-    text: 'Enter here the price of your product'
+    title: TODO
+    text: Add one or more pictures so your product looks tempting!
 
   step4:
-    title: 'And some other options'
-    text:  'Here you can fin other options'
+    title: TODO
+    text: How much do you want to sell it?
 
   step5:
-    title: 'All is done …'
-    text:  'Now we will save your product and go to the products list'
+    title: TODO
+    text: Yay! You just created your first product. Looks good, right?
 
-  step6:
-    title: 'Finished'
-    text:  'Here is your new product! Wonderfull!'
+group3:
+  title: Give your shop its own identity
 
-  step7:
-    title: 'Finished'
-    text:  'ALL IS DONE!'
+  step1:
+    title: TODO
+    text: Here, you can customize the current theme for your shop.
 
+  step2:
+    title: TODO
+    text: And a good way to start is to add your own logo here!

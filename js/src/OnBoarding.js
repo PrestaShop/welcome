@@ -285,37 +285,37 @@ class OnBoarding
    */
   updateAdvancement()
   {
-    var advancementFooter = $(".onboarding-advancement");
-    var advancementNav = $(".onboarding-navbar");
+    var advancementFooter = $('.onboarding-advancement');
+    var advancementNav = $('.onboarding-navbar');
     var totalSteps = 0;
 
     this.steps.groups.forEach((group, index) => {
       var positionOnChunk = Math.min((this.currentStep + 1) - totalSteps, group.steps.length);
-      advancementFooter.find(".group-"+index+" .advancement").css(
-          "width",
+      advancementFooter.find('.group-' + index + ' .advancement').css(
+          'width',
           ((positionOnChunk / group.steps.length)*100)+"%"
       );
       totalSteps += group.steps.length;
       if (positionOnChunk == group.steps.length) {
-        let id = advancementFooter.find(".group-"+index+" .id");
-        if (!id.hasClass("-done")) {
-          id.addClass("-done");
+        let id = advancementFooter.find('.group-' + index + ' .id');
+        if (!id.hasClass('-done')) {
+          id.addClass('-done');
         }
       }
     });
-    advancementFooter.find(".group-title").html(
-        (this.getCurrentGroupID() + 1)+"/"+this.getTotalGroups()
-        +" - "
-        +this.getGroupForStep(this.currentStep).title
+    advancementFooter.find('.group-title').html(
+        (this.getCurrentGroupID() + 1) + '/' + this.getTotalGroups()
+        + " - "
+        + this.getGroupForStep(this.currentStep).title
     );
-    advancementFooter.find(".step-title").html(
+    advancementFooter.find('.step-title').html(
         '<i class="material-icons">check</i> '
         + this.getStep(this.currentStep).title
     );
 
     var totalAdvancement = this.currentStep / this.getTotalSteps();
-    advancementNav.find(".text").find(".text-right").html(Math.floor(totalAdvancement * 100)+"%");
-    advancementNav.find(".progress-bar").width((totalAdvancement * 100)+"%");
+    advancementNav.find('.text').find('.text-right').html(Math.floor(totalAdvancement * 100) + '%');
+    advancementNav.find('.progress-bar').width((totalAdvancement * 100) + '%');
   }
 
   /**
