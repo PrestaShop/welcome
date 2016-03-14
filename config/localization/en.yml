@@ -13,10 +13,6 @@ welcome:
   text:   'Welcome to your shop, we will help you to create your first product, this will be awesome!'
   button: 'Start'
 
-end:
-  text:   'All is done! Thank you for working with us!'
-  button: 'Finished'
-
 lost:
   lost:            'Hey! Are you lost?'
   continue:        'To continue, press this button:'

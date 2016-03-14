@@ -102,7 +102,9 @@ class OnBoarding
         var nextStep = this.getStep(stepIndex);
 
         if (null == nextStep) {
-          $(".onboarding").remove();
+          $(".onboarding-popup").remove();
+          $(".onboarding-navbar").remove();
+          $(".onboarding-tooltip").remove();
           return;
         }
 

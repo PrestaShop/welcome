@@ -132,3 +132,8 @@ groups:
         page:     'module/catalog'
         selector: '.page-head-tabs .tab:eq(0)'
         position: right
+
+      - type:      popup
+        text:      { content: end }
+        options:   [savepoint, hideFooter]
+        page:      ''

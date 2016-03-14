@@ -5,3 +5,20 @@
 @import 'navbar';
 @import 'tooltip';
 @import 'popup';
+
+#onboarding-welcome {
+  .final-link {
+    display: block;
+    border: 1px solid #BBCDD2;
+    border-radius: rem(3px);
+    padding: rem(20px);
+    margin: rem(7px) 0;
+    text-decoration: none;
+
+    > i {
+      color: #BBCDD2;
+      font-size: rem(64px);
+      margin-bottom: rem(24px);
+    }
+  }
+}
