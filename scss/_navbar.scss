@@ -3,6 +3,7 @@
   box-sizing: border-box;
   width: 100%;
   padding: rem(10px);
+  padding-bottom: rem(35px); // Forced because of old theme
   background: $navbar-footer-color;
   position: absolute;
   bottom: 0;
@@ -15,20 +16,35 @@
     padding-bottom: rem(10px);
   }
 
-  > .btn {
+  .onboarding-button-resume { // Forced because of old theme
+    background: #1e2024;
+    color: #95a7ad;
+  }
+
+  .btn {
     background: $navbar-progress-secondary-color;
     color: $navbar-text-color;
+    text-transform: uppercase; // Forced because of old theme
     margin: 0 auto;
     font-size: rem(10px);
     padding: rem(6px) rem(15px);
-
+    &:hover { // Forced because of old theme
+      color: #95a7ad !important; // Forced because of old theme
+    }
   }
-  > .btn.-small {
+  .btn.-small {
     margin-top: rem(2px);
     font-size: rem(8px);
     padding: rem(4px);
     text-transform: none;
     background: $navbar-footer-color;
+    font-size: rem(10px) !important; // Forced because of old theme
+    text-transform: none; // Forced because of old theme
+    color: #95a7ad !important; // Forced because of old theme
+    &:hover { // Forced because of old theme
+      color: #95a7ad !important;; // Forced because of old theme
+      text-decoration: underline; // Forced because of old theme
+    }
   }
   > .btn.-small:hover {
     text-decoration: underline;

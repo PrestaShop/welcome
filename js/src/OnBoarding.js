@@ -58,7 +58,8 @@ class OnBoarding
         this.updateAdvancement();
       } else {
         $('.onboarding-advancement').toggle(false);
-        this.prependTemplate('lost');
+        this.setShutDown(true);
+        //this.prependTemplate('lost');
       }
     }
   }
