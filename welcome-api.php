@@ -26,7 +26,7 @@
 
 require_once(__DIR__.'/../../config/config.inc.php');
 require_once(__DIR__.'/../../init.php');
-require_once(__DIR__.'/onboardingv2.php');
+require_once(__DIR__.'/welcome.php');
 
 if (!isset($_POST['action'])) {
     throw new Exception('The action to call is not defined.');
@@ -35,7 +35,7 @@ if (!isset($_POST['value'])) {
     throw new Exception('The value to set is not defined.');
 }
 
-$onBoardingV2 = new Onboardingv2();
-$onBoardingV2->apiCall($_POST['action'], $_POST['value']);
+$onBoarding = new Welcome();
+$onBoarding->apiCall($_POST['action'], $_POST['value']);
 
 echo '0';

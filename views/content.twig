@@ -48,7 +48,7 @@ International Registered Trademark & Property of PrestaShop SA
   $(function(){
 
     {% autoescape false %}
-    onBoarding = new OnBoarding({{ currentStep }}, {{ jsonSteps }}, {{ isShutDown }}, baseDir+"modules/onboardingv2/onboardingv2-api.php", baseAdminDir);
+    onBoarding = new OnBoarding({{ currentStep }}, {{ jsonSteps }}, {{ isShutDown }}, baseDir+"modules/welcome/welcome-api.php", baseAdminDir);
 
     {% for template in templates %}
     onBoarding.addTemplate('{{ template.name }}', '{{ template.content|replace({"\n":'', "\r":''}) }}');

@@ -34,7 +34,7 @@ use \OnBoarding\OnBoarding;
 /**
  * OnBoarding module entry class.
  */
-class Onboardingv2 extends Module
+class Welcome extends Module
 {
     /**
      * @var OnBoarding
@@ -46,13 +46,13 @@ class Onboardingv2 extends Module
      */
     public function __construct()
     {
-        $this->name = 'onboardingv2';
+        $this->name = 'welcome';
         $this->version = '1.0.0';
         $this->author = 'PrestaShop';
 
         parent::__construct();
 
-        $this->displayName = $this->l('OnBoarding v2');
+        $this->displayName = $this->l('Welcome');
         $this->description = $this->l('Help the user to create his first product.');
         $this->ps_versions_compliancy = [
             'min' => '1.7.0.0',
