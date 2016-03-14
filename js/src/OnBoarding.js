@@ -48,7 +48,6 @@ class OnBoarding
       var step = this.getStep(this.currentStep);
 
       if (OnBoarding.isCurrentPage(step.page)) {
-
         this.prependTemplate(step.type, step.text);
 
         if (step.type == 'tooltip') {
@@ -303,15 +302,27 @@ class OnBoarding
         }
       }
     });
+
     advancementFooter.find('.group-title').html(
         (this.getCurrentGroupID() + 1) + '/' + this.getTotalGroups()
         + " - "
         + this.getGroupForStep(this.currentStep).title
     );
-    advancementFooter.find('.step-title').html(
-        '<i class="material-icons">check</i> '
-        + this.getStep(this.currentStep).title
-    );
+
+    if (this.getGroupForStep(this.currentStep).subtitle) {
+      if (this.getGroupForStep(this.currentStep).subtitle[1]) {
+        advancementFooter.find('.step-title-1').html(
+            '<i class="material-icons">check</i> '
+            + this.getGroupForStep(this.currentStep).subtitle[1]
+        );
+      }
+      if (this.getGroupForStep(this.currentStep).subtitle[2]) {
+        advancementFooter.find('.step-title-2').html(
+            '<i class="material-icons">check</i> '
+            + this.getGroupForStep(this.currentStep).subtitle[2]
+        );
+      }
+    }
 
     var totalAdvancement = this.currentStep / this.getTotalSteps();
     advancementNav.find('.text').find('.text-right').html(Math.floor(totalAdvancement * 100) + '%');

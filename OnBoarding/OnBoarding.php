@@ -157,9 +157,15 @@ class OnBoarding
         $steps = Yaml::parse(file_get_contents($configPath.'/steps.yml'));
 
         foreach ($steps['groups'] as &$currentGroup) {
-            $currentGroup['title'] = $this->getTextFromSettings($currentGroup['title']);
+            if (isset($currentGroup['title'])) {
+                $currentGroup['title'] = $this->getTextFromSettings($currentGroup['title']);
+            }
+            if (isset($currentGroup['subtitle'])) {
+                foreach ($currentGroup['subtitle'] as &$subtitle) {
+                    $subtitle = $this->getTextFromSettings($subtitle);
+                }
+            }
             foreach ($currentGroup['steps'] as &$currentStep) {
-                $currentStep['title'] = $this->getTextFromSettings($currentStep['title']);
                 $currentStep['text'] = $this->getTextFromSettings($currentStep['text']);
             }
         }
