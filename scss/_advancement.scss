@@ -1,6 +1,8 @@
 @import "settings";
 
 .onboarding-advancement {
+  font-family: Open Sans,sans-serif; // Forced because of old theme
+  font-weight: normal; // Forced because of old theme
   position: fixed;
   background: $background-color;
   height: rem(110px);
@@ -15,13 +17,21 @@
     background: $primary-color;
   }
 
+  .col-md-8 { // Forced because of old theme
+    padding-left: rem(15px);
+  }
+
   .group-title {
+    font-weight: bold; // Forced because of old theme
+    font-family: Open Sans,sans-serif; // Forced because of old theme
     color: $dark-color;
     font-size: rem(16px);
     margin-top: rem(10px);
   }
 
   .step-title {
+    font-size: rem(14px); // Forced because of old theme
+    line-height: rem(20px); // Forced because of old theme
     .material-icons {
       color: $primary-color;
       font-size: rem(18px);

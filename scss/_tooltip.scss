@@ -25,6 +25,8 @@
     z-index: 1;
   }
 
+  font-family: Open Sans,sans-serif; // Forced because of old theme
+  font-size: rem(14px); // Forced because of old theme
   position: absolute;
   box-sizing: border-box;
   opacity: 1;
@@ -68,7 +70,15 @@
     position: absolute;
     bottom: rem(5px);
     right: rem(5px);
-    padding: rem(3px) rem(8px);
+    padding: /* rem(3px) */ 0 rem(8px);
+    background: $primary-color; // Forced because of old theme
+    color: white; // Forced because of old theme
+    font-size: rem(12px); // Forced because of old theme
+    border-radius: rem(3px); // Forced because of old theme
+    border: none; // Forced because of old theme
+    vertical-align: middle; // Forced because of old theme
+    height: rem(25px); // Forced because of old theme
+    line-height: rem(25px); // Forced because of old theme
   }
 }
 
