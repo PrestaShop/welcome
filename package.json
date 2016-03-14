@@ -1,8 +1,8 @@
 {
-  "name": "onboardingv2",
+  "name": "welcome",
   "version": "1.0.0",
-  "description": "Onboarding module for PrestaShop helping the users to create products.",
-  "main": "onboardingv2.php",
+  "description": "Welcome module for PrestaShop helping the users to create products.",
+  "main": "welcome.php",
   "scripts": {
     "postinstall": "webpack --progress",
     "build": "webpack --progress --colors --debug --display-chunks",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Shudrum/onboarding.git"
+    "url": "git+https://github.com/PrestaShop/welcome"
   },
   "author": "PrestaShop",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Shudrum/onboarding/issues"
+    "url": "https://github.com/PrestaShop/welcome/issues"
   },
-  "homepage": "https://github.com/Shudrum/onboarding#readme",
+  "homepage": "https://github.com/PrestaShop/welcome#readme",
   "devDependencies": {
     "babel-core": "^6.6.4",
     "babel-loader": "^6.2.4",
