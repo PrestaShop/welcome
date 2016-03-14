@@ -5,5 +5,3 @@ composer.phar
 node_modules
 config_*
 .sass-cache
-
-public
