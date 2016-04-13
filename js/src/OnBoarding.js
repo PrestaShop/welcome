@@ -445,6 +445,12 @@ class OnBoarding
     var currentStepIDOnGroup = this.getCurrentStepIDOnGroup();
     var groupStepsCount = this.getGroupForStep(this.currentStep).steps.length;
 
+    $(function() {
+      if (elementOffset.top > ((screen.height / 2) - 200)) {
+        window.scrollTo(0, elementOffset.top - ((screen.height / 2) - 200));
+      }
+    });
+
     tooltip.find(".count").html((currentStepIDOnGroup + 1) + '/' + groupStepsCount);
 
     var bullsContainer = tooltip.find(".bulls");
