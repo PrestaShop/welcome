@@ -412,48 +412,36 @@ class OnBoarding
    */
   placeToolTip(step)
   {
-    var element = $(step.selector);
-    var elementOffset = element.offset();
-    var tooltip = $(".onboarding-tooltip");
+    this.tooltipElement = $(step.selector);
+    this.tooltip = $(".onboarding-tooltip");
 
-    tooltip.hide();
+    this.tooltip.hide();
 
-    if (!element.is(":visible")) {
+    if (!this.tooltipElement.is(":visible")) {
       setTimeout(() => {
         this.placeToolTip(step);
       }, 100);
+      if (this.tooltipPlacementInterval != undefined) {
+        clearInterval(this.tooltipPlacementInterval);
+      }
       return;
+    } else {
+      this.tooltipPlacementInterval = setInterval(() => {
+        this.updateToolTipPosition(step);
+      }, 100);
     }
 
-    tooltip.show();
+    this.tooltip.show();
 
-    var middleY = elementOffset.top + (element.outerHeight() / 2) - (tooltip.outerHeight() / 2);
-    var leftX = elementOffset.left - tooltip.outerWidth();
-    var rightX = elementOffset.left + element.outerWidth();
-
-    tooltip.addClass('-'+step.position);
-
-    switch (step.position) {
-      case 'right':
-        tooltip.css({left: rightX, top: middleY});
-        break;
-      case 'left':
-        tooltip.css({left: leftX, top: middleY});
-        break;
-    }
+    this.tooltip.addClass('-'+step.position);
+    this.tooltip.data('position', step.position);
 
     var currentStepIDOnGroup = this.getCurrentStepIDOnGroup();
     var groupStepsCount = this.getGroupForStep(this.currentStep).steps.length;
 
-    $(function() {
-      if (elementOffset.top > ((screen.height / 2) - 200)) {
-        window.scrollTo(0, elementOffset.top - ((screen.height / 2) - 200));
-      }
-    });
+    this.tooltip.find(".count").html((currentStepIDOnGroup + 1) + '/' + groupStepsCount);
 
-    tooltip.find(".count").html((currentStepIDOnGroup + 1) + '/' + groupStepsCount);
-
-    var bullsContainer = tooltip.find(".bulls");
+    var bullsContainer = this.tooltip.find(".bulls");
     for (var idStep = 0; idStep < groupStepsCount; idStep++) {
       var newElement = $('<div></div>').addClass('bull');
       if (idStep < currentStepIDOnGroup) {
@@ -464,7 +452,34 @@ class OnBoarding
       }
       bullsContainer.append(newElement);
     }
+
+    $(() => {
+      if (this.tooltipElement.offset().top > ((screen.height / 2) - 200)) {
+        window.scrollTo(0, this.tooltipElement.offset().top - ((screen.height / 2) - 200));
+      }
+    });
+
+    this.updateToolTipPosition();
   }
+
+  /**
+   * Update the position of the tooltip.
+   */
+   updateToolTipPosition()
+   {
+     var middleY = this.tooltipElement.offset().top + (this.tooltipElement.outerHeight() / 2) - (this.tooltip.outerHeight() / 2);
+     var leftX = this.tooltipElement.offset().left - this.tooltip.outerWidth();
+     var rightX = this.tooltipElement.offset().left + this.tooltipElement.outerWidth();
+
+     switch (this.tooltip.data('position')) {
+       case 'right':
+         this.tooltip.css({left: rightX, top: middleY});
+         break;
+       case 'left':
+         this.tooltip.css({left: leftX, top: middleY});
+         break;
+     }
+   }
 }
 
 module.exports = OnBoarding;
