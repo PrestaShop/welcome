@@ -37,7 +37,8 @@ groups:
       - type:     tooltip
         text:     { loc: group.2.step.4 }
         page:     'product/form'
-        selector: '#form_step1_price_shortcut'
+        # Add an ID into the template to select this element more easily
+        selector: '.right-column > .col-md-12 > .form-group:nth-child(3) > .row > .col-md-6:first-child > .input-group'
         position: left
         action:
           selector: '#product_form_save_go_to_catalog_btn'
