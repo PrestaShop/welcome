@@ -265,6 +265,21 @@
 .onboarding-welcome > .content {
   margin-bottom: 2.5rem; }
 
+.onboarding-welcome > .material-icons {
+  color: #6c868e;
+  position: absolute;
+  top: 0.625rem;
+  right: 0.625rem;
+  cursor: pointer; }
+
+.onboarding-welcome .btn-tertiary-outline {
+  background: none;
+  color: #6c868e;
+  border: 2px solid #6c868e;
+  text-transform: uppercase;
+  box-sizing: border-box;
+  padding: 9px 16px; }
+
 #onboarding-welcome .final-link {
   display: block;
   border: 1px solid #BBCDD2;

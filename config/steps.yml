@@ -37,7 +37,8 @@ groups:
       - type:     tooltip
         text:     { loc: group.2.step.4 }
         page:     'product/form'
-        selector: '#form_step1_price_shortcut'
+        # Add an ID into the template to select this element more easily
+        selector: '.right-column > .col-md-12 > .form-group:nth-child(3) > .row > .col-md-6:first-child > .input-group'
         position: left
         action:
           selector: '#product_form_save_go_to_catalog_btn'
@@ -109,7 +110,7 @@ groups:
         text:     { loc: group.5.step.1 }
         options:  [savepoint]
         page:     '?controller=AdminCarriers'
-        selector: '#table-carrier tr:eq(1) td:eq(1)'
+        selector: '#table-carrier tr:eq(2) td:eq(1)'
         position: right
 
       - type:     tooltip
@@ -136,4 +137,4 @@ groups:
       - type:      popup
         text:      { content: end }
         options:   [savepoint, hideFooter]
-        page:      ''
+        page:      'product/catalog'

@@ -48,4 +48,21 @@
   > .content {
     margin-bottom: rem(40px);
   }
+
+  > .material-icons {
+    color: $background-tertiary-color;
+    position: absolute;
+    top: rem(10px);
+    right: rem(10px);
+    cursor: pointer;
+  }
+
+  .btn-tertiary-outline {
+    background: none;
+    color: $background-tertiary-color;
+    border: 2px solid $background-tertiary-color;
+    text-transform: uppercase;
+    box-sizing: border-box;
+    padding: 9px 16px;
+  }
 }
