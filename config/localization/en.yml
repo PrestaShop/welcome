@@ -15,9 +15,9 @@ welcome:
 
 lost:
   lost:            'Hey! Are you lost?'
-  continue:        'To continue, press this button:'
-  definitly:       'If you want to definitly stop the OnBoarding, press this button:'
-  definitlyButton: 'Definitly stop the onboarding'
+  continue:        'To continue, click here:'
+  definitly:       'If you want to stop the tutorial for good, click here:'
+  definitlyButton: 'Quit the Welcome tutorial'
 
 # Steps
 
