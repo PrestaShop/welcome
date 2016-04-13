@@ -137,4 +137,4 @@ groups:
       - type:      popup
         text:      { content: end }
         options:   [savepoint, hideFooter]
-        page:      ''
+        page:      'product/catalog'
