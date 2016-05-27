@@ -1,67 +1,67 @@
 # Generic
 
 generic:
-  continue:    Continue
-  resume:      Resume
-  launch:      Launch your shop!
-  setShutDown: Skip this tutorial
-  stop:        Stop the OnBoarding
+  continue:    "Continue"
+  resume:      "Resume"
+  launch:      "Launch your shop!"
+  setShutDown: "Skip this tutorial"
+  stop:        "Stop the OnBoarding"
 
 # Content Welcome
 
 welcome:
-  text:   'Welcome to your shop, we will help you to create your first product, this will be awesome!'
-  button: 'Start'
+  text:   "Welcome to your shop, we will help you to create your first product, this will be awesome!"
+  button: "Start"
 
 lost:
-  lost:            'Hey! Are you lost?'
-  continue:        'To continue, click here:'
-  definitly:       'If you want to stop the tutorial for good, click here:'
-  definitlyButton: 'Quit the Welcome tutorial'
+  lost:            "Hey! Are you lost?"
+  continue:        "To continue, click here:"
+  definitly:       "If you want to stop the tutorial for good, click here:"
+  definitlyButton: "Quit the Welcome tutorial"
 
 # Steps
 
 group:
   2:
-    title: Let's create your first product
+    title: "Let's create your first product"
     subtitle:
-      1: What do you want to tell about it? Think about what your customers want to know.
-      2: Add clear and attractive information. Don't worry, you can edit it later :)
+      1: "What do you want to tell about it? Think about what your customers want to know."
+      2: "Add clear and attractive information. Don't worry, you can edit it later :)"
     step:
-      1: Give your product a catchy name.
-      2: Fill in the essential details in this tab. The other tabs are for more advanced information.
-      3: Add one or more pictures so your product looks tempting!
-      4: How much do you want to sell it?
-      5: Yay! You just created your first product. Looks good, right?
+      1: "Give your product a catchy name."
+      2: "Fill in the essential details in this tab. The other tabs are for more advanced information."
+      3: "Add one or more pictures so your product looks tempting!"
+      4: "How much do you want to sell it?"
+      5: "Yay! You just created your first product. Looks good, right?"
   3:
-    title: Give your shop its own identity
+    title: "Give your shop its own identity"
     subtitle:
-      1: How do you want your shop to look? What makes it so special?
-      2: Customize your theme or choose the best design from our theme catalog.
+      1: "How do you want your shop to look? What makes it so special?"
+      2: "Customize your theme or choose the best design from our theme catalog."
     step:
-      1: A good way to start is to add your own logo here!
-      2: Here, you can customize the current theme for your shop.
-      3: If you want something really special, have a look at the theme catalog!
+      1: "A good way to start is to add your own logo here!"
+      2: "Here, you can customize the current theme for your shop."
+      3: "If you want something really special, have a look at the theme catalog!"
   4:
-    title: Get your shop ready for payments
+    title: "Get your shop ready for payments"
     subtitle:
-      1: How do you want your customers to pay you?
+      1: "How do you want your customers to pay you?"
       2: "Adapt your offer to your market: add the most popular payment methods for your customers!"
     step:
-      1: The payments methods are already available to your customers.
-      2: And you can choose to add other payment methods from here!
+      1: "The payments methods are already available to your customers."
+      2: "And you can choose to add other payment methods from here!"
   5:
-    title: Choose your shipping solutions
+    title: "Choose your shipping solutions"
     subtitle:
-      1: How do you want to deliver your products?
-      2: Select the shipping solutions the most likely to suit your customers! Create your own carrier or add a ready-made module.
+      1: "How do you want to deliver your products?"
+      2: "Select the shipping solutions the most likely to suit your customers! Create your own carrier or add a ready-made module."
     step:
-      1: Here are the shipping methods available on your shop today.
-      2: You can offer more delivery options by setting up additional carriers
+      1: "Here are the shipping methods available on your shop today."
+      2: "You can offer more delivery options by setting up additional carriers"
   6:
-    title: Improve your shop with modules
+    title: "Improve your shop with modules"
     subtitle:
-      1: Add new features and manage existing ones thanks to modules.
-      2: A module can be already installed for you, free to install or paying - browse our selection to see what's available!
+      1: "Add new features and manage existing ones thanks to modules."
+      2: "A module can be already installed for you, free to install or paying - browse our selection to see what's available!"
     step:
-      1: Discover our module selection in the first tab. Manage your modules on the second one and be aware of notification in the third tab.
+      1: "Discover our module selection in the first tab. Manage your modules on the second one and be aware of notification in the third tab."
