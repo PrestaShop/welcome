@@ -493,10 +493,17 @@
 	      this.save({ action: 'setShutDown', value: value ? 1 : 0 }, function (error) {
 	        if (!error) {
 	          _this6.isShutDown = value;
-	          if (OnBoarding.isCurrentPage(_this6.getStep(_this6.currentStep).page)) {
-	            _this6.showCurrentStep();
+	          if (_this6.isShutDown == false) {
+	            if (OnBoarding.isCurrentPage(_this6.getStep(_this6.currentStep).page)) {
+	              _this6.showCurrentStep();
+	            } else {
+	              _this6.gotoLastSavePoint();
+	            }
 	          } else {
-	            _this6.gotoLastSavePoint();
+	            $('.onboarding-advancement').toggle(false);
+	            $('.onboarding-navbar').toggle(true);
+	            $('.onboarding-popup').remove();
+	            $('.onboarding-tooltip').remove();
 	          }
 	        }
 	      });

@@ -366,10 +366,17 @@ class OnBoarding
     this.save({action: 'setShutDown', value: value ? 1 : 0}, ((error) => {
       if (!error) {
         this.isShutDown = value;
-        if (OnBoarding.isCurrentPage(this.getStep(this.currentStep).page)) {
-          this.showCurrentStep();
+        if (this.isShutDown == false) {
+          if (OnBoarding.isCurrentPage(this.getStep(this.currentStep).page)) {
+            this.showCurrentStep();
+          } else {
+            this.gotoLastSavePoint();
+          }
         } else {
-          this.gotoLastSavePoint();
+          $('.onboarding-advancement').toggle(false);
+          $('.onboarding-navbar').toggle(true);
+          $('.onboarding-popup').remove();
+          $('.onboarding-tooltip').remove();
         }
       }
     }));
