@@ -460,11 +460,11 @@ class OnBoarding
       bullsContainer.append(newElement);
     }
 
-    $(() => {
+    setTimeout(function() {
       if (this.tooltipElement.offset().top > ((screen.height / 2) - 200)) {
         window.scrollTo(0, this.tooltipElement.offset().top - ((screen.height / 2) - 200));
       }
-    });
+    }.bind(this), 200);
 
     this.updateToolTipPosition();
   }
