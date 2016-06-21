@@ -62,8 +62,8 @@ groups:
         text:     { loc: group.3.step.1 }
         options:  [savepoint]
         page:     '?controller=AdminThemes'
-        selector: '#js_theme_form_container .row .btn:first-child'
-        position: left
+        selector: '#js_theme_form_container .tab-content.panel .btn:first-child'
+        position: right
 
 #      - type:     tooltip
 #        text:     { loc: group.3.step.2 }
@@ -110,7 +110,7 @@ groups:
         text:     { loc: group.5.step.1 }
         options:  [savepoint]
         page:     '?controller=AdminCarriers'
-        selector: '#table-carrier tr:eq(2) td:eq(1)'
+        selector: '#table-carrier tr:eq(2) td:eq(3)'
         position: right
 
       - type:     tooltip
