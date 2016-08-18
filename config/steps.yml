@@ -38,7 +38,7 @@ groups:
         text:     { loc: group.2.step.4 }
         page:     'product/form'
         # Add an ID into the template to select this element more easily
-        selector: '.right-column > .col-md-12 > .form-group:nth-child(3) > .row > .col-md-6:first-child > .input-group'
+        selector: '.right-column > .row > .col-md-12 > .form-group:nth-child(4) > .row > .col-md-6:first-child > .input-group'
         position: left
         action:
           selector: '#product_form_save_go_to_catalog_btn'
@@ -74,7 +74,7 @@ groups:
       - type:     tooltip
         text:     { loc: group.3.step.3 }
         page:     '?controller=AdminThemes'
-        selector: '#prestastore-content .addons-style-module:first-child'
+        selector: '#prestastore-content .addons-theme-one:first-child'
         position: right
 
   - title: { loc: group.4.title }
