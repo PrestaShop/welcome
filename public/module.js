@@ -90,7 +90,6 @@
 	/**
 	 * OnBoarding main class.
 	 */
-
 	var OnBoarding = function () {
 	  /**
 	   * Constructor.
@@ -101,7 +100,6 @@
 	   * @param {string}  apiLocation  OnBoarding API location
 	   * @param {string}  baseAdminDir Base PrestaShop admin directory
 	   */
-
 	  function OnBoarding(currentStep, steps, isShutDown, apiLocation, baseAdminDir) {
 	    _classCallCheck(this, OnBoarding);
 
@@ -135,7 +133,7 @@
 	  }, {
 	    key: 'showCurrentStep',
 	    value: function showCurrentStep() {
-	      $('.onboarding-navbar').toggle(this.isShutDown == true);
+	      $('.onboarding-navbar').toggleClass('displayed', this.isShutDown == true);
 	      $('.onboarding-advancement').toggle(this.isShutDown == false);
 	      $('.onboarding-popup').remove();
 	      $('.onboarding-tooltip').remove();
@@ -501,7 +499,7 @@
 	            }
 	          } else {
 	            $('.onboarding-advancement').toggle(false);
-	            $('.onboarding-navbar').toggle(true);
+	            $('.onboarding-navbar').toggleClass('displayed', true);
 	            $('.onboarding-popup').remove();
 	            $('.onboarding-tooltip').remove();
 	          }

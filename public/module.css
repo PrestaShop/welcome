@@ -70,7 +70,11 @@
     .onboarding-advancement > .advancement-groups > .group > .id.-done {
       background-color: #25b9d7; }
 
-.onboarding-navbar {
+.page-sidebar-closed .onboarding-navbar {
+  display: none; }
+
+.onboarding-navbar.displayed {
+  displaye: block;
   font-weight: normal;
   box-sizing: border-box;
   width: 100%;
@@ -81,23 +85,23 @@
   bottom: 0;
   font-size: 0.6875rem;
   text-align: center; }
-  .onboarding-navbar > .text {
+  .onboarding-navbar.displayed > .text {
     text-align: left;
     color: #95a7ad;
     padding-bottom: 0.625rem; }
-  .onboarding-navbar .onboarding-button-resume {
+  .onboarding-navbar.displayed .onboarding-button-resume {
     background: #1e2024;
     color: #95a7ad; }
-  .onboarding-navbar .btn {
+  .onboarding-navbar.displayed .btn {
     background: #1e2024;
     color: #95a7ad;
     text-transform: uppercase;
     margin: 0 auto;
     font-size: 0.625rem;
     padding: 0.375rem 0.9375rem; }
-    .onboarding-navbar .btn:hover {
+    .onboarding-navbar.displayed .btn:hover {
       color: #95a7ad !important; }
-  .onboarding-navbar .btn.-small {
+  .onboarding-navbar.displayed .btn.-small {
     margin-top: 0.125rem;
     font-size: 0.5rem;
     padding: 0.25rem;
@@ -106,16 +110,16 @@
     font-size: 0.625rem !important;
     text-transform: none;
     color: #95a7ad !important; }
-    .onboarding-navbar .btn.-small:hover {
+    .onboarding-navbar.displayed .btn.-small:hover {
       color: #95a7ad !important;
       text-decoration: underline; }
-  .onboarding-navbar > .btn.-small:hover {
+  .onboarding-navbar.displayed > .btn.-small:hover {
     text-decoration: underline; }
-  .onboarding-navbar > .progress {
+  .onboarding-navbar.displayed > .progress {
     border-radius: 0.5rem;
     height: 0.5rem;
     background: #1e2024; }
-  .onboarding-navbar > .progress > .bar {
+  .onboarding-navbar.displayed > .progress > .bar {
     border-radius: 0.5rem;
     background: #fbb000;
     height: 0.5rem; }
