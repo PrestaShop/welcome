@@ -39,7 +39,7 @@ class OnBoarding
    */
   showCurrentStep()
   {
-    $('.onboarding-navbar').toggle(this.isShutDown == true);
+    $('.onboarding-navbar').toggleClass('displayed', this.isShutDown == true);
     $('.onboarding-advancement').toggle(this.isShutDown == false);
     $('.onboarding-popup').remove();
     $('.onboarding-tooltip').remove();
@@ -374,7 +374,7 @@ class OnBoarding
           }
         } else {
           $('.onboarding-advancement').toggle(false);
-          $('.onboarding-navbar').toggle(true);
+          $('.onboarding-navbar').toggleClass('displayed', true);
           $('.onboarding-popup').remove();
           $('.onboarding-tooltip').remove();
         }
