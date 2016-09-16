@@ -65,16 +65,10 @@ groups:
         selector: '#js_theme_form_container .tab-content.panel .btn:first-child'
         position: right
 
-#      - type:     tooltip
-#        text:     { loc: group.3.step.2 }
-#        page:     '?controller=AdminThemes'
-#        selector: '.tab-pane.active .dummyfile'
-#        position: right
-
       - type:     tooltip
         text:     { loc: group.3.step.3 }
-        page:     '?controller=AdminThemes'
-        selector: '#prestastore-content .addons-theme-one:first-child'
+        page:     '?controller=AdminThemesCatalog'
+        selector: '.addons-theme-one:first-child'
         position: right
 
   - title: { loc: group.4.title }
