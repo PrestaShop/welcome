@@ -1,11 +1,9 @@
-.page-sidebar-closed {
-  .onboarding-navbar {
-    display: none;
-  }
+.onboarding-navbar {
+  display: none;
 }
 
 .onboarding-navbar.displayed {
-  displaye: block;
+  display: block;
   font-weight: normal;
   box-sizing: border-box;
   width: 100%;
