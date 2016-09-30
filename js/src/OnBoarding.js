@@ -113,17 +113,119 @@ class OnBoarding
         } else {
           this.currentStep++;
           if (!OnBoarding.isCurrentPage(nextStep.page)) {
-            if (Array.isArray(nextStep.page)) {
-              window.location.href = this.baseAdminDir + nextStep.page[0];
-            } else {
-              window.location.href = this.baseAdminDir + nextStep.page;
-            }
+            window.location.href = this.getRedirectUrl(nextStep);
           } else {
             this.showCurrentStep();
           }
         }
       }
     }));
+  }
+
+  getTokenAsString(redirectUrl) {
+    var separator;
+
+    if (-1 !== redirectUrl.indexOf('?')) {
+      separator = '&';
+    } else {
+      separator = '?';
+    }
+
+    var queryString = window.location.search.substr(1);
+    var tokens = OnBoarding.getSecurityTokens(queryString, redirectUrl);
+
+    var tokenAsString = separator;
+
+    if (tokens.token !== undefined) {
+      tokenAsString = tokenAsString + 'token=' + tokens.token;
+    }
+
+    if (tokens._token !== undefined) {
+      tokenAsString = tokenAsString + '&_token=' + tokens._token
+    }
+
+    return tokenAsString;
+  }
+
+  getRedirectUrl(nextStep) {
+    var redirectUrl;
+    if (Array.isArray(nextStep.page)) {
+      redirectUrl = this.baseAdminDir + nextStep.page[0];
+    } else {
+      redirectUrl = this.baseAdminDir + nextStep.page;
+    }
+
+    return redirectUrl + this.getTokenAsString(redirectUrl);
+  }
+
+  static parseQueryString(queryString)
+  {
+    var queryStringParts = queryString.split('&');
+    var queryParams = {};
+    var parts;
+    var i;
+    for (i = 0; i < queryStringParts.length; i++) {
+      parts = queryStringParts[i].split('=');
+      queryParams[parts[0]] = parts[1];
+    }
+
+    return queryParams;
+  }
+
+  /**
+   * Get security tokens from URL and navigation menu
+   *
+   * @param queryString
+   * @param redirectUrl
+   * @returns {{}}
+   */
+  static getSecurityTokens(queryString, redirectUrl) {
+    var queryParams = OnBoarding.parseQueryString(queryString);
+    var tokens = {};
+
+    if (typeof queryParams['token'] !== 'undefined') {
+      tokens.token = queryParams['token'];
+    }
+
+    if (typeof queryParams['_token'] !== 'undefined') {
+      tokens._token = queryParams['_token'];
+    }
+
+    if (redirectUrl.indexOf('?') !== -1) {
+      queryString = redirectUrl.split('?')[1]
+    } else {
+      queryString = redirectUrl;
+    }
+    var redirectUrlQueryParams = OnBoarding.parseQueryString(queryString);
+    if (typeof redirectUrlQueryParams.controller !== 'undefined') {
+      var submenu;
+
+      switch (redirectUrlQueryParams.controller) {
+        case 'AdminThemes':
+          submenu = '47';
+            break;
+        case 'AdminThemesCatalog':
+          submenu = '48';
+            break;
+        case 'AdminPayment':
+          submenu = '55';
+            break;
+        case 'AdminCarriers':
+          submenu = '52';
+            break;
+      }
+
+      if (typeof submenu !== 'undefined' && $('[data-submenu=' + submenu + '] a').length > 0) {
+        tokens.token = $($('[data-submenu=' + submenu + '] a')[0]).attr('href').split('token=')[1];
+      }
+    }
+
+    if (typeof tokens._token === 'undefined' && $('#subtab-AdminProducts a').length > 0) {
+      var tokenParts = $('#subtab-AdminProducts a').attr('href').split('_token=');
+      tokens._token = tokenParts[1];
+    }
+
+    return tokens;
   }
 
   /**
