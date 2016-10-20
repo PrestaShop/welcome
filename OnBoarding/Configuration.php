@@ -83,7 +83,7 @@ class Configuration
                             ),
                             array(
                                 'type' => 'tooltip',
-                                'text' => $this->translator->trans('Fill in the essential details in this tab. The other tabs are for more advanced information.', array(), 'Modules.Welcome.Admin'),
+                                'text' => $this->translator->trans('Fill out the essential details in this tab. The other tabs are for more advanced information.', array(), 'Modules.Welcome.Admin'),
                                 'page' => 'product/form',
                                 'selector' => '#tab_step1',
                                 'position' => 'right',
@@ -202,7 +202,7 @@ class Configuration
                         'steps' => array(
                             array(
                                 'type' => 'tooltip',
-                                'text' => $this->translator->trans('Discover our module selection in the first tab. Manage your modules on the second one and be aware of notification in the third tab.', array(), 'Modules.Welcome.Admin'),
+                                'text' => $this->translator->trans('Discover our module selection in the first tab. Manage your modules on the second one and be aware of notifications in the third tab.', array(), 'Modules.Welcome.Admin'),
                                 'options' => array(
                                     'savepoint',
                                 ),
