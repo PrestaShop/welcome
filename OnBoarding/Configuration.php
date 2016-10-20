@@ -162,7 +162,7 @@ class Configuration
                                 'type' => 'tooltip',
                                 'text' => $this->translator->trans('And you can choose to add other payment methods from here!', array(), 'Modules.Welcome'),
                                 'page' => '?controller=AdminPayment',
-                                'selector' => '.modules_list_container_tab:eq(1) tr:first-child .btn-success',
+                                'selector' => '.panel:eq(1) table',
                                 'position' => 'left',
                             ),
                         ),

@@ -34,6 +34,6 @@ International Registered Trademark & Property of PrestaShop SA
   </div>
   <div class="text-right text-md-right">
     <button class="btn btn-tertiary-outline btn-lg onboarding-button-shut-down">{l s='Later' d='Modules.Welcome'}</button>
-    <button class="btn btn-primary btn-lg onboarding-button-next">{l s='Start' d='Modules.Welcome'}</button>
+    <button class="btn btn-primary btn-lg with-spinner onboarding-button-next">{l s='Start' d='Modules.Welcome'}</button>
   </div>
 </div>

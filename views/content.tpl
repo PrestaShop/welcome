@@ -58,7 +58,14 @@ International Registered Trademark & Property of PrestaShop SA
     var body = $("body");
 
     body.delegate(".onboarding-button-next", "click", function(){
-      onBoarding.gotoNextStep();
+      if ($(this).is('.with-spinner')) {
+        if (!$(this).is('.animated')) {
+          $(this).addClass('animated');
+          onBoarding.gotoNextStep();
+        }
+      } else {
+        onBoarding.gotoNextStep();
+      }
     }).delegate(".onboarding-button-shut-down", "click", function(){
       onBoarding.setShutDown(true);
     }).delegate(".onboarding-button-resume", "click", function(){
