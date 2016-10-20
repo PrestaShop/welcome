@@ -1,4 +1,4 @@
-{#
+{*
 2007-2016 PrestaShop
 
 NOTICE OF LICENSE
@@ -21,45 +21,45 @@ needs please refer to http://www.prestashop.com for more information.
 @copyright 2007-2016 PrestaShop SA
 @license   http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 International Registered Trademark & Property of PrestaShop SA
-#}
+*}
 
 <div id="onboarding-welcome" class="modal-header">
   <button class="onboarding-button-next pull-right close" type="button">&times;</button>
-  <h2 class="text-center text-md-center">Over to you!</h2>
+  <h2 class="text-center text-md-center">{l s='Over to you!' d='Modules.Welcome'}</h2>
   <p class="text-center text-md-center">
-    You've seen the essential, but there's a lot more to explore.<br />
-    Some ressources can help you go further:
+    {l s='You\'ve seen the essential, but there\'s a lot more to explore.' d='Modules.Welcome'}<br />
+    {l s='Some ressources can help you go further:' d='Modules.Welcome'}
   </p>
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-6 text-center text-md-center">
         <a class="final-link" href="http://doc.prestashop.com/display/PS16/Getting+Started" target="_blank">
           <i class="material-icons">import_contacts</i><br />
-          Starter Guide
+          {l s='Starter Guide' d='Modules.Welcome'}
         </a>
       </div>
       <div class="col-md-6 text-center text-md-center">
         <a class="final-link" href="https://www.prestashop.com/forums/" target="_blank">
           <i class="material-icons">forum</i><br />
-          Forum
+          {l s='Forum' d='Modules.Welcome'}
         </a>
       </div>
       <div class="col-md-6 text-center text-md-center">
         <a class="final-link" href="https://www.prestashop.com/en/training-prestashop" target="_blank">
           <i class="material-icons">school</i><br />
-          Training
+          {l s='Training' d='Modules.Welcome'}
         </a>
       </div>
       <div class="col-md-6 text-center text-md-center">
         <a class="final-link" href="https://www.youtube.com/user/prestashop" target="_blank">
           <i class="material-icons">videocam</i><br />
-          Video tutorial
+          {l s='Video tutorial' d='Modules.Welcome'}
         </a>
       </div>
     </div>
   </div>
   <br />
   <div class="text-center text-md-center">
-      <button class="btn btn-primary onboarding-button-next">I'm ready</button>
+      <button class="btn btn-primary onboarding-button-next">{l s='I\'m ready' d='Modules.Welcome'}</button>
   </div>
 </div>

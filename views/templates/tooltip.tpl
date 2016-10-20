@@ -1,4 +1,4 @@
-{#
+{*
 2007-2016 PrestaShop
 
 NOTICE OF LICENSE
@@ -21,24 +21,14 @@ needs please refer to http://www.prestashop.com for more information.
 @copyright 2007-2016 PrestaShop SA
 @license   http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 International Registered Trademark & Property of PrestaShop SA
-#}
+*}
 
-<div class="onboarding-navbar">
-  <div class="row text">
-    <div class="col-md-8">
-      {{ generic.launch }}
-    </div>
-    <div class="col-md-4 text-right text-md-right">
-      {{ ((currentStep / totalSteps) * 100)|round(0, 'floor') }}%
+<div class="onboarding-tooltip">
+  <div class="content"></div>
+  <div class="onboarding-tooltipsteps">
+    <div class="total">{l s='Step' d='Modules.Welcome'} <span class="count">1/5</span></div>
+    <div class="bulls">
     </div>
   </div>
-  <div class="progress">
-    <div class="bar" role="progressbar" style="width: {{ (currentStep / totalSteps) * 100 }}%;"></div>
-  </div>
-  <div>
-    <button class="btn btn-main btn-sm onboarding-button-resume">{{ generic.resume }}</button>
-  </div>
-  <div>
-    <a class="btn -small btn-main btn-sm onboarding-button-stop">{{ generic.stop }}</a>
-  </div>
+  <button class="btn btn-primary btn-xs onboarding-button-next">{l s='Next' d='Modules.Welcome'}</button>
 </div>

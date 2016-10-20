@@ -1,4 +1,4 @@
-{#
+{*
 2007-2016 PrestaShop
 
 NOTICE OF LICENSE
@@ -21,19 +21,18 @@ needs please refer to http://www.prestashop.com for more information.
 @copyright 2007-2016 PrestaShop SA
 @license   http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 International Registered Trademark & Property of PrestaShop SA
-#}
+*}
 
-<div class="onboarding-welcome">
-  <i class="material-icons onboarding-button-shut-down">close</i>
-  <p class="welcome">Welcome to your shop!</p>
+<div class="onboarding onboarding-popup bootstrap">
   <div class="content">
-    <p>Hi! My name is Preston and I'm here to show you around.</p>
-    <p>You will discover a few essential steps before you can launch your shop:<br>
-    Create your first product, customize your shop, configure shipping and payments...</p>
-    <p>Let's get started!</p>
-  </div>
-  <div class="text-right text-md-right">
-    <button class="btn btn-tertiary-outline btn-lg onboarding-button-shut-down">Later</button>
-    <button class="btn btn-primary btn-lg onboarding-button-next">Start</button>
+    <p>{l s='Hey! Are you lost?' d='Modules.Welcome'}</p>
+    <p>{l s='To continue, click here:' d='Modules.Welcome'}</p>
+    <div class="text-center">
+      <button class="btn btn-primary onboarding-button-goto-current">{l s='Continue' d='Modules.Welcome'}</button>
+    </div>
+    <p>{l s='If you want to stop the tutorial for good, click here:' d='Modules.Welcome'}</p>
+    <div class="text-center">
+      <button class="btn btn-alert onboarding-button-stop">{l s='Quit the Welcome tutorial' d='Modules.Welcome'}</button>
+    </div>
   </div>
 </div>
