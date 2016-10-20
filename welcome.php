@@ -52,8 +52,8 @@ class Welcome extends Module
 
         parent::__construct();
 
-        $this->displayName = $this->getTranslator()->trans('Welcome');
-        $this->description = $this->getTranslator()->trans('Help the user to create his first product.');
+        $this->displayName = $this->trans('Welcome', array(), 'Modules.Welcome');
+        $this->description = $this->trans('Help the user to create his first product.', array(), 'Modules.Welcome');
         $this->ps_versions_compliancy = [
             'min' => '1.7.0.0',
             'max' => _PS_VERSION_,
