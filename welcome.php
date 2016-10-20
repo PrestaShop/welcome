@@ -59,11 +59,13 @@ class Welcome extends Module
             'max' => _PS_VERSION_,
         ];
 
-        $this->onBoarding = new OnBoarding($this->getTranslator(), $this->smarty, $this);
+        if (Module::isInstalled($this->name)) {
+            $this->onBoarding = new OnBoarding($this->getTranslator(), $this->smarty, $this);
 
-        if (Tools::getIsset('resetonboarding')) {
-            $this->onBoarding->setShutDown(false);
-            $this->onBoarding->setCurrentStep(0);
+            if (Tools::getIsset('resetonboarding')) {
+                $this->onBoarding->setShutDown(false);
+                $this->onBoarding->setCurrentStep(0);
+            }
         }
     }
 
