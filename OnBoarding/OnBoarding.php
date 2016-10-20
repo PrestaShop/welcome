@@ -26,53 +26,34 @@
 
 namespace OnBoarding;
 
-use Shudrum\Component\ArrayFinder\ArrayFinder;
-use Symfony\Component\Yaml\Yaml;
-use Configuration;
-use Twig_Environment;
+use Configuration as LegacyConfiguration;
 
 /**
  * OnBoarding main class.
  */
 class OnBoarding
 {
-    /**
-     * @var Twig_Environment
-     */
-    private $twigEnvironment;
-
-    /**
-     * @var ArrayFinder
-     */
-    private $localization;
-
-    /**
-     * @var array
-     */
-    private $steps;
-
-    /**
-     * @var array
-     */
+    /** @var array */
     private $configuration;
+
+    /** @var Translator */
+    private $translator;
+
+    private $smarty;
+    private $module;
 
     /**
      * OnBoarding constructor.
      *
-     * @param Twig_Environment $twigEnvironment     Twig environment needed to manage the templates
-     * @param string           $configurationFolder Configuration folder
-     * @param string           $languageIsoCode     Language ISO code
+     * @param Translator $translator Twig environment needed to manage the templates
      */
-    public function __construct(
-        Twig_Environment $twigEnvironment,
-        $configurationFolder,
-        $languageIsoCode = 'en'
-    ) {
-        $this->twigEnvironment = $twigEnvironment;
+    public function __construct($translator, $smarty, $module)
+    {
+        $this->translator = $translator;
+        $this->smarty = $smarty;
+        $this->module = $module;
 
-        $this->configuration = Yaml::parse(file_get_contents($configurationFolder.'/configuration.yml'));
-
-        $this->loadSteps($configurationFolder, $languageIsoCode);
+        $this->loadConfiguration();
     }
 
     /**
@@ -84,16 +65,18 @@ class OnBoarding
         foreach ($this->configuration['templates'] as $template) {
             $templates[] = array(
                 'name'    => $template,
-                'content' => $this->getTemplateContent("templates/$template"),
+                'content' => str_replace(array("\n", "\r", "\t"), "", $this->getTemplateContent("templates/$template")),
             );
         }
 
         echo $this->getTemplateContent('content', array(
             'currentStep' => $this->getCurrentStep(),
             'totalSteps'  => $this->getTotalSteps(),
+            'percent_real' => ($this->getCurrentStep() / $this->getTotalSteps()) * 100,
+            'percent_rounded' => round(($this->getCurrentStep() / $this->getTotalSteps())*100),
             'isShutDown'  => $this->isShutDown(),
-            'steps'       => $this->steps,
-            'jsonSteps'   => json_encode($this->steps),
+            'steps'       => $this->configuration['steps'],
+            'jsonSteps'   => json_encode($this->configuration['steps']),
             'templates'   => $templates,
         ));
     }
@@ -106,6 +89,8 @@ class OnBoarding
         echo $this->getTemplateContent('navbar', array(
             'currentStep' => $this->getCurrentStep(),
             'totalSteps'  => $this->getTotalSteps(),
+            'percent_real' => ($this->getCurrentStep() / $this->getTotalSteps()) * 100,
+            'percent_rounded' => round(($this->getCurrentStep() / $this->getTotalSteps())*100),
         ));
     }
 
@@ -118,7 +103,7 @@ class OnBoarding
      */
     public function setCurrentStep($step)
     {
-        return Configuration::updateValue('ONBOARDINGV2_CURRENT_STEP', $step);
+        return LegacyConfiguration::updateValue('ONBOARDINGV2_CURRENT_STEP', $step);
     }
 
     /**
@@ -130,7 +115,7 @@ class OnBoarding
      */
     public function setShutDown($status)
     {
-        return Configuration::updateValue('ONBOARDINGV2_SHUT_DOWN', $status);
+        return LegacyConfiguration::updateValue('ONBOARDINGV2_SHUT_DOWN', $status);
     }
 
     /**
@@ -146,17 +131,14 @@ class OnBoarding
     /**
      * Load all the steps with the localized texts.
      *
-     * @param string $configPath      Path where the configuration can be loaded
-     * @param string $languageIsoCode Iso code for the localization
+     * @param string $configPath Path where the configuration can be loaded
      */
-    private function loadSteps($configPath, $languageIsoCode)
+    private function loadConfiguration()
     {
-        $this->localization = Yaml::parse(file_get_contents($configPath.'/localization/'.$languageIsoCode.'.yml'));
-        $this->localization = new ArrayFinder($this->localization);
+        $configuration = new Configuration($this->translator);
+        $configuration = $configuration->getConfiguration();
 
-        $steps = Yaml::parse(file_get_contents($configPath.'/steps.yml'));
-
-        foreach ($steps['groups'] as &$currentGroup) {
+        foreach ($configuration['steps']['groups'] as &$currentGroup) {
             if (isset($currentGroup['title'])) {
                 $currentGroup['title'] = $this->getTextFromSettings($currentGroup['title']);
             }
@@ -170,7 +152,7 @@ class OnBoarding
             }
         }
 
-        $this->steps = $steps;
+        $this->configuration = $configuration;
     }
 
     /**
@@ -182,14 +164,14 @@ class OnBoarding
      */
     private function getTextFromSettings($text)
     {
-        switch (array_keys($text)[0]) {
-            case 'loc':
-                return $this->localization[$text['loc']];
-            case 'content':
-                return $this->getTemplateContent('contents/'.$text['content']);
+        if (is_array($text)) {
+            switch ($text['type']) {
+                case 'template':
+                    return $this->getTemplateContent('contents/'.$text['src']);
+            }
         }
 
-        return null;
+        return $text;
     }
 
     /**
@@ -212,10 +194,8 @@ class OnBoarding
      */
     private function getTemplateContent($templateName, $additionnalParameters = array())
     {
-        return $this->twigEnvironment->render($templateName.'.twig', array_merge(
-            $additionnalParameters,
-            $this->localization->get()
-        ));
+        $this->smarty->assign($additionnalParameters);
+        return $this->module->fetch(__DIR__.'/../views/'.$templateName.'.tpl');
     }
 
     /**
@@ -225,7 +205,7 @@ class OnBoarding
      */
     private function getCurrentStep()
     {
-        return (int)Configuration::get('ONBOARDINGV2_CURRENT_STEP');
+        return (int)LegacyConfiguration::get('ONBOARDINGV2_CURRENT_STEP');
     }
 
     /**
@@ -237,8 +217,8 @@ class OnBoarding
     {
         $total = 0;
 
-        if (null != $this->steps) {
-            foreach ($this->steps['groups'] as &$group) {
+        if (null != $this->configuration) {
+            foreach ($this->configuration['steps']['groups'] as &$group) {
                 $total += count($group['steps']);
             }
         }
@@ -253,6 +233,6 @@ class OnBoarding
      */
     private function isShutDown()
     {
-        return (int)Configuration::get('ONBOARDINGV2_SHUT_DOWN');
+        return (int)LegacyConfiguration::get('ONBOARDINGV2_SHUT_DOWN');
     }
 }

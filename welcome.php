@@ -52,25 +52,14 @@ class Welcome extends Module
 
         parent::__construct();
 
-        $this->displayName = $this->l('Welcome');
-        $this->description = $this->l('Help the user to create his first product.');
+        $this->displayName = $this->trans('Welcome', array(), 'Modules.Welcome.Admin');
+        $this->description = $this->trans('Help the user to create his first product.', array(), 'Modules.Welcome.Admin');
         $this->ps_versions_compliancy = [
             'min' => '1.7.0.0',
             'max' => _PS_VERSION_,
         ];
 
-        $twigEnvironment = new Twig_Environment(
-            new Twig_Loader_Filesystem(__DIR__.'/views')
-        );
-
-        $context = Context::getContext();
-        $isoCode = $context->language->iso_code;
-
-        $this->onBoarding = new OnBoarding(
-            $twigEnvironment,
-            __DIR__.'/config',
-            file_exists(__DIR__.'/config/localization/'.$isoCode.'.yml') ? $isoCode : 'en'
-        );
+        $this->onBoarding = new OnBoarding($this->getTranslator(), $this->smarty, $this);
 
         if (Tools::getIsset('resetonboarding')) {
             $this->onBoarding->setShutDown(false);

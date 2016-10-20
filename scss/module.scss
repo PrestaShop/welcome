@@ -22,3 +22,44 @@
     }
   }
 }
+
+.btn {
+  &.with-spinner {
+    position: relative;
+  }
+  &.with-spinner.animated {
+    border-color: white;
+    background: white;
+    outline-color: white;
+
+    &:hover {
+      border-color: white;
+      background: white;
+    }
+
+    &:after {
+      position: absolute;
+      width: rem(30px);
+      height: rem(30px);
+      left: 50%;
+      top: 50%;
+      margin: {
+        top: rem(-15px);
+        left: rem(-15px);
+      }
+      display: block;
+      border: 3px solid $primary-color;
+      border-top-color: transparent;
+      border-radius: rem(50px);
+      background: transparent;
+      content: '';
+      -webkit-animation:spin 4s linear infinite;
+      -moz-animation:spin 4s linear infinite;
+      animation:spin 4s linear infinite;
+    }
+  }
+}
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }

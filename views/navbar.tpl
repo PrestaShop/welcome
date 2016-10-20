@@ -1,4 +1,4 @@
-{#
+{*
 2007-2016 PrestaShop
 
 NOTICE OF LICENSE
@@ -21,19 +21,22 @@ needs please refer to http://www.prestashop.com for more information.
 @copyright 2007-2016 PrestaShop SA
 @license   http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 International Registered Trademark & Property of PrestaShop SA
-#}
+*}
 
-<div class="onboarding-welcome">
-  <i class="material-icons onboarding-button-shut-down">close</i>
-  <p class="welcome">Welcome to your shop!</p>
-  <div class="content">
-    <p>Hi! My name is Preston and I'm here to show you around.</p>
-    <p>You will discover a few essential steps before you can launch your shop:<br>
-    Create your first product, customize your shop, configure shipping and payments...</p>
-    <p>Let's get started!</p>
+<div class="onboarding-navbar">
+  <div class="row text">
+    <div class="col-md-8">
+      {l s='Launch your shop!' d='Modules.Welcome.Admin'}
+    </div>
+    <div class="col-md-4 text-right text-md-right">{$percent_rounded}%</div>
   </div>
-  <div class="text-right text-md-right">
-    <button class="btn btn-tertiary-outline btn-lg onboarding-button-shut-down">Later</button>
-    <button class="btn btn-primary btn-lg onboarding-button-next">Start</button>
+  <div class="progress">
+    <div class="bar" role="progressbar" style="width:{$percent_real}%;"></div>
+  </div>
+  <div>
+    <button class="btn btn-main btn-sm onboarding-button-resume">{l s='Resume' d='Modules.Welcome.Admin'}</button>
+  </div>
+  <div>
+    <a class="btn -small btn-main btn-sm onboarding-button-stop">{l s='Stop the OnBoarding' d='Modules.Welcome.Admin'}</a>
   </div>
 </div>
