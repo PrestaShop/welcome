@@ -26,9 +26,9 @@ International Registered Trademark & Property of PrestaShop SA
 <div class="onboarding-tooltip">
   <div class="content"></div>
   <div class="onboarding-tooltipsteps">
-    <div class="total">{l s='Step' d='Modules.Welcome'} <span class="count">1/5</span></div>
+    <div class="total">{l s='Step' d='Modules.Welcome.Admin'} <span class="count">1/5</span></div>
     <div class="bulls">
     </div>
   </div>
-  <button class="btn btn-primary btn-xs onboarding-button-next">{l s='Next' d='Modules.Welcome'}</button>
+  <button class="btn btn-primary btn-xs onboarding-button-next">{l s='Next' d='Modules.Welcome.Admin'}</button>
 </div>

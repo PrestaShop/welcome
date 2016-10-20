@@ -37,8 +37,8 @@ International Registered Trademark & Property of PrestaShop SA
     <div class="step-title step-title-1"></div>
     <div class="step-title step-title-2"></div>
   </div>
-  <button class="btn btn-primary onboarding-button-next">{l s='Continue' d='Modules.Welcome'}</button>
-  <a class="onboarding-button-shut-down">{l s='Skip this tutorial' d='Modules.Welcome'}</a>
+  <button class="btn btn-primary onboarding-button-next">{l s='Continue' d='Modules.Welcome.Admin'}</button>
+  <a class="onboarding-button-shut-down">{l s='Skip this tutorial' d='Modules.Welcome.Admin'}</a>
 </div>
 
 <script type="text/javascript">

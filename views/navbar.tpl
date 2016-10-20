@@ -26,7 +26,7 @@ International Registered Trademark & Property of PrestaShop SA
 <div class="onboarding-navbar">
   <div class="row text">
     <div class="col-md-8">
-      {l s='Launch your shop!' d='Modules.Welcome'}
+      {l s='Launch your shop!' d='Modules.Welcome.Admin'}
     </div>
     <div class="col-md-4 text-right text-md-right">{$percent_rounded}%</div>
   </div>
@@ -34,9 +34,9 @@ International Registered Trademark & Property of PrestaShop SA
     <div class="bar" role="progressbar" style="width:{$percent_real}%;"></div>
   </div>
   <div>
-    <button class="btn btn-main btn-sm onboarding-button-resume">{l s='Resume' d='Modules.Welcome'}</button>
+    <button class="btn btn-main btn-sm onboarding-button-resume">{l s='Resume' d='Modules.Welcome.Admin'}</button>
   </div>
   <div>
-    <a class="btn -small btn-main btn-sm onboarding-button-stop">{l s='Stop the OnBoarding' d='Modules.Welcome'}</a>
+    <a class="btn -small btn-main btn-sm onboarding-button-stop">{l s='Stop the OnBoarding' d='Modules.Welcome.Admin'}</a>
   </div>
 </div>

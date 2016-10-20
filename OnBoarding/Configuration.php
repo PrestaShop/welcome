@@ -62,15 +62,15 @@ class Configuration
                         ),
                     ),
                     array(
-                        'title' => $this->translator->trans('Let\'s create your first product', array(), 'Modules.Welcome'),
+                        'title' => $this->translator->trans('Let\'s create your first product', array(), 'Modules.Welcome.Admin'),
                         'subtitle' => array(
-                            '1' => $this->translator->trans('What do you want to tell about it? Think about what your customers want to know.', array(), 'Modules.Welcome'),
-                            '2' => $this->translator->trans('Add clear and attractive information. Don\'t worry, you can edit it later :)', array(), 'Modules.Welcome'),
+                            '1' => $this->translator->trans('What do you want to tell about it? Think about what your customers want to know.', array(), 'Modules.Welcome.Admin'),
+                            '2' => $this->translator->trans('Add clear and attractive information. Don\'t worry, you can edit it later :)', array(), 'Modules.Welcome.Admin'),
                         ),
                         'steps' => array(
                             array(
                                 'type' => 'tooltip',
-                                'text' => $this->translator->trans('Give your product a catchy name.', array(), 'Modules.Welcome'),
+                                'text' => $this->translator->trans('Give your product a catchy name.', array(), 'Modules.Welcome.Admin'),
                                 'options' => array(
                                     'savepoint',
                                 ),
@@ -83,21 +83,21 @@ class Configuration
                             ),
                             array(
                                 'type' => 'tooltip',
-                                'text' => $this->translator->trans('Fill in the essential details in this tab. The other tabs are for more advanced information.', array(), 'Modules.Welcome'),
+                                'text' => $this->translator->trans('Fill in the essential details in this tab. The other tabs are for more advanced information.', array(), 'Modules.Welcome.Admin'),
                                 'page' => 'product/form',
                                 'selector' => '#tab_step1',
                                 'position' => 'right',
                             ),
                             array(
                                 'type' => 'tooltip',
-                                'text' => $this->translator->trans('Add one or more pictures so your product looks tempting!', array(), 'Modules.Welcome'),
+                                'text' => $this->translator->trans('Add one or more pictures so your product looks tempting!', array(), 'Modules.Welcome.Admin'),
                                 'page' => 'product/form',
                                 'selector' => '#product-images-dropzone',
                                 'position' => 'right',
                             ),
                             array(
                                 'type' => 'tooltip',
-                                'text' => $this->translator->trans('How much do you want to sell it?', array(), 'Modules.Welcome'),
+                                'text' => $this->translator->trans('How much do you want to sell it?', array(), 'Modules.Welcome.Admin'),
                                 'page' => 'product/form',
                                 'selector' => '.right-column > .row > .col-md-12 > .form-group:nth-child(4) > .row > .col-md-6:first-child > .input-group',
                                 'position' => 'left',
@@ -108,7 +108,7 @@ class Configuration
                             ),
                             array(
                                 'type' => 'tooltip',
-                                'text' => $this->translator->trans('Yay! You just created your first product. Looks good, right?', array(), 'Modules.Welcome'),
+                                'text' => $this->translator->trans('Yay! You just created your first product. Looks good, right?', array(), 'Modules.Welcome.Admin'),
                                 'page' => 'product/catalog',
                                 'selector' => '#product_catalog_list table tr:last-child td:nth-child(3)',
                                 'position' => 'left',
@@ -116,15 +116,15 @@ class Configuration
                         ),
                     ),
                     array(
-                        'title' => $this->translator->trans('Give your shop its own identity', array(), 'Modules.Welcome'),
+                        'title' => $this->translator->trans('Give your shop its own identity', array(), 'Modules.Welcome.Admin'),
                         'subtitle' => array(
-                            '1' => $this->translator->trans('How do you want your shop to look? What makes it so special?', array(), 'Modules.Welcome'),
-                            '2' => $this->translator->trans('Customize your theme or choose the best design from our theme catalog.', array(), 'Modules.Welcome'),
+                            '1' => $this->translator->trans('How do you want your shop to look? What makes it so special?', array(), 'Modules.Welcome.Admin'),
+                            '2' => $this->translator->trans('Customize your theme or choose the best design from our theme catalog.', array(), 'Modules.Welcome.Admin'),
                         ),
                         'steps' => array(
                             array(
                                 'type' => 'tooltip',
-                                'text' => $this->translator->trans('A good way to start is to add your own logo here!', array(), 'Modules.Welcome'),
+                                'text' => $this->translator->trans('A good way to start is to add your own logo here!', array(), 'Modules.Welcome.Admin'),
                                 'options' => array(
                                     'savepoint',
                                 ),
@@ -134,7 +134,7 @@ class Configuration
                             ),
                             array(
                                 'type' => 'tooltip',
-                                'text' => $this->translator->trans('If you want something really special, have a look at the theme catalog!', array(), 'Modules.Welcome'),
+                                'text' => $this->translator->trans('If you want something really special, have a look at the theme catalog!', array(), 'Modules.Welcome.Admin'),
                                 'page' => '?controller=AdminThemesCatalog',
                                 'selector' => '.addons-theme-one:first-child',
                                 'position' => 'right',
@@ -142,15 +142,15 @@ class Configuration
                         ),
                     ),
                     array(
-                        'title' => $this->translator->trans('Get your shop ready for payments', array(), 'Modules.Welcome'),
+                        'title' => $this->translator->trans('Get your shop ready for payments', array(), 'Modules.Welcome.Admin'),
                         'subtitle' => array(
-                            '1' => $this->translator->trans('How do you want your customers to pay you?', array(), 'Modules.Welcome'),
-                            '2' => $this->translator->trans('Adapt your offer to your market: add the most popular payment methods for your customers!', array(), 'Modules.Welcome'),
+                            '1' => $this->translator->trans('How do you want your customers to pay you?', array(), 'Modules.Welcome.Admin'),
+                            '2' => $this->translator->trans('Adapt your offer to your market: add the most popular payment methods for your customers!', array(), 'Modules.Welcome.Admin'),
                         ),
                         'steps' => array(
                             array(
                                 'type' => 'tooltip',
-                                'text' => $this->translator->trans('The payments methods are already available to your customers.', array(), 'Modules.Welcome'),
+                                'text' => $this->translator->trans('The payments methods are already available to your customers.', array(), 'Modules.Welcome.Admin'),
                                 'options' => array(
                                     'savepoint',
                                 ),
@@ -160,7 +160,7 @@ class Configuration
                             ),
                             array(
                                 'type' => 'tooltip',
-                                'text' => $this->translator->trans('And you can choose to add other payment methods from here!', array(), 'Modules.Welcome'),
+                                'text' => $this->translator->trans('And you can choose to add other payment methods from here!', array(), 'Modules.Welcome.Admin'),
                                 'page' => '?controller=AdminPayment',
                                 'selector' => '.panel:eq(1) table',
                                 'position' => 'left',
@@ -168,15 +168,15 @@ class Configuration
                         ),
                     ),
                     array(
-                        'title' => $this->translator->trans('Choose your shipping solutions', array(), 'Modules.Welcome'),
+                        'title' => $this->translator->trans('Choose your shipping solutions', array(), 'Modules.Welcome.Admin'),
                         'subtitle' => array(
-                            '1' => $this->translator->trans('How do you want to deliver your products?', array(), 'Modules.Welcome'),
-                            '2' => $this->translator->trans('Select the shipping solutions the most likely to suit your customers! Create your own carrier or add a ready-made module.', array(), 'Modules.Welcome'),
+                            '1' => $this->translator->trans('How do you want to deliver your products?', array(), 'Modules.Welcome.Admin'),
+                            '2' => $this->translator->trans('Select the shipping solutions the most likely to suit your customers! Create your own carrier or add a ready-made module.', array(), 'Modules.Welcome.Admin'),
                         ),
                         'steps' => array(
                             array(
                                 'type' => 'tooltip',
-                                'text' => $this->translator->trans('Here are the shipping methods available on your shop today.', array(), 'Modules.Welcome'),
+                                'text' => $this->translator->trans('Here are the shipping methods available on your shop today.', array(), 'Modules.Welcome.Admin'),
                                 'options' => array(
                                     'savepoint',
                                 ),
@@ -186,7 +186,7 @@ class Configuration
                             ),
                             array(
                                 'type' => 'tooltip',
-                                'text' => $this->translator->trans('You can offer more delivery options by setting up additional carriers', array(), 'Modules.Welcome'),
+                                'text' => $this->translator->trans('You can offer more delivery options by setting up additional carriers', array(), 'Modules.Welcome.Admin'),
                                 'page' => '?controller=AdminCarriers',
                                 'selector' => '.modules_list_container_tab tr:eq(0) .text-muted',
                                 'position' => 'right',
@@ -194,15 +194,15 @@ class Configuration
                         ),
                     ),
                     array(
-                        'title' => $this->translator->trans('Improve your shop with modules', array(), 'Modules.Welcome'),
+                        'title' => $this->translator->trans('Improve your shop with modules', array(), 'Modules.Welcome.Admin'),
                         'subtitle' => array(
-                            '1' => $this->translator->trans('Add new features and manage existing ones thanks to modules.', array(), 'Modules.Welcome'),
-                            '2' => $this->translator->trans('A module can be already installed for you, free to install or paying - browse our selection to see what\'s available!', array(), 'Modules.Welcome'),
+                            '1' => $this->translator->trans('Add new features and manage existing ones thanks to modules.', array(), 'Modules.Welcome.Admin'),
+                            '2' => $this->translator->trans('A module can be already installed for you, free to install or paying - browse our selection to see what\'s available!', array(), 'Modules.Welcome.Admin'),
                         ),
                         'steps' => array(
                             array(
                                 'type' => 'tooltip',
-                                'text' => $this->translator->trans('Discover our module selection in the first tab. Manage your modules on the second one and be aware of notification in the third tab.', array(), 'Modules.Welcome'),
+                                'text' => $this->translator->trans('Discover our module selection in the first tab. Manage your modules on the second one and be aware of notification in the third tab.', array(), 'Modules.Welcome.Admin'),
                                 'options' => array(
                                     'savepoint',
                                 ),

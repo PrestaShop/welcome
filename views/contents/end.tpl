@@ -25,41 +25,41 @@ International Registered Trademark & Property of PrestaShop SA
 
 <div id="onboarding-welcome" class="modal-header">
   <button class="onboarding-button-next pull-right close" type="button">&times;</button>
-  <h2 class="text-center text-md-center">{l s='Over to you!' d='Modules.Welcome'}</h2>
+  <h2 class="text-center text-md-center">{l s='Over to you!' d='Modules.Welcome.Admin'}</h2>
   <p class="text-center text-md-center">
-    {l s='You\'ve seen the essential, but there\'s a lot more to explore.' d='Modules.Welcome'}<br />
-    {l s='Some ressources can help you go further:' d='Modules.Welcome'}
+    {l s='You\'ve seen the essential, but there\'s a lot more to explore.' d='Modules.Welcome.Admin'}<br />
+    {l s='Some ressources can help you go further:' d='Modules.Welcome.Admin'}
   </p>
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-6 text-center text-md-center">
         <a class="final-link" href="http://doc.prestashop.com/display/PS16/Getting+Started" target="_blank">
           <i class="material-icons">import_contacts</i><br />
-          {l s='Starter Guide' d='Modules.Welcome'}
+          {l s='Starter Guide' d='Modules.Welcome.Admin'}
         </a>
       </div>
       <div class="col-md-6 text-center text-md-center">
         <a class="final-link" href="https://www.prestashop.com/forums/" target="_blank">
           <i class="material-icons">forum</i><br />
-          {l s='Forum' d='Modules.Welcome'}
+          {l s='Forum' d='Modules.Welcome.Admin'}
         </a>
       </div>
       <div class="col-md-6 text-center text-md-center">
         <a class="final-link" href="https://www.prestashop.com/en/training-prestashop" target="_blank">
           <i class="material-icons">school</i><br />
-          {l s='Training' d='Modules.Welcome'}
+          {l s='Training' d='Modules.Welcome.Admin'}
         </a>
       </div>
       <div class="col-md-6 text-center text-md-center">
         <a class="final-link" href="https://www.youtube.com/user/prestashop" target="_blank">
           <i class="material-icons">videocam</i><br />
-          {l s='Video tutorial' d='Modules.Welcome'}
+          {l s='Video tutorial' d='Modules.Welcome.Admin'}
         </a>
       </div>
     </div>
   </div>
   <br />
   <div class="text-center text-md-center">
-      <button class="btn btn-primary onboarding-button-next">{l s='I\'m ready' d='Modules.Welcome'}</button>
+      <button class="btn btn-primary onboarding-button-next">{l s='I\'m ready' d='Modules.Welcome.Admin'}</button>
   </div>
 </div>

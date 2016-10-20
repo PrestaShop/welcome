@@ -25,15 +25,15 @@ International Registered Trademark & Property of PrestaShop SA
 
 <div class="onboarding-welcome">
   <i class="material-icons onboarding-button-shut-down">close</i>
-  <p class="welcome">{l s='Welcome to your shop!' d='Modules.Welcome'}</p>
+  <p class="welcome">{l s='Welcome to your shop!' d='Modules.Welcome.Admin'}</p>
   <div class="content">
-    <p>{l s='Hi! My name is Preston and I\'m here to show you around.' d='Modules.Welcome'}</p>
-    <p>{l s='You will discover a few essential steps before you can launch your shop:' d='Modules.Welcome'}<br>
-    {l s='Create your first product, customize your shop, configure shipping and payments...' d='Modules.Welcome'}</p>
-    <p>{l s='Let\'s get started!' d='Modules.Welcome'}</p>
+    <p>{l s='Hi! My name is Preston and I\'m here to show you around.' d='Modules.Welcome.Admin'}</p>
+    <p>{l s='You will discover a few essential steps before you can launch your shop:' d='Modules.Welcome.Admin'}<br>
+    {l s='Create your first product, customize your shop, configure shipping and payments...' d='Modules.Welcome.Admin'}</p>
+    <p>{l s='Let\'s get started!' d='Modules.Welcome.Admin'}</p>
   </div>
   <div class="text-right text-md-right">
-    <button class="btn btn-tertiary-outline btn-lg onboarding-button-shut-down">{l s='Later' d='Modules.Welcome'}</button>
-    <button class="btn btn-primary btn-lg with-spinner onboarding-button-next">{l s='Start' d='Modules.Welcome'}</button>
+    <button class="btn btn-tertiary-outline btn-lg onboarding-button-shut-down">{l s='Later' d='Modules.Welcome.Admin'}</button>
+    <button class="btn btn-primary btn-lg with-spinner onboarding-button-next">{l s='Start' d='Modules.Welcome.Admin'}</button>
   </div>
 </div>

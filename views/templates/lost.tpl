@@ -25,14 +25,14 @@ International Registered Trademark & Property of PrestaShop SA
 
 <div class="onboarding onboarding-popup bootstrap">
   <div class="content">
-    <p>{l s='Hey! Are you lost?' d='Modules.Welcome'}</p>
-    <p>{l s='To continue, click here:' d='Modules.Welcome'}</p>
+    <p>{l s='Hey! Are you lost?' d='Modules.Welcome.Admin'}</p>
+    <p>{l s='To continue, click here:' d='Modules.Welcome.Admin'}</p>
     <div class="text-center">
-      <button class="btn btn-primary onboarding-button-goto-current">{l s='Continue' d='Modules.Welcome'}</button>
+      <button class="btn btn-primary onboarding-button-goto-current">{l s='Continue' d='Modules.Welcome.Admin'}</button>
     </div>
-    <p>{l s='If you want to stop the tutorial for good, click here:' d='Modules.Welcome'}</p>
+    <p>{l s='If you want to stop the tutorial for good, click here:' d='Modules.Welcome.Admin'}</p>
     <div class="text-center">
-      <button class="btn btn-alert onboarding-button-stop">{l s='Quit the Welcome tutorial' d='Modules.Welcome'}</button>
+      <button class="btn btn-alert onboarding-button-stop">{l s='Quit the Welcome tutorial' d='Modules.Welcome.Admin'}</button>
     </div>
   </div>
 </div>
