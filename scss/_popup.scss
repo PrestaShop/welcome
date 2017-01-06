@@ -16,7 +16,7 @@
     margin-left: -$popup-width / 2;
     top: rem(200px);
 
-    padding: rem(20px);
+    padding: 0;
 
     background: white;
     box-shadow: rem(2px) rem(2px) rem(3px) 0 rgba(0, 0, 0, 0.1);
@@ -25,44 +25,148 @@
 
 .onboarding-welcome {
 
-  > .welcome {
-    background: url('../images/ruban.png') center center no-repeat;
-    background-size: rem(385px) rem(52px);
-    padding: rem(8px);
+  .welcome {
+    background: url('../images/preston-clouds.png') top no-repeat;
+    background-size: rem(560px) rem(164px);
+    padding-top: 164px;
     height: rem(52px);
-    color: white;
+    color: black;
     font-size: rem(24px);
-    text-transform: uppercase;
     text-align: center;
+    margin-bottom: 0;
   }
 
   > .content {
-    min-height: rem(188px);
+    padding-bottom: rem(90px);
+    min-height: rem(200px);
     font-size: rem(14px);
-    background: url('../images/preston.png') left center no-repeat;
-    background-size: rem(149px) rem(188px);
-    padding-left: rem(170px);
+    background: url('../images/balloons.png') bottom no-repeat;
+    background-size: rem(240px) rem(81px);
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+
+    p {
+      display: flex;
+      text-align: center;
+      align-self: center;
+      width: rem(400px);
+    }
   }
 
-  > .welcome,
+  .started {
+    display: flex;
+    font-weight: 600;
+    font-size: rem(17px);
+    justify-content: center;
+  }
+
   > .content {
-    margin-bottom: rem(40px);
+    margin-bottom: rem(20px);
   }
 
   > .material-icons {
     color: $background-tertiary-color;
     position: absolute;
     top: rem(10px);
-    right: rem(10px);
+    right: rem(15px);
     cursor: pointer;
+    font-size: rem(30px);
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: rem(25px);
+  }
+
+  .btn-primary.blue-balloon {
+    background-color: $blue-balloon;
   }
 
   .btn-tertiary-outline {
     background: none;
-    color: $background-tertiary-color;
-    border: 2px solid $background-tertiary-color;
+    color: $blue-balloon;
+    border: 2px solid $blue-balloon;
     text-transform: uppercase;
     box-sizing: border-box;
     padding: 9px 16px;
+    margin-right: 20px;
+  }
+
+}
+
+.onboarding-popup {
+  h2 {
+    font-size: rem(24px);
+  }
+
+  #onboarding-welcome {
+    &.modal-header {
+      padding: rem(24px);
+    }
+
+    .link-container {
+      width: rem(150px);
+
+      .close {
+        color: #000;
+        font-size: 40px;
+        margin-top: -15px;
+      }
+
+      &:first-child {
+        margin-right: 30px;
+        margin-left: 75px;
+      }
+
+      .starter-guide,
+      .video-tutorial,
+      .forum,
+      .training {
+        width: rem(150px);
+        height: rem(130px);
+      }
+
+      .starter-guide {
+        background: url('../images/starter-guide.png') no-repeat;
+      }
+
+      .video-tutorial {
+        background: url('../images/video-tutorial.png') no-repeat;
+      }
+
+      .forum {
+        background: url('../images/forum.png') no-repeat;
+      }
+
+      .training {
+        background: url('../images/training.png') no-repeat;
+      }
+
+      .final-link {
+        border-width: 0;
+        color: #363a41;
+        display: flex;
+        flex-direction: column;
+        font-weight: 600;
+        justify-content: center;
+        padding: 0;
+        position: relative;
+        text-align: center;
+        width: rem(150px);
+
+        &:hover {
+          box-shadow: rem(2px) rem(2px) rem(4px) 0 rgba(0, 0, 0, 0.25);
+        }
+
+        .link {
+          bottom: 0;
+          position: absolute;
+          padding: 10px;
+          width: 150px;
+        }
+      }
+    }
   }
 }

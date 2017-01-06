@@ -240,49 +240,120 @@
   z-index: 1500; }
   .onboarding-popup > .content {
     position: absolute;
-    width: 33.75rem;
+    width: 35rem;
     left: 50%;
-    margin-left: -16.875rem;
+    margin-left: -17.5rem;
     top: 12.5rem;
-    padding: 1.25rem;
+    padding: 0;
     background: white;
     box-shadow: 0.125rem 0.125rem 0.1875rem 0 rgba(0, 0, 0, 0.1); }
 
-.onboarding-welcome > .welcome {
-  background: url(9d15eec5f6a866d31ca8dee757df8cb4.png) center center no-repeat;
-  background-size: 24.0625rem 3.25rem;
-  padding: 0.5rem;
+.onboarding-welcome .welcome {
+  background: url(eb1d04f953248855cce0bb0434f7d84b.png) top no-repeat;
+  background-size: 35rem 10.25rem;
+  padding-top: 164px;
   height: 3.25rem;
-  color: white;
+  color: black;
   font-size: 1.5rem;
-  text-transform: uppercase;
-  text-align: center; }
+  text-align: center;
+  margin-bottom: 0; }
 
 .onboarding-welcome > .content {
-  min-height: 11.75rem;
+  padding-bottom: 5.625rem;
+  min-height: 12.5rem;
   font-size: 0.875rem;
-  background: url(34f96130e623110e8bdb173934b8caf1.png) left center no-repeat;
-  background-size: 9.3125rem 11.75rem;
-  padding-left: 10.625rem; }
+  background: url(79c143eeae6efaebcbe6b9ad482cf591.png) bottom no-repeat;
+  background-size: 15rem 5.0625rem;
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column; }
+  .onboarding-welcome > .content p {
+    display: flex;
+    text-align: center;
+    align-self: center;
+    width: 25rem; }
 
-.onboarding-welcome > .welcome,
+.onboarding-welcome .started {
+  display: flex;
+  font-weight: 600;
+  font-size: 1.0625rem;
+  justify-content: center; }
+
 .onboarding-welcome > .content {
-  margin-bottom: 2.5rem; }
+  margin-bottom: 1.25rem; }
 
 .onboarding-welcome > .material-icons {
   color: #6c868e;
   position: absolute;
   top: 0.625rem;
-  right: 0.625rem;
-  cursor: pointer; }
+  right: 0.9375rem;
+  cursor: pointer;
+  font-size: 1.875rem; }
+
+.onboarding-welcome .buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5625rem; }
+
+.onboarding-welcome .btn-primary.blue-balloon {
+  background-color: #2eacce; }
 
 .onboarding-welcome .btn-tertiary-outline {
   background: none;
-  color: #6c868e;
-  border: 2px solid #6c868e;
+  color: #2eacce;
+  border: 2px solid #2eacce;
   text-transform: uppercase;
   box-sizing: border-box;
-  padding: 9px 16px; }
+  padding: 9px 16px;
+  margin-right: 20px; }
+
+.onboarding-popup h2 {
+  font-size: 1.5rem; }
+
+.onboarding-popup #onboarding-welcome.modal-header {
+  padding: 1.5rem; }
+
+.onboarding-popup #onboarding-welcome .link-container {
+  width: 9.375rem; }
+  .onboarding-popup #onboarding-welcome .link-container .close {
+    color: #000;
+    font-size: 40px;
+    margin-top: -15px; }
+  .onboarding-popup #onboarding-welcome .link-container:first-child {
+    margin-right: 30px;
+    margin-left: 75px; }
+  .onboarding-popup #onboarding-welcome .link-container .starter-guide,
+  .onboarding-popup #onboarding-welcome .link-container .video-tutorial,
+  .onboarding-popup #onboarding-welcome .link-container .forum,
+  .onboarding-popup #onboarding-welcome .link-container .training {
+    width: 9.375rem;
+    height: 8.125rem; }
+  .onboarding-popup #onboarding-welcome .link-container .starter-guide {
+    background: url(7914be0936bb436d9540215d86c0bb58.png) no-repeat; }
+  .onboarding-popup #onboarding-welcome .link-container .video-tutorial {
+    background: url(7e4eba4f03eccfd3057a35d05a539160.png) no-repeat; }
+  .onboarding-popup #onboarding-welcome .link-container .forum {
+    background: url(cf7d27394e7dd5f099401f60dc8af2fe.png) no-repeat; }
+  .onboarding-popup #onboarding-welcome .link-container .training {
+    background: url(164f3120691885f6326bde5ab3f98533.png) no-repeat; }
+  .onboarding-popup #onboarding-welcome .link-container .final-link {
+    border-width: 0;
+    color: #363a41;
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+    justify-content: center;
+    padding: 0;
+    position: relative;
+    text-align: center;
+    width: 9.375rem; }
+    .onboarding-popup #onboarding-welcome .link-container .final-link:hover {
+      box-shadow: 0.125rem 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.25); }
+    .onboarding-popup #onboarding-welcome .link-container .final-link .link {
+      bottom: 0;
+      position: absolute;
+      padding: 10px;
+      width: 150px; }
 
 #onboarding-welcome .final-link {
   display: block;
