@@ -32,28 +32,30 @@ International Registered Trademark & Property of PrestaShop SA
   </p>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-6 text-center text-md-center">
+      <div class="col-md-6 text-center text-md-center link-container">
         <a class="final-link" href="http://doc.prestashop.com/display/PS16/Getting+Started" target="_blank">
-          <i class="material-icons">import_contacts</i><br />
-          {l s='Starter Guide' d='Modules.Welcome.Admin'}
+          <div class="starter-guide"></div>
+          <span class="link">{l s='Starter Guide' d='Modules.Welcome.Admin'}</span>
         </a>
       </div>
-      <div class="col-md-6 text-center text-md-center">
+      <div class="col-md-6 text-center text-md-center link-container">
         <a class="final-link" href="https://www.prestashop.com/forums/" target="_blank">
-          <i class="material-icons">forum</i><br />
-          {l s='Forum' d='Modules.Welcome.Admin'}
+          <div class="forum"></div>
+          <span class="link">{l s='Forum' d='Modules.Welcome.Admin'}</span>
         </a>
       </div>
-      <div class="col-md-6 text-center text-md-center">
+    </div>
+    <div class="row">
+      <div class="col-md-6 text-center text-md-center link-container">
         <a class="final-link" href="https://www.prestashop.com/en/training-prestashop" target="_blank">
-          <i class="material-icons">school</i><br />
-          {l s='Training' d='Modules.Welcome.Admin'}
+          <div class="training"></div>
+          <span class="link">{l s='Training' d='Modules.Welcome.Admin'}</span>
         </a>
       </div>
-      <div class="col-md-6 text-center text-md-center">
+      <div class="col-md-6 text-center text-md-center link-container">
         <a class="final-link" href="https://www.youtube.com/user/prestashop" target="_blank">
-          <i class="material-icons">videocam</i><br />
-          {l s='Video tutorial' d='Modules.Welcome.Admin'}
+          <div class="video-tutorial"></div>
+          <span class="link">{l s='Video tutorial' d='Modules.Welcome.Admin'}</span>
         </a>
       </div>
     </div>
