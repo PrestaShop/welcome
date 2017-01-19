@@ -613,7 +613,9 @@
 	  }, {
 	    key: 'updateToolTipPosition',
 	    value: function updateToolTipPosition() {
+	      var middleX = this.tooltipElement.offset().top - this.tooltipElement.outerHeight() / 2 - this.tooltip.outerHeight() / 2;
 	      var middleY = this.tooltipElement.offset().top + this.tooltipElement.outerHeight() / 2 - this.tooltip.outerHeight() / 2;
+	      var topY = this.tooltipElement.offset().top + this.tooltipElement.outerHeight() / 2 - this.tooltip.outerHeight() / 2;
 	      var leftX = this.tooltipElement.offset().left - this.tooltip.outerWidth();
 	      var rightX = this.tooltipElement.offset().left + this.tooltipElement.outerWidth();
 
@@ -623,6 +625,9 @@
 	          break;
 	        case 'left':
 	          this.tooltip.css({ left: leftX, top: middleY });
+	          break;
+	        case 'top':
+	          this.tooltip.css({ left: middleX, top: topY });
 	          break;
 	      }
 	    }
