@@ -89,6 +89,8 @@ class Welcome extends Module
      */
     public function uninstall()
     {
+        $this->onBoarding->setCurrentStep(0);
+
         return parent::uninstall();
     }
 
