@@ -13,6 +13,14 @@
     margin-top: -$size;
   }
 
+  @mixin addTriangleDown($size, $color) {
+    @include addTriangle($size, $color);
+    left: 50%;
+    top: 100%;
+    margin-top: 0;
+    transform: rotate(90deg);
+  }
+
   @mixin addPreston($url, $width, $height, $offset) {
     content: " ";
     position: absolute;
@@ -62,6 +70,24 @@
       &:before {
         @include addPreston('../images/preston-left.png', rem(104px), rem(153px), rem(-70px));
       }
+    }
+  }
+
+  &.-top {
+    margin-top: rem(-43px);
+    margin-left: rem(45px);
+    > .content {
+      &:before {
+        @include addPreston('../images/preston-right.png', rem(104px), rem(153px), rem(-70px));
+      }
+    }
+
+    &:after {
+      @include addTriangleDown(rem(12px), $dark-color);
+    }
+
+    &:before {
+      @include addTriangleDown(rem(13px), $primary-color);
     }
   }
 

@@ -183,6 +183,49 @@
       background-size: 6.5rem 9.5625rem;
       left: -4.375rem;
       z-index: 1; }
+  .onboarding-tooltip.-top {
+    margin-top: -2.6875rem;
+    margin-left: 2.8125rem; }
+    .onboarding-tooltip.-top > .content:before {
+      content: " ";
+      position: absolute;
+      top: 0.625rem;
+      width: 6.5rem;
+      height: 9.5625rem;
+      background: url(738ffa79af4c837743b83812e6e8dfa1.png) no-repeat;
+      background-size: 6.5rem 9.5625rem;
+      left: -4.375rem;
+      z-index: 1; }
+    .onboarding-tooltip.-top:after {
+      left: 100%;
+      top: 50%;
+      border: 0.75rem solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+      border-left-color: #363a41;
+      margin-top: -0.75rem;
+      left: 50%;
+      top: 100%;
+      margin-top: 0;
+      transform: rotate(90deg); }
+    .onboarding-tooltip.-top:before {
+      left: 100%;
+      top: 50%;
+      border: 0.8125rem solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+      border-left-color: #25b9d7;
+      margin-top: -0.8125rem;
+      left: 50%;
+      top: 100%;
+      margin-top: 0;
+      transform: rotate(90deg); }
   .onboarding-tooltip > .btn-primary {
     text-transform: uppercase;
     position: absolute;
