@@ -104,6 +104,21 @@
   #onboarding-welcome {
     &.modal-header {
       padding: rem(24px);
+
+      .close {
+        color: #000;
+        font-size: 2.5rem;
+        margin-top: -14px;
+        margin-right: -5px;
+        opacity: 0.4;
+      }
+    }
+
+    .btn {
+      background-color: $blue-balloon;
+      font-size: rem(15px);
+      font-weight: normal;
+      letter-spacing: normal;
     }
 
     .link-container {
@@ -161,6 +176,7 @@
 
         .link {
           bottom: 0;
+          line-height: 16px;
           position: absolute;
           padding: 10px;
           display: block;
