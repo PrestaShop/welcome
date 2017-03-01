@@ -110,7 +110,7 @@ class Configuration
                                 'type' => 'tooltip',
                                 'text' => $this->translator->trans('Yay! You just created your first product. Looks good, right?', array(), 'Modules.Welcome.Admin'),
                                 'page' => 'index.php/product/catalog',
-                                'selector' => '#product_catalog_list table tr:last-child td:nth-child(3)',
+                                'selector' => '#product_catalog_list table tr:first-child td:nth-child(3)',
                                 'position' => 'left',
                             ),
                         ),
