@@ -47,7 +47,7 @@ class Welcome extends Module
     public function __construct()
     {
         $this->name = 'welcome';
-        $this->version = '1.1.1';
+        $this->version = '2.0.0';
         $this->author = 'PrestaShop';
 
         parent::__construct();
