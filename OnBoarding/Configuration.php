@@ -97,7 +97,7 @@ class Configuration
                             ),
                             array(
                                 'type' => 'tooltip',
-                                'text' => $this->translator->trans('How much do you want to sell it?', array(), 'Modules.Welcome.Admin'),
+                                'text' => $this->translator->trans('How much do you want to sell it for?', array(), 'Modules.Welcome.Admin'),
                                 'page' => 'index.php/product/form',
                                 'selector' => '.right-column > .row > .col-md-12 > .form-group:nth-child(4) > .row > .col-md-6:first-child > .input-group',
                                 'position' => 'left',
