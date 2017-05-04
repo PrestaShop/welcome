@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <module>
-    <name>demoproducts</name>
-    <displayName><![CDATA[Demo products]]></displayName>
-    <version><![CDATA[0.0.0.1]]></version>
-    <description><![CDATA[Add demo products, contents and many stuff to your shop.]]></description>
+    <name>welcome</name>
+    <displayName><![CDATA[Welcome]]></displayName>
+    <version><![CDATA[2.0.2]]></version>
+    <description><![CDATA[Help the user to create his first product.]]></description>
     <author><![CDATA[PrestaShop]]></author>
     <tab><![CDATA[]]></tab>
     <is_configurable>0</is_configurable>
