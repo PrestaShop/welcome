@@ -1,30 +1,32 @@
 {
-  "name": "prestashop/welcome",
-  "description": "Welcome module for PrestaShop helping the users to create products.",
-  "homepage": "https://github.com/PrestaShop/welcome",
-  "license": "AFL - Academic Free License (AFL 3.0)",
-  "authors": [
-    {
-      "name": "PrestaShop SA",
-      "email": "contact@prestashop.com"
-    }
-  ],
-  "require": {
-    "php": ">=5.4.0"
-  },
-  "autoload": {
-    "psr-4": {"OnBoarding\\": "OnBoarding/"},
-    "exclude-from-classmap": [
-    ]
-  },
-  "config": {
-    "preferred-install": "dist"
-  },
-  "scripts": {
-    "post-install-cmd": [
-      "compass compile",
-      "rm -rf .sass-cache"
-    ]
-  },
-  "type": "prestashop-module"
+    "name": "prestashop/welcome",
+    "description": "Welcome module for PrestaShop helping the users to create products.",
+    "homepage": "https://github.com/PrestaShop/welcome",
+    "license": "AFL-3.0",
+    "authors": [
+        {
+            "name": "PrestaShop SA",
+            "email": "contact@prestashop.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "OnBoarding\\": "OnBoarding/"
+        },
+        "exclude-from-classmap": []
+    },
+    "config": {
+        "preferred-install": "dist"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "compass compile",
+            "rm -rf .sass-cache"
+        ]
+    },
+    "type": "prestashop-module",
+    "author": "PrestaShop"
 }
