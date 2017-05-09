@@ -29,7 +29,7 @@ module.exports = {
     }]
   },
   plugins: [
-    new ExtractTextPlugin('module.css')/*,
+    new ExtractTextPlugin('module.css'),
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: false,
       compress: {
@@ -43,6 +43,6 @@ module.exports = {
       output: {
         comments: false
       }
-    })*/
+    })
   ]
 };
