@@ -46,8 +46,7 @@ International Registered Trademark & Property of PrestaShop SA
   var onBoarding;
 
   $(function(){
-
-    onBoarding = new OnBoarding({$currentStep}, {$jsonSteps nofilter}, {$isShutDown}, baseDir+"modules/welcome/welcome-api.php", baseAdminDir);
+    onBoarding = new OnBoarding({$currentStep}, {$jsonSteps nofilter}, {$isShutDown}, "{$link}", baseAdminDir);
 
     {foreach from=$templates item=template}
       onBoarding.addTemplate('{$template['name']}', '{$template['content']}');
