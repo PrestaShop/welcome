@@ -33,7 +33,7 @@ International Registered Trademark & Property of PrestaShop SA
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-6 text-center text-md-center link-container">
-        <a class="final-link" href="http://doc.prestashop.com/display/PS16/Getting+Started" target="_blank">
+        <a class="final-link" href="http://doc.prestashop.com/display/PS17/Getting+Started" target="_blank">
           <div class="starter-guide"></div>
           <span class="link">{l s='Starter Guide' d='Modules.Welcome.Admin'}</span>
         </a>
