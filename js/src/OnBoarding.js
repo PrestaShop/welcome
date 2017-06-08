@@ -466,20 +466,21 @@ class OnBoarding
   setShutDown(value)
   {
     this.save({action: 'setShutDown', value: value ? 1 : 0}, ((error) => {
+      this.isShutDown = value;
       if (!error) {
-        this.isShutDown = value;
         if (this.isShutDown == false) {
           if (OnBoarding.isCurrentPage(this.getStep(this.currentStep).page)) {
             this.showCurrentStep();
           } else {
             this.gotoLastSavePoint();
           }
-        } else {
-          $('.onboarding-advancement').toggle(false);
-          $('.onboarding-navbar').toggleClass('displayed', true);
-          $('.onboarding-popup').remove();
-          $('.onboarding-tooltip').remove();
         }
+      }
+      if (true == this.isShutDown) {
+        $('.onboarding-advancement').toggle(false);
+        $('.onboarding-navbar').toggleClass('displayed', true);
+        $('.onboarding-popup').remove();
+        $('.onboarding-tooltip').remove();
       }
     }));
   };
