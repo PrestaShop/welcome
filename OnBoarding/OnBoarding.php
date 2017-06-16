@@ -84,13 +84,14 @@ class OnBoarding
     /**
      * Show the OnBoarding content for the nav bar.
      */
-    public function showModuleContentForNavBar()
+    public function showModuleContentForNavBar($link)
     {
         echo $this->getTemplateContent('navbar', array(
             'currentStep' => $this->getCurrentStep(),
             'totalSteps'  => $this->getTotalSteps(),
             'percent_real' => ($this->getCurrentStep() / $this->getTotalSteps()) * 100,
             'percent_rounded' => round(($this->getCurrentStep() / $this->getTotalSteps())*100),
+            'link' => $link->getAdminLink('AdminWelcome'),
         ));
     }
 
