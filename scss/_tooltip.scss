@@ -38,9 +38,9 @@
   position: absolute;
   box-sizing: border-box;
   opacity: 1;
-  padding: rem(10px) rem(10px) rem(10px) rem(38px);
+  padding: rem(10px) rem(10px) rem(50px) rem(38px);
   width: rem(290px);
-  height: rem(150px);
+  min-height: rem(150px);
 
   z-index: $minimum-z-index + 2;
 
