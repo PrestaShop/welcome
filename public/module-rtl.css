@@ -1,0 +1,63 @@
+.onboarding-welcome .btn-tertiary-outline {
+    margin-right: 0;
+    margin-left: 20px;
+}
+
+.onboarding-welcome > .material-icons {
+    right: auto;
+    left: 0.9375rem;
+}
+
+.onboarding-advancement {
+    left: 0;
+    right: 13.125rem;
+}
+
+.onboarding-advancement .onboarding-button-next,
+.onboarding-advancement .onboarding-button-shut-down {
+    right: auto;
+    left: 0.625rem;
+}
+
+.onboarding-advancement > .advancement-groups > .group {
+    float: right;
+}
+
+.onboarding-advancement > .advancement-groups > .group > .id {
+    left: -0.0625rem;
+    right: auto;
+}
+
+.onboarding-tooltip {
+    padding: 0.625rem 2.375rem 0.625rem 0.625rem;
+}
+
+.onboarding-tooltip:before,
+.onboarding-tooltip:after {
+    right: 100%;
+    left: auto;
+    border-left-color: transparent;
+}
+
+.onboarding-tooltip:before {
+    border-right-color: #25b9d7;
+}
+
+.onboarding-tooltip.-left:after {
+    border-right-color: #dff5f9;
+}
+
+.onboarding-tooltip > .content:before {
+    right: -3.8125rem;
+    left: auto;
+}
+
+.onboarding-tooltipsteps {
+    padding-right: 3.125rem;
+    padding-left: 0;
+}
+
+.onboarding-tooltip > .btn-primary {
+    left: 0.3125rem;
+    right: auto;
+}

@@ -101,6 +101,9 @@ class Welcome extends Module
     {
         if (!$this->onBoarding->isFinished()) {
             $this->context->controller->addCSS($this->_path.'public/module.css', 'all');
+            if (Context::getContext()->language->is_rtl) {
+                $this->context->controller->addCSS($this->_path.'public/module-rtl.css');
+            }
             $this->context->controller->addJS($this->_path.'public/module.js', 'all');
         }
     }
