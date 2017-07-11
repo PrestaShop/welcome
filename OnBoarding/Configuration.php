@@ -150,7 +150,7 @@ class Configuration
                         'steps' => array(
                             array(
                                 'type' => 'tooltip',
-                                'text' => $this->translator->trans('The payments methods are already available to your customers.', array(), 'Modules.Welcome.Admin'),
+                                'text' => $this->translator->trans('These payment methods are already available to your customers.', array(), 'Modules.Welcome.Admin'),
                                 'options' => array(
                                     'savepoint',
                                 ),
@@ -197,7 +197,7 @@ class Configuration
                         'title' => $this->translator->trans('Improve your shop with modules', array(), 'Modules.Welcome.Admin'),
                         'subtitle' => array(
                             '1' => $this->translator->trans('Add new features and manage existing ones thanks to modules.', array(), 'Modules.Welcome.Admin'),
-                            '2' => $this->translator->trans('A module can be already installed for you, free to install or paying - browse our selection to see what\'s available!', array(), 'Modules.Welcome.Admin'),
+                            '2' => $this->translator->trans('Some modules are already pre-installed, others may be free or paid modules - browse our selection and find out what is available!', array(), 'Modules.Welcome.Admin'),
                         ),
                         'steps' => array(
                             array(
