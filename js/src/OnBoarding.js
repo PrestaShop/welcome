@@ -44,6 +44,15 @@ class OnBoarding
     $('.onboarding-popup').remove();
     $('.onboarding-tooltip').remove();
 
+    var onBoardingHeight = $('.onboarding-navbar.displayed').innerHeight();
+
+    // Fix the menu scroll
+    if ($('#nav-sidebar').length) {
+      $('#nav-sidebar').css('padding-bottom', (onBoardingHeight + 50) + 'px');
+    } else {
+      $('nav.nav-bar').css('padding-bottom', onBoardingHeight + 'px');
+    }
+
     if (!this.isShutDown) {
       var step = this.getStep(this.currentStep);
 

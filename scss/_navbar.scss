@@ -12,11 +12,11 @@
   display: block;
   font-weight: normal;
   box-sizing: border-box;
-  width: 100%;
+  width: $size-navbar-width;
   padding: rem(10px);
   padding-bottom: rem(35px); // Forced because of old theme
   background: $navbar-footer-color;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   font-size: rem(11px);
   text-align: center;
