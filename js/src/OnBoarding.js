@@ -145,10 +145,6 @@ class OnBoarding
 
     var tokenAsString = separator;
 
-    if (tokens.token !== undefined) {
-      tokenAsString = tokenAsString + 'token=' + tokens.token;
-    }
-
     if (tokens._token !== undefined) {
       tokenAsString = tokenAsString + '&_token=' + tokens._token
     }
@@ -192,46 +188,8 @@ class OnBoarding
     var queryParams = OnBoarding.parseQueryString(queryString);
     var tokens = {};
 
-    if (typeof queryParams['token'] !== 'undefined') {
-      tokens.token = queryParams['token'];
-    }
-
     if (typeof queryParams['_token'] !== 'undefined') {
       tokens._token = queryParams['_token'];
-    }
-
-    if (redirectUrl.indexOf('?') !== -1) {
-      queryString = redirectUrl.split('?')[1]
-    } else {
-      queryString = redirectUrl;
-    }
-    var redirectUrlQueryParams = OnBoarding.parseQueryString(queryString);
-    if (typeof redirectUrlQueryParams.controller !== 'undefined') {
-      var submenu;
-
-      switch (redirectUrlQueryParams.controller) {
-        case 'AdminThemes':
-          submenu = '47';
-            break;
-        case 'AdminThemesCatalog':
-          submenu = '48';
-            break;
-        case 'AdminPayment':
-          submenu = '55';
-            break;
-        case 'AdminCarriers':
-          submenu = '52';
-            break;
-      }
-
-      if (typeof submenu !== 'undefined' && $('[data-submenu=' + submenu + '] a').length > 0) {
-        tokens.token = $($('[data-submenu=' + submenu + '] a')[0]).attr('href').split('token=')[1];
-      }
-    }
-
-    if (typeof tokens._token === 'undefined' && $('#subtab-AdminProducts a').length > 0) {
-      var tokenParts = $('#subtab-AdminProducts a').attr('href').split('_token=');
-      tokens._token = tokenParts[1];
     }
 
     return tokens;

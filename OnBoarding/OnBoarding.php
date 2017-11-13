@@ -150,6 +150,15 @@ class OnBoarding
             }
             foreach ($currentGroup['steps'] as &$currentStep) {
                 $currentStep['text'] = $this->getTextFromSettings($currentStep['text']);
+                if (isset($currentStep['page'])) {
+                    if (is_array($currentStep['page'])) {
+                        foreach ($currentStep['page'] as $k => $page) {
+                            $currentStep['page'][$k] = $this->injectSecurityToken($page);
+                        }
+                    } else {
+                        $currentStep['page'] = $this->injectSecurityToken($currentStep['page']);
+                    }
+                }
             }
         }
 
@@ -235,5 +244,19 @@ class OnBoarding
     private function isShutDown()
     {
         return (int)LegacyConfiguration::get('ONBOARDINGV2_SHUT_DOWN');
+    }
+
+    private function injectSecurityToken($url)
+    {
+        $urlData = parse_url($url);
+        if ($urlData === false || !isset($urlData['query']) || !isset($urlData['path'])) {
+            return $url;
+        }
+        parse_str($urlData['query'], $queryData);
+        if (isset($queryData['controller'])) {
+            $queryData['token'] = \Tools::getAdminToken($queryData['controller'].(int)\Tab::getIdFromClassName($queryData['controller']).(int)\Context::getContext()->employee->id);
+        }
+
+        return $urlData['path'] . '?' . http_build_query($queryData);
     }
 }
