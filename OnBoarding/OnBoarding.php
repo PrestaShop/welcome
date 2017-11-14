@@ -246,16 +246,26 @@ class OnBoarding
         return (int)LegacyConfiguration::get('ONBOARDINGV2_SHUT_DOWN');
     }
 
+    /**
+     * inject the security token on controller urls
+     *
+     * @param $url
+     *
+     * @return string
+     */
     private function injectSecurityToken($url)
     {
         $urlData = parse_url($url);
         if ($urlData === false || !isset($urlData['query']) || !isset($urlData['path'])) {
             return $url;
         }
+
         parse_str($urlData['query'], $queryData);
-        if (isset($queryData['controller'])) {
-            $queryData['token'] = \Tools::getAdminToken($queryData['controller'].(int)\Tab::getIdFromClassName($queryData['controller']).(int)\Context::getContext()->employee->id);
+        if (!isset($queryData['controller'])) {
+            return $url;
         }
+
+        $queryData['token'] = \Tools::getAdminToken($queryData['controller'].(int)\Tab::getIdFromClassName($queryData['controller']).(int)\Context::getContext()->employee->id);
 
         return $urlData['path'] . '?' . http_build_query($queryData);
     }
