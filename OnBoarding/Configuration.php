@@ -254,7 +254,7 @@ class Configuration
     {
         $url = $router->generate($controller, $parameters);
         $url = substr($url, strlen(basename(__PS_BASE_URI__)) + 1);
-        $url = str_replace(basename(_PS_ADMIN_DIR_) . '/', '', $url);
+        $url = str_replace('/' . basename(_PS_ADMIN_DIR_) . '/', '', $url);
 
         return $url;
     }
@@ -273,7 +273,7 @@ class Configuration
     {
         $url = $router->getGenerator()->generate($controller, $fakeParameters);
         $url = substr($url, strlen(basename(__PS_BASE_URI__)) + 1);
-        $url = str_replace(basename(_PS_ADMIN_DIR_) . '/', '', $url);
+        $url = str_replace('/' . basename(_PS_ADMIN_DIR_) . '/', '', $url);
 
         $url = str_replace(array_values($fakeParameters), '.+', $url);
 
