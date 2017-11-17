@@ -43,6 +43,12 @@ class Configuration
     {
         $contextLink = \Context::getContext()->link;
 
+        $productFormUrlPattern = $this->generateSfBaseUrl(
+            $router,
+            'admin_product_form',
+            array('id' => static::FAKE_ID)
+        );
+
         return array(
             'templates' => array(
                 'lost',
@@ -82,7 +88,7 @@ class Configuration
                                 ),
                                 'page' => array(
                                     $this->generateSfUrl($router, 'admin_product_new'),
-                                    $this->generateSfBaseUrl($router, 'admin_product_form', array('id' => static::FAKE_ID)),
+                                    $productFormUrlPattern,
                                 ),
                                 'selector' => '#form_step1_name_1',
                                 'position' => 'right',
@@ -90,21 +96,21 @@ class Configuration
                             array(
                                 'type' => 'tooltip',
                                 'text' => $this->translator->trans('Fill out the essential details in this tab. The other tabs are for more advanced information.', array(), 'Modules.Welcome.Admin'),
-                                'page' => $this->generateSfBaseUrl($router, 'admin_product_form', array('id' => static::FAKE_ID)),
+                                'page' => $productFormUrlPattern,
                                 'selector' => '#tab_step1',
                                 'position' => 'right',
                             ),
                             array(
                                 'type' => 'tooltip',
                                 'text' => $this->translator->trans('Add one or more pictures so your product looks tempting!', array(), 'Modules.Welcome.Admin'),
-                                'page' => $this->generateSfBaseUrl($router, 'admin_product_form', array('id' => static::FAKE_ID)),
+                                'page' => $productFormUrlPattern,
                                 'selector' => '#product-images-dropzone',
                                 'position' => 'right',
                             ),
                             array(
                                 'type' => 'tooltip',
                                 'text' => $this->translator->trans('How much do you want to sell it for?', array(), 'Modules.Welcome.Admin'),
-                                'page' => $this->generateSfBaseUrl($router, 'admin_product_form', array('id' => static::FAKE_ID)),
+                                'page' => $productFormUrlPattern,
                                 'selector' => '.right-column > .row > .col-md-12 > .form-group:nth-child(4) > .row > .col-md-6:first-child > .input-group',
                                 'position' => 'left',
                                 'action' => array(
