@@ -27,6 +27,7 @@
 namespace OnBoarding;
 
 use Configuration as LegacyConfiguration;
+use PrestaShopBundle\Service\Routing\Router;
 
 /**
  * OnBoarding main class.
@@ -47,13 +48,13 @@ class OnBoarding
      *
      * @param Translator $translator Twig environment needed to manage the templates
      */
-    public function __construct($translator, $smarty, $module)
+    public function __construct($translator, $smarty, $module, Router $router)
     {
         $this->translator = $translator;
         $this->smarty = $smarty;
         $this->module = $module;
 
-        $this->loadConfiguration();
+        $this->loadConfiguration($router);
     }
 
     /**
@@ -134,10 +135,10 @@ class OnBoarding
      *
      * @param string $configPath Path where the configuration can be loaded
      */
-    private function loadConfiguration()
+    private function loadConfiguration(Router $router)
     {
         $configuration = new Configuration($this->translator);
-        $configuration = $configuration->getConfiguration();
+        $configuration = $configuration->getConfiguration($router);
 
         foreach ($configuration['steps']['groups'] as &$currentGroup) {
             if (isset($currentGroup['title'])) {
@@ -150,15 +151,6 @@ class OnBoarding
             }
             foreach ($currentGroup['steps'] as &$currentStep) {
                 $currentStep['text'] = $this->getTextFromSettings($currentStep['text']);
-                if (isset($currentStep['page'])) {
-                    if (is_array($currentStep['page'])) {
-                        foreach ($currentStep['page'] as $k => $page) {
-                            $currentStep['page'][$k] = $this->injectSecurityToken($page);
-                        }
-                    } else {
-                        $currentStep['page'] = $this->injectSecurityToken($currentStep['page']);
-                    }
-                }
             }
         }
 
@@ -244,29 +236,5 @@ class OnBoarding
     private function isShutDown()
     {
         return (int)LegacyConfiguration::get('ONBOARDINGV2_SHUT_DOWN');
-    }
-
-    /**
-     * inject the security token on controller urls
-     *
-     * @param $url
-     *
-     * @return string
-     */
-    private function injectSecurityToken($url)
-    {
-        $urlData = parse_url($url);
-        if ($urlData === false || !isset($urlData['query']) || !isset($urlData['path'])) {
-            return $url;
-        }
-
-        parse_str($urlData['query'], $queryData);
-        if (!isset($queryData['controller'])) {
-            return $url;
-        }
-
-        $queryData['token'] = \Tools::getAdminToken($queryData['controller'].(int)\Tab::getIdFromClassName($queryData['controller']).(int)\Context::getContext()->employee->id);
-
-        return $urlData['path'] . '?' . http_build_query($queryData);
     }
 }

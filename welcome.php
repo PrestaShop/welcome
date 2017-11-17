@@ -30,6 +30,7 @@ if (!defined('_PS_VERSION_'))
 require_once __DIR__.'/vendor/autoload.php';
 
 use \OnBoarding\OnBoarding;
+use PrestaShop\PrestaShop\Adapter\SymfonyContainer;
 
 /**
  * OnBoarding module entry class.
@@ -61,7 +62,12 @@ class Welcome extends Module
         ];
 
         if (Module::isInstalled($this->name)) {
-            $this->onBoarding = new OnBoarding($this->getTranslator(), $this->smarty, $this);
+            $this->onBoarding = new OnBoarding(
+                $this->getTranslator(),
+                $this->smarty,
+                $this,
+                SymfonyContainer::getInstance()->get('router')
+            );
 
             if (Tools::getIsset('resetonboarding')) {
                 $this->onBoarding->setShutDown(false);

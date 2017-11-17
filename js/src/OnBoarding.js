@@ -462,24 +462,22 @@ class OnBoarding
   static isCurrentPage(url)
   {
     var currentPage = window.location.href;
-    var regexSearch = /[-[\]{}()*+?.,\\^$|#\s]/g;
-    var regexReplace = "\\$&";
-    var regex;
 
-    if($.isArray(url)) {
-      var isCurrentPage = false;
-
-      url.forEach((currentUrl) => {
-        regex = new RegExp(currentUrl.replace(regexSearch, regexReplace));
-        if (null !== regex.exec(currentPage)) {
-          isCurrentPage = true;
-        }
-      });
-      return isCurrentPage;
+    if (!$.isArray(url)) {
+      url = [String(url)];
     }
 
-    regex = new RegExp(url.replace(regexSearch, regexReplace));
-    return null !== regex.exec(currentPage);
+    var isCurrentUrl = false;
+    url.forEach((currentUrl) => {
+      // replace special chars for correct regexp testing
+      currentUrl = currentUrl.replace(/[\?\$]/g, "\\$&");
+      var urlRegexp = new RegExp(currentUrl, 'i');
+      if (urlRegexp.test(currentPage)) {
+        isCurrentUrl = true;
+      }
+    });
+
+    return isCurrentUrl;
   }
 
   /**
