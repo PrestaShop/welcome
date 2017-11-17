@@ -247,7 +247,8 @@ class Configuration
     protected function generateSfUrl(Router $router, $controller, $parameters = array())
     {
         $url = $router->generate($controller, $parameters);
-        $url = str_replace('/' . basename(_PS_ADMIN_DIR_) . '/', '', $url);
+        $url = substr($url, strlen(basename(__PS_BASE_URI__)) + 1);
+        $url = str_replace(basename(_PS_ADMIN_DIR_) . '/', '', $url);
 
         return $url;
     }
@@ -265,7 +266,8 @@ class Configuration
     protected function generateSfBaseUrl(Router $router, $controller, $fakeParameters = array())
     {
         $url = $router->getGenerator()->generate($controller, $fakeParameters);
-        $url = str_replace('/' . basename(_PS_ADMIN_DIR_) . '/', '', $url);
+        $url = substr($url, strlen(basename(__PS_BASE_URI__)) + 1);
+        $url = str_replace(basename(_PS_ADMIN_DIR_) . '/', '', $url);
 
         $url = str_replace(array_values($fakeParameters), '.+', $url);
 
