@@ -27,6 +27,7 @@
 namespace OnBoarding;
 
 use Configuration as LegacyConfiguration;
+use PrestaShopBundle\Service\Routing\Router;
 
 /**
  * OnBoarding main class.
@@ -47,13 +48,13 @@ class OnBoarding
      *
      * @param Translator $translator Twig environment needed to manage the templates
      */
-    public function __construct($translator, $smarty, $module)
+    public function __construct($translator, $smarty, $module, Router $router)
     {
         $this->translator = $translator;
         $this->smarty = $smarty;
         $this->module = $module;
 
-        $this->loadConfiguration();
+        $this->loadConfiguration($router);
     }
 
     /**
@@ -134,10 +135,10 @@ class OnBoarding
      *
      * @param string $configPath Path where the configuration can be loaded
      */
-    private function loadConfiguration()
+    private function loadConfiguration(Router $router)
     {
         $configuration = new Configuration($this->translator);
-        $configuration = $configuration->getConfiguration();
+        $configuration = $configuration->getConfiguration($router);
 
         foreach ($configuration['steps']['groups'] as &$currentGroup) {
             if (isset($currentGroup['title'])) {

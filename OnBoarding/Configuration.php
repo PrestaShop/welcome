@@ -26,8 +26,12 @@
 
 namespace OnBoarding;
 
+use PrestaShopBundle\Service\Routing\Router;
+
 class Configuration
 {
+    const FAKE_ID = 123456789;
+
     private $translator;
 
     public function __construct($translator)
@@ -35,8 +39,16 @@ class Configuration
         $this->translator = $translator;
     }
 
-    public function getConfiguration()
+    public function getConfiguration(Router $router)
     {
+        $contextLink = \Context::getContext()->link;
+
+        $productFormUrlPattern = $this->generateSfBaseUrl(
+            $router,
+            'admin_product_form',
+            array('id' => static::FAKE_ID)
+        );
+
         return array(
             'templates' => array(
                 'lost',
@@ -55,9 +67,9 @@ class Configuration
                                 ),
                                 'options' => array(
                                     'savepoint',
-                                    'hideFooter'
+                                    'hideFooter',
                                 ),
-                                'page' => 'index.php?controller=AdminDashboard',
+                                'page' => $this->generateLegacyAdminUrl($contextLink, 'AdminDashboard'),
                             ),
                         ),
                     ),
@@ -75,8 +87,8 @@ class Configuration
                                     'savepoint',
                                 ),
                                 'page' => array(
-                                    'index.php/product/new',
-                                    'index.php/product/form',
+                                    $this->generateSfUrl($router, 'admin_product_new'),
+                                    $productFormUrlPattern,
                                 ),
                                 'selector' => '#form_step1_name_1',
                                 'position' => 'right',
@@ -84,21 +96,21 @@ class Configuration
                             array(
                                 'type' => 'tooltip',
                                 'text' => $this->translator->trans('Fill out the essential details in this tab. The other tabs are for more advanced information.', array(), 'Modules.Welcome.Admin'),
-                                'page' => 'index.php/product/form',
+                                'page' => $productFormUrlPattern,
                                 'selector' => '#tab_step1',
                                 'position' => 'right',
                             ),
                             array(
                                 'type' => 'tooltip',
                                 'text' => $this->translator->trans('Add one or more pictures so your product looks tempting!', array(), 'Modules.Welcome.Admin'),
-                                'page' => 'index.php/product/form',
+                                'page' => $productFormUrlPattern,
                                 'selector' => '#product-images-dropzone',
                                 'position' => 'right',
                             ),
                             array(
                                 'type' => 'tooltip',
                                 'text' => $this->translator->trans('How much do you want to sell it for?', array(), 'Modules.Welcome.Admin'),
-                                'page' => 'index.php/product/form',
+                                'page' => $productFormUrlPattern,
                                 'selector' => '.right-column > .row > .col-md-12 > .form-group:nth-child(4) > .row > .col-md-6:first-child > .input-group',
                                 'position' => 'left',
                                 'action' => array(
@@ -109,7 +121,7 @@ class Configuration
                             array(
                                 'type' => 'tooltip',
                                 'text' => $this->translator->trans('Yay! You just created your first product. Looks good, right?', array(), 'Modules.Welcome.Admin'),
-                                'page' => 'index.php/product/catalog',
+                                'page' => $this->generateSfBaseUrl($router, 'admin_product_catalog'),
                                 'selector' => '#product_catalog_list table tr:first-child td:nth-child(3)',
                                 'position' => 'left',
                             ),
@@ -128,14 +140,14 @@ class Configuration
                                 'options' => array(
                                     'savepoint',
                                 ),
-                                'page' => 'index.php?controller=AdminThemes',
+                                'page' => $this->generateLegacyAdminUrl($contextLink, 'AdminThemes'),
                                 'selector' => '#js_theme_form_container .tab-content.panel .btn:first-child',
                                 'position' => 'right',
                             ),
                             array(
                                 'type' => 'tooltip',
                                 'text' => $this->translator->trans('If you want something really special, have a look at the theme catalog!', array(), 'Modules.Welcome.Admin'),
-                                'page' => 'index.php?controller=AdminThemesCatalog',
+                                'page' => $this->generateLegacyAdminUrl($contextLink, 'AdminThemesCatalog'),
                                 'selector' => '.addons-theme-one:first-child',
                                 'position' => 'right',
                             ),
@@ -154,14 +166,14 @@ class Configuration
                                 'options' => array(
                                     'savepoint',
                                 ),
-                                'page' => 'index.php?controller=AdminPayment',
+                                'page' => $this->generateLegacyAdminUrl($contextLink, 'AdminPayment'),
                                 'selector' => '.modules_list_container_tab:first tr:first-child .text-muted',
                                 'position' => 'right',
                             ),
                             array(
                                 'type' => 'tooltip',
                                 'text' => $this->translator->trans('And you can choose to add other payment methods from here!', array(), 'Modules.Welcome.Admin'),
-                                'page' => 'index.php?controller=AdminPayment',
+                                'page' => $this->generateLegacyAdminUrl($contextLink, 'AdminPayment'),
                                 'selector' => '.panel:eq(1) table tr:eq(0) td:eq(1)',
                                 'position' => 'top',
                             ),
@@ -180,14 +192,14 @@ class Configuration
                                 'options' => array(
                                     'savepoint',
                                 ),
-                                'page' => 'index.php?controller=AdminCarriers',
+                                'page' => $this->generateLegacyAdminUrl($contextLink, 'AdminCarriers'),
                                 'selector' => '#table-carrier tr:eq(2) td:eq(3)',
                                 'position' => 'right',
                             ),
                             array(
                                 'type' => 'tooltip',
                                 'text' => $this->translator->trans('You can offer more delivery options by setting up additional carriers', array(), 'Modules.Welcome.Admin'),
-                                'page' => 'index.php?controller=AdminCarriers',
+                                'page' => $this->generateLegacyAdminUrl($contextLink, 'AdminCarriers'),
                                 'selector' => '.modules_list_container_tab tr:eq(0) .text-muted',
                                 'position' => 'right',
                             ),
@@ -206,7 +218,7 @@ class Configuration
                                 'options' => array(
                                     'savepoint',
                                 ),
-                                'page' => 'index.php/module/catalog',
+                                'page' => $this->generateSfUrl($router, 'admin_module_catalog'),
                                 'selector' => '.page-head-tabs .tab:eq(0)',
                                 'position' => 'right',
                             ),
@@ -220,12 +232,67 @@ class Configuration
                                     'savepoint',
                                     'hideFooter',
                                 ),
-                                'page' => 'index.php/product/catalog',
+                                'page' => $this->generateSfBaseUrl($router, 'admin_module_catalog'),
                             ),
                         ),
                     ),
                 ),
             ),
         );
+    }
+
+    /**
+     * generate symfony controller url, without host/base
+
+     * @param \PrestaShopBundle\Service\Routing\Router $router
+     * @param                                          $controller
+     * @param array                                    $parameters
+     *
+     * @return mixed|string
+     */
+    protected function generateSfUrl(Router $router, $controller, $parameters = array())
+    {
+        $url = $router->generate($controller, $parameters);
+        $url = substr($url, strlen(basename(__PS_BASE_URI__)) + 1);
+        $url = str_replace('/' . basename(_PS_ADMIN_DIR_) . '/', '', $url);
+
+        return $url;
+    }
+
+    /**
+     * generate url pattern to recognize the route as the current step url
+     * here we replace the route specific parameters with wildcard to allow regexp matching
+     *
+     * @param \PrestaShopBundle\Service\Routing\Router $router
+     * @param                                          $controller
+     * @param array                                    $fakeParameters
+     *
+     * @return mixed|string
+     */
+    protected function generateSfBaseUrl(Router $router, $controller, $fakeParameters = array())
+    {
+        $url = $router->getGenerator()->generate($controller, $fakeParameters);
+        $url = substr($url, strlen(basename(__PS_BASE_URI__)) + 1);
+        $url = str_replace('/' . basename(_PS_ADMIN_DIR_) . '/', '', $url);
+
+        $url = str_replace(array_values($fakeParameters), '.+', $url);
+
+        return $url;
+    }
+
+    /**
+     * generate legacy controller url, without host/base
+     *
+     * @param \Link $contextLink
+     * @param       $controller
+     *
+     * @return mixed|string
+     */
+    protected function generateLegacyAdminUrl(\Link $contextLink, $controller)
+    {
+        $url = $contextLink->getAdminLink($controller);
+        $url = str_replace($contextLink->getBaseLink() . basename(_PS_ADMIN_DIR_) . '/', '', $url);
+
+        return $url;
     }
 }
