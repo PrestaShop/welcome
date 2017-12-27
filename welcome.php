@@ -61,7 +61,7 @@ class Welcome extends Module
             'max' => _PS_VERSION_,
         ];
 
-        if (Module::isInstalled($this->name)) {
+        if (Module::isInstalled($this->name) && null !== SymfonyContainer::getInstance()) {
             $this->onBoarding = new OnBoarding(
                 $this->getTranslator(),
                 $this->smarty,
