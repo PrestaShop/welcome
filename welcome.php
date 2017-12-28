@@ -48,8 +48,14 @@ class Welcome extends Module
      */
     public function __construct()
     {
+        // If the symfony container is not available this constructor will fail
+        // This can happen during the upgrade process
+        if (null == SymfonyContainer::getInstance()) {
+            return;
+        }
+
         $this->name = 'welcome';
-        $this->version = '3.0.0';
+        $this->version = '4.0.0';
         $this->author = 'PrestaShop';
 
         parent::__construct();
