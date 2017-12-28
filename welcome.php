@@ -48,6 +48,12 @@ class Welcome extends Module
      */
     public function __construct()
     {
+        // If the symfony container is not available this constructor will fail
+        // This can happen during the upgrade process
+        if (null == SymfonyContainer::getInstance()) {
+            return;
+        }
+
         $this->name = 'welcome';
         $this->version = '4.0.0';
         $this->author = 'PrestaShop';
@@ -61,7 +67,7 @@ class Welcome extends Module
             'max' => _PS_VERSION_,
         ];
 
-        if (Module::isInstalled($this->name) && null !== SymfonyContainer::getInstance()) {
+        if (Module::isInstalled($this->name)) {
             $this->onBoarding = new OnBoarding(
                 $this->getTranslator(),
                 $this->smarty,
