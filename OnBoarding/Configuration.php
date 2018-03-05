@@ -69,7 +69,7 @@ class Configuration
                                     'savepoint',
                                     'hideFooter',
                                 ),
-                                'page' => $this->generateLegacyAdminUrl($contextLink, 'AdminDashboard'),
+                                'page' => $contextLink->getAdminLink('AdminDashboard'),
                             ),
                         ),
                     ),
@@ -87,7 +87,7 @@ class Configuration
                                     'savepoint',
                                 ),
                                 'page' => array(
-                                    $this->generateSfUrl($router, 'admin_product_new'),
+                                    $router->generate('admin_product_new'),
                                     $productFormUrlPattern,
                                 ),
                                 'selector' => '#form_step1_name_1',
@@ -140,14 +140,14 @@ class Configuration
                                 'options' => array(
                                     'savepoint',
                                 ),
-                                'page' => $this->generateLegacyAdminUrl($contextLink, 'AdminThemes'),
+                                'page' => $contextLink->getAdminLink('AdminThemes'),
                                 'selector' => '#js_theme_form_container .tab-content.panel .btn:first-child',
                                 'position' => 'right',
                             ),
                             array(
                                 'type' => 'tooltip',
                                 'text' => $this->translator->trans('If you want something really special, have a look at the theme catalog!', array(), 'Modules.Welcome.Admin'),
-                                'page' => $this->generateLegacyAdminUrl($contextLink, 'AdminThemesCatalog'),
+                                'page' => $contextLink->getAdminLink('AdminThemesCatalog'),
                                 'selector' => '.addons-theme-one:first-child',
                                 'position' => 'right',
                             ),
@@ -166,14 +166,14 @@ class Configuration
                                 'options' => array(
                                     'savepoint',
                                 ),
-                                'page' => $this->generateLegacyAdminUrl($contextLink, 'AdminPayment'),
+                                'page' => $contextLink->getAdminLink('AdminPayment'),
                                 'selector' => '.modules_list_container_tab:first tr:first-child .text-muted',
                                 'position' => 'right',
                             ),
                             array(
                                 'type' => 'tooltip',
                                 'text' => $this->translator->trans('And you can choose to add other payment methods from here!', array(), 'Modules.Welcome.Admin'),
-                                'page' => $this->generateLegacyAdminUrl($contextLink, 'AdminPayment'),
+                                'page' => $contextLink->getAdminLink('AdminPayment'),
                                 'selector' => '.panel:eq(1) table tr:eq(0) td:eq(1)',
                                 'position' => 'top',
                             ),
@@ -192,14 +192,14 @@ class Configuration
                                 'options' => array(
                                     'savepoint',
                                 ),
-                                'page' => $this->generateLegacyAdminUrl($contextLink, 'AdminCarriers'),
+                                'page' => $contextLink->getAdminLink('AdminCarriers'),
                                 'selector' => '#table-carrier tr:eq(2) td:eq(3)',
                                 'position' => 'right',
                             ),
                             array(
                                 'type' => 'tooltip',
                                 'text' => $this->translator->trans('You can offer more delivery options by setting up additional carriers', array(), 'Modules.Welcome.Admin'),
-                                'page' => $this->generateLegacyAdminUrl($contextLink, 'AdminCarriers'),
+                                'page' => $contextLink->getAdminLink('AdminCarriers'),
                                 'selector' => '.modules_list_container_tab tr:eq(0) .text-muted',
                                 'position' => 'right',
                             ),
@@ -218,7 +218,7 @@ class Configuration
                                 'options' => array(
                                     'savepoint',
                                 ),
-                                'page' => $this->generateSfUrl($router, 'admin_module_catalog'),
+                                'page' => $router->generate('admin_module_catalog'),
                                 'selector' => '.page-head-tabs .tab:eq(0)',
                                 'position' => 'right',
                             ),
@@ -242,24 +242,6 @@ class Configuration
     }
 
     /**
-     * generate symfony controller url, without host/base
-
-     * @param \PrestaShopBundle\Service\Routing\Router $router
-     * @param                                          $controller
-     * @param array                                    $parameters
-     *
-     * @return mixed|string
-     */
-    protected function generateSfUrl(Router $router, $controller, $parameters = array())
-    {
-        $url = $router->generate($controller, $parameters);
-        $url = substr($url, strlen(basename(__PS_BASE_URI__)) + 1);
-        $url = str_replace('/' . basename(_PS_ADMIN_DIR_) . '/', '', $url);
-
-        return $url;
-    }
-
-    /**
      * generate url pattern to recognize the route as the current step url
      * here we replace the route specific parameters with wildcard to allow regexp matching
      *
@@ -276,22 +258,6 @@ class Configuration
         $url = str_replace('/' . basename(_PS_ADMIN_DIR_) . '/', '', $url);
 
         $url = str_replace(array_values($fakeParameters), '.+', $url);
-
-        return $url;
-    }
-
-    /**
-     * generate legacy controller url, without host/base
-     *
-     * @param \Link $contextLink
-     * @param       $controller
-     *
-     * @return mixed|string
-     */
-    protected function generateLegacyAdminUrl(\Link $contextLink, $controller)
-    {
-        $url = $contextLink->getAdminLink($controller);
-        $url = str_replace($contextLink->getBaseLink() . basename(_PS_ADMIN_DIR_) . '/', '', $url);
 
         return $url;
     }

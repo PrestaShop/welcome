@@ -50,7 +50,7 @@ class OnBoarding
     if ($('#nav-sidebar').length) {
       $('#nav-sidebar').css('padding-bottom', (onBoardingHeight + 50) + 'px');
     } else {
-      $('nav.nav-bar').css('padding-bottom', onBoardingHeight + 'px');
+      $('nav.nav-bar ul.main-menu').css('margin-bottom', onBoardingHeight + 'px');
     }
 
     if (!this.isShutDown) {
@@ -155,9 +155,9 @@ class OnBoarding
   getRedirectUrl(nextStep) {
     var redirectUrl;
     if (Array.isArray(nextStep.page)) {
-      redirectUrl = this.baseAdminDir + nextStep.page[0];
+      redirectUrl = nextStep.page[0];
     } else {
-      redirectUrl = this.baseAdminDir + nextStep.page;
+      redirectUrl = nextStep.page;
     }
 
     return redirectUrl + this.getTokenAsString(redirectUrl);

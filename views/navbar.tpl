@@ -23,7 +23,7 @@ needs please refer to http://www.prestashop.com for more information.
 International Registered Trademark & Property of PrestaShop SA
 *}
 
-<div class="onboarding-navbar">
+<div class="onboarding-navbar bootstrap">
   <div class="row text">
     <div class="col-md-8">
       {l s='Launch your shop!' d='Modules.Welcome.Admin'}
