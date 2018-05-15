@@ -1,6 +1,6 @@
 {
   "name": "welcome",
-  "version": "1.0.0",
+  "version": "5.0.0",
   "description": "Welcome module for PrestaShop helping the users to create products.",
   "main": "welcome.php",
   "scripts": {
