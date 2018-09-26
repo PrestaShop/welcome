@@ -177,7 +177,7 @@ class Configuration
                         'savepoint',
                     ],
                     'page' => $contextLink->getAdminLink('AdminPayment'),
-                    'selector' => '.modules_list_container_tab:first tr:first-child .text-muted',
+                    'selector' => '.modules_list_container_tab:first tr:first-child .text-muted, .card:eq(0) .text-muted:eq(0)',
                     'position' => 'right',
                 ],
             ],
@@ -193,7 +193,7 @@ class Configuration
                 'type' => 'tooltip',
                 'text' => $this->translator->trans('And you can choose to add other payment methods from here!', [], 'Modules.Welcome.Admin'),
                 'page' => $contextLink->getAdminLink('AdminPayment'),
-                'selector' => '.panel:eq(1) table tr:eq(0) td:eq(1)',
+                'selector' => '.panel:eq(1) table tr:eq(0) td:eq(1), .card:eq(1) .module-item-list div:eq(0) div:eq(1)',
                 'position' => 'top',
             ];
         }

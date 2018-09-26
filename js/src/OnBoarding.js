@@ -432,22 +432,24 @@ class OnBoarding
    */
   setShutDown(value)
   {
-    this.save({action: 'setShutDown', value: value ? 1 : 0}, ((error) => {
-      this.isShutDown = value;
+    this.isShutDown = value ? 1 : 0;
+
+    if (1 === this.isShutDown) {
+      $('.onboarding-advancement').toggle(false);
+      $('.onboarding-navbar').toggleClass('displayed', true);
+      $('.onboarding-popup').remove();
+      $('.onboarding-tooltip').remove();
+    }
+
+    this.save({action: 'setShutDown', value: this.isShutDown}, ((error) => {
       if (!error) {
-        if (this.isShutDown == false) {
+        if (0 === this.isShutDown) {
           if (OnBoarding.isCurrentPage(this.getStep(this.currentStep).page)) {
             this.showCurrentStep();
           } else {
             this.gotoLastSavePoint();
           }
         }
-      }
-      if (true == this.isShutDown) {
-        $('.onboarding-advancement').toggle(false);
-        $('.onboarding-navbar').toggleClass('displayed', true);
-        $('.onboarding-popup').remove();
-        $('.onboarding-tooltip').remove();
       }
     }));
   };
