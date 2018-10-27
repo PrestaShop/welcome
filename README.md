@@ -45,3 +45,32 @@ Just a word for the localization:
 The localized entries are on the _config/localization_ folder. Each entries have a key. To use one of this entry, just use ```{ loc: key.subkey }``` instead of a string. (For the titles and contents).
 
 If you want complex content, just create a TWIG template on the _views/contents_ and use ```{ content: templateName }``` instead of a string.
+
+## How to build the OnBoarding module
+
+The assets can already be found in this repo, but if you need to update the files, you will have to run webpack again.
+This module uses Webpack 4, so make sure you have all packages and the cli tool installed first:
+```shell
+$ npm i
+$ npm i -g webpack-cli 
+```
+
+This should be enough to get started in dev mode and watch for changes:
+```shell
+$ npm run watch
+```
+
+for production use the following command and set the `NODE_ENV` environment variable:
+```shell
+$ npm run build
+```
+
+Manual development mode:
+```shell
+$ webpack --config webpack.dev.js
+```
+
+Manual production mode:
+```shell
+$ webpack --config webpack.prod.js
+```

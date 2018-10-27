@@ -1,6 +1,6 @@
 <?php
 /**
- * 2007-2016 PrestaShop
+ * 2007-2018 PrestaShop
  *
  * NOTICE OF LICENSE
  *
@@ -19,17 +19,18 @@
  * needs please refer to http://www.prestashop.com for more information.
  *
  * @author    PrestaShop SA <contact@prestashop.com>
- * @copyright 2007-2016 PrestaShop SA
+ * @copyright 2007-2018 PrestaShop SA
  * @license   http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
 
-if (!defined('_PS_VERSION_'))
+if (!defined('_PS_VERSION_')) {
     exit;
+}
 
 require_once __DIR__.'/vendor/autoload.php';
 
-use \OnBoarding\OnBoarding;
+use OnBoarding\OnBoarding;
 use PrestaShop\PrestaShop\Adapter\SymfonyContainer;
 
 /**
@@ -45,6 +46,8 @@ class Welcome extends Module
 
     /**
      * Module's constructor.
+     *
+     * @throws PrestaShopDatabaseException
      */
     public function __construct()
     {
@@ -54,8 +57,8 @@ class Welcome extends Module
 
         parent::__construct();
 
-        $this->displayName = $this->trans('Welcome', array(), 'Modules.Welcome.Admin');
-        $this->description = $this->trans('Help the user to create his first product.', array(), 'Modules.Welcome.Admin');
+        $this->displayName = $this->trans('Welcome', [], 'Modules.Welcome.Admin');
+        $this->description = $this->trans('Help the user to create his first product.', [], 'Modules.Welcome.Admin');
         $this->ps_versions_compliancy = [
             'min' => '1.7.4.0',
             'max' => _PS_VERSION_,
@@ -86,6 +89,9 @@ class Welcome extends Module
      * Module installation.
      *
      * @return bool Success of the installation
+     *
+     * @throws PrestaShopDatabaseException
+     * @throws PrestaShopException
      */
     public function install()
     {
@@ -96,25 +102,38 @@ class Welcome extends Module
             && $this->registerHook('displayBackOfficeHeader');
     }
 
-
+    /**
+     * @return int
+     *
+     * @throws PrestaShopDatabaseException
+     * @throws PrestaShopException
+     */
     public function installTab()
     {
         $tab = new Tab();
         $tab->active = 1;
         $tab->class_name = static::CLASS_NAME;
-        $tab->name = array();
+        $tab->name = [];
         foreach (Language::getLanguages(true) as $lang) {
             $tab->name[$lang['id_lang']] = "Welcome";
         }
         $tab->module = $this->name;
+
         return $tab->add();
     }
 
+    /**
+     * @return bool
+     *
+     * @throws PrestaShopDatabaseException
+     * @throws PrestaShopException
+     */
     public function uninstallTab()
     {
-        $id_tab = (int)Tab::getIdFromClassName(static::CLASS_NAME);
+        $id_tab = (int) Tab::getIdFromClassName(static::CLASS_NAME);
         if ($id_tab) {
             $tab = new Tab($id_tab);
+
             return $tab->delete();
         } else {
             return false;
@@ -125,6 +144,9 @@ class Welcome extends Module
      * Uninstall the module.
      *
      * @return bool Success of the uninstallation
+     *
+     * @throws PrestaShopDatabaseException
+     * @throws PrestaShopException
      */
     public function uninstall()
     {
@@ -140,8 +162,8 @@ class Welcome extends Module
     public function hookDisplayBackOfficeHeader()
     {
         if (!$this->onBoarding->isFinished()) {
-            $this->context->controller->addCSS($this->_path.'public/module.css', 'all');
-            $this->context->controller->addJS($this->_path.'public/module.js', 'all');
+            $this->context->controller->addJS("{$this->_path}public/module.js");
+            $this->context->controller->addCSS("{$this->_path}public/module.css", 'all');
         }
     }
 

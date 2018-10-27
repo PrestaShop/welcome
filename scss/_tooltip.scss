@@ -1,5 +1,6 @@
-.onboarding-tooltip {
+@import "_bourbonrem.scss";
 
+.onboarding-tooltip {
   @mixin addTriangle($size, $color) {
     left: 100%;
     top: 50%;
@@ -24,7 +25,7 @@
   @mixin addPreston($url, $width, $height, $offset) {
     content: " ";
     position: absolute;
-    top: rem(10px);
+    top: bourbonFourRem(10px);
     width: $width;
     height: $height;
     background: url($url) no-repeat;
@@ -34,13 +35,13 @@
   }
 
   font-family: Open Sans,sans-serif; // Forced because of old theme
-  font-size: rem(14px); // Forced because of old theme
+  font-size: bourbonFourRem(14px); // Forced because of old theme
   position: absolute;
   box-sizing: border-box;
   opacity: 1;
-  padding: rem(10px) rem(10px) rem(50px) rem(38px);
-  width: rem(290px);
-  min-height: rem(150px);
+  padding: bourbonFourRem(10px) bourbonFourRem(10px) bourbonFourRem(50px) bourbonFourRem(38px);
+  width: bourbonFourRem(290px);
+  min-height: bourbonFourRem(150px);
 
   z-index: $minimum-z-index + 2;
 
@@ -49,79 +50,79 @@
   border: $tooltip-border $primary-color;
 
   &.-left {
-    margin-left: rem(-12px);
+    margin-left: bourbonFourRem(-12px);
     > .content {
       &:before {
-        @include addPreston('../images/preston-right.png', rem(88px), rem(153px), rem(-61px));
+        @include addPreston('../images/preston-right.png', bourbonFourRem(88px), bourbonFourRem(153px), bourbonFourRem(-61px));
       }
     }
     &:after {
-      @include addTriangle(rem(12px), $background-color);
+      @include addTriangle(bourbonFourRem(12px), $background-color);
     }
 
     &:before {
-      @include addTriangle(rem(13px), $primary-color);
+      @include addTriangle(bourbonFourRem(13px), $primary-color);
     }
   }
 
   &.-right {
-    margin-left: rem(69px);
+    margin-left: bourbonFourRem(69px);
     > .content {
       &:before {
-        @include addPreston('../images/preston-left.png', rem(104px), rem(153px), rem(-70px));
+        @include addPreston('../images/preston-left.png', bourbonFourRem(104px), bourbonFourRem(153px), bourbonFourRem(-70px));
       }
     }
   }
 
   &.-top {
-    margin-top: rem(-43px);
-    margin-left: rem(45px);
+    margin-top: bourbonFourRem(-43px);
+    margin-left: bourbonFourRem(45px);
     > .content {
       &:before {
-        @include addPreston('../images/preston-right.png', rem(104px), rem(153px), rem(-70px));
+        @include addPreston('../images/preston-right.png', bourbonFourRem(104px), bourbonFourRem(153px), bourbonFourRem(-70px));
       }
     }
 
     &:after {
-      @include addTriangleDown(rem(12px), $dark-color);
+      @include addTriangleDown(bourbonFourRem(12px), $dark-color);
     }
 
     &:before {
-      @include addTriangleDown(rem(13px), $primary-color);
+      @include addTriangleDown(bourbonFourRem(13px), $primary-color);
     }
   }
 
   > .btn-primary {
     text-transform: uppercase;
     position: absolute;
-    bottom: rem(5px);
-    right: rem(5px);
-    padding: /* rem(3px) */ 0 rem(8px);
+    bottom: bourbonFourRem(5px);
+    right: bourbonFourRem(5px);
+    padding: /* bourbonFourRem(3px) */ 0 bourbonFourRem(8px);
     background: $primary-color; // Forced because of old theme
     color: white; // Forced because of old theme
-    font-size: rem(12px); // Forced because of old theme
-    border-radius: rem(3px); // Forced because of old theme
+    font-size: bourbonFourRem(12px); // Forced because of old theme
+    border-radius: bourbonFourRem(3px); // Forced because of old theme
     border: none; // Forced because of old theme
     vertical-align: middle; // Forced because of old theme
-    height: rem(25px); // Forced because of old theme
-    line-height: rem(25px); // Forced because of old theme
+    height: bourbonFourRem(25px); // Forced because of old theme
+    line-height: bourbonFourRem(25px); // Forced because of old theme
   }
 }
 
 .onboarding-tooltipsteps {
   position: absolute;
-  height: rem(40px);
-  line-height: rem(40px);
+  height: bourbonFourRem(40px);
+  line-height: bourbonFourRem(40px);
   vertical-align: middle;
   bottom: 0;
   left: 0;
   right: 0;
   background: $dark-color;
-  padding-left: rem(50px);
+  padding-left: bourbonFourRem(50px);
 
   > .total {
     color: $primary-color;
-    font-size: rem(10px);
+    font-size: bourbonFourRem(10px);
   }
 
   > .bulls {
@@ -133,12 +134,12 @@
     bottom: 0;
   }
   > .bulls > .bull {
-    height: rem(6px);
-    width: rem(6px);
-    border-radius: rem(6px);
+    height: bourbonFourRem(6px);
+    width: bourbonFourRem(6px);
+    border-radius: bourbonFourRem(6px);
     background: $background-secondary-color;
     display: inline-block;
-    margin: 0 rem(1px) rem(1px) rem(1px);
+    margin: 0 bourbonFourRem(1px) bourbonFourRem(1px) bourbonFourRem(1px);
   }
   > .bulls > .bull.-current {
     background: $primary-color;

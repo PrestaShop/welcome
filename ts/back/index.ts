@@ -1,4 +1,4 @@
-{*
+/**
  * 2007-2018 PrestaShop
  *
  * NOTICE OF LICENSE
@@ -21,8 +21,5 @@
  * @copyright 2007-2018 PrestaShop SA
  * @license   http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  * International Registered Trademark & Property of PrestaShop SA
-*}
-
-<div class="onboarding-popup bootstrap">
-  <div class="content"></div>
-</div>
+ */
+export { default as main } from './onboarding';

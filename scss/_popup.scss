@@ -1,3 +1,5 @@
+@import "_bourbonrem.scss";
+
 .onboarding-popup {
   position: fixed;
   top:    0;
@@ -19,7 +21,7 @@
     padding: 0;
 
     background: white;
-    box-shadow: rem(2px) rem(2px) rem(3px) 0 rgba(0, 0, 0, 0.1);
+    box-shadow: bourbonFourRem(2px) bourbonFourRem(2px) bourbonFourRem(3px) 0 rgba(0, 0, 0, 0.1);
   }
 }
 
@@ -27,21 +29,21 @@
 
   .welcome {
     background: url('../images/preston-clouds.png') top no-repeat;
-    background-size: rem(560px) rem(164px);
+    background-size: bourbonFourRem(560px) bourbonFourRem(164px);
     padding-top: 164px;
-    height: rem(52px);
+    height: bourbonFourRem(52px);
     color: black;
-    font-size: rem(24px);
+    font-size: bourbonFourRem(24px);
     text-align: center;
     margin-bottom: 0;
   }
 
   > .content {
-    padding-bottom: rem(90px);
-    min-height: rem(200px);
-    font-size: rem(14px);
+    padding-bottom: bourbonFourRem(90px);
+    min-height: bourbonFourRem(200px);
+    font-size: bourbonFourRem(14px);
     background: url('../images/balloons.png') bottom no-repeat;
-    background-size: rem(240px) rem(81px);
+    background-size: bourbonFourRem(240px) bourbonFourRem(81px);
     margin-top: 2.5rem;
     display: flex;
     flex-direction: column;
@@ -50,34 +52,34 @@
       display: flex;
       text-align: center;
       align-self: center;
-      width: rem(400px);
+      width: bourbonFourRem(400px);
     }
   }
 
   .started {
     display: flex;
     font-weight: 600;
-    font-size: rem(17px);
+    font-size: bourbonFourRem(17px);
     justify-content: center;
   }
 
   > .content {
-    margin-bottom: rem(20px);
+    margin-bottom: bourbonFourRem(20px);
   }
 
   > .material-icons {
     color: $background-tertiary-color;
     position: absolute;
-    top: rem(10px);
-    right: rem(15px);
+    top: bourbonFourRem(10px);
+    right: bourbonFourRem(15px);
     cursor: pointer;
-    font-size: rem(30px);
+    font-size: bourbonFourRem(30px);
   }
 
   .buttons {
     display: flex;
     justify-content: center;
-    margin-bottom: rem(25px);
+    margin-bottom: bourbonFourRem(25px);
   }
 
   .btn-primary.blue-balloon {
@@ -98,12 +100,12 @@
 
 .onboarding-popup {
   h2 {
-    font-size: rem(24px);
+    font-size: bourbonFourRem(24px);
   }
 
   #onboarding-welcome {
     &.modal-header {
-      padding: rem(24px);
+      padding: bourbonFourRem(24px);
 
       .close {
         color: #000;
@@ -116,7 +118,7 @@
 
     .btn {
       background-color: $blue-balloon;
-      font-size: rem(15px);
+      font-size: bourbonFourRem(15px);
       font-weight: normal;
       letter-spacing: normal;
     }
@@ -133,8 +135,8 @@
       .video-tutorial,
       .forum,
       .training {
-        width: rem(150px);
-        height: rem(130px);
+        width: bourbonFourRem(150px);
+        height: bourbonFourRem(130px);
       }
 
       .starter-guide {
@@ -164,10 +166,10 @@
         margin-left: auto;
         margin-right: auto;
         text-align: center;
-        width: rem(150px);
+        width: bourbonFourRem(150px);
 
         &:hover {
-          box-shadow: rem(2px) rem(2px) rem(4px) 0 rgba(0, 0, 0, 0.25);
+          box-shadow: bourbonFourRem(2px) bourbonFourRem(2px) bourbonFourRem(4px) 0 rgba(0, 0, 0, 0.25);
         }
 
         .link {

@@ -1,15 +1,16 @@
 @import "settings";
+@import "_bourbonrem.scss";
 
 .onboarding-advancement {
   font-family: Open Sans,sans-serif; // Forced because of old theme
   font-weight: normal; // Forced because of old theme
   position: fixed;
   background: $background-color;
-  height: rem(110px);
+  height: bourbonFourRem(110px);
 
   bottom: 0;
   right: 0;
-  left: rem(210px);
+  left: bourbonFourRem(210px);
 
   z-index: $minimum-z-index - 1;
 
@@ -19,40 +20,40 @@
   }
 
   .col-md-8 { // Forced because of old theme
-    padding-left: rem(15px);
+    padding-left: bourbonFourRem(15px);
   }
 
   .group-title {
     font-weight: bold; // Forced because of old theme
     font-family: Open Sans,sans-serif; // Forced because of old theme
     color: $dark-color;
-    font-size: rem(16px);
-    margin-top: rem(10px);
+    font-size: bourbonFourRem(16px);
+    margin-top: bourbonFourRem(10px);
   }
 
   .step-title {
-    font-size: rem(14px); // Forced because of old theme
-    line-height: rem(20px); // Forced because of old theme
+    font-size: bourbonFourRem(14px); // Forced because of old theme
+    line-height: bourbonFourRem(20px); // Forced because of old theme
     .material-icons {
       color: $primary-color;
-      font-size: rem(18px);
+      font-size: bourbonFourRem(18px);
       vertical-align: bottom;
-      margin-bottom: rem(1px);
+      margin-bottom: bourbonFourRem(1px);
     }
   }
 
   .onboarding-button-next {
     position: absolute;
-    right: rem(10px);
-    top: rem(20px);
+    right: bourbonFourRem(10px);
+    top: bourbonFourRem(20px);
   }
 
   .onboarding-button-shut-down {
     position: absolute;
-    right: rem(10px);
-    bottom: rem(30px);
+    right: bourbonFourRem(10px);
+    bottom: bourbonFourRem(30px);
     color: $dark-color;
-    font-size: rem(11px);
+    font-size: bourbonFourRem(11px);
     cursor: pointer;
   }
 
@@ -61,32 +62,32 @@
 
     > .group {
       float: left;
-      height: rem(10px);
+      height: bourbonFourRem(10px);
       background: $dark-color;
       position: relative;
     }
 
     > .group > .advancement {
-      height: rem(10px);
+      height: bourbonFourRem(10px);
       background: $primary-color;
-      @include transition(all 0.8s);
+      transition: all 0.8s;
     }
 
     > .group > .id {
       position: absolute;
       box-sizing: border-box;
       background-color: $dark-color;
-      border: rem(1px) solid $background-color;
-      border-radius: rem(20px);
+      border: bourbonFourRem(1px) solid $background-color;
+      border-radius: bourbonFourRem(20px);
       text-align: center;
       vertical-align: middle;
-      line-height: rem(20px);
-      height: rem(20px);
-      width: rem(20px);
+      line-height: bourbonFourRem(20px);
+      height: bourbonFourRem(20px);
+      width: bourbonFourRem(20px);
       color: white;
-      font-size: rem(12px);
-      right: rem(-1px);
-      top: rem(-5px);
+      font-size: bourbonFourRem(12px);
+      right: bourbonFourRem(-1px);
+      top: bourbonFourRem(-5px);
       z-index: 1;
     }
     > .group > .id.-done {

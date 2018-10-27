@@ -1,12 +1,12 @@
 {
   "name": "welcome",
-  "version": "5.0.0",
+  "version": "5.1.0",
   "description": "Welcome module for PrestaShop helping the users to create products.",
   "main": "welcome.php",
   "scripts": {
     "postinstall": "webpack --progress",
-    "build": "webpack --progress --colors --debug --display-chunks",
-    "watch": "webpack --progress --colors --debug --display-chunks --watch"
+    "build": "webpack --progress --colors --debug --display-chunks --config webpack.dev.js",
+    "watch": "webpack --progress --colors --debug --display-chunks --watch --config webpack.prod.js"
   },
   "repository": {
     "type": "git",
@@ -19,22 +19,28 @@
   },
   "homepage": "https://github.com/PrestaShop/welcome#readme",
   "devDependencies": {
-    "babel-core": "^6.6.4",
-    "babel-loader": "^6.2.4",
-    "babel-preset-es2015": "^6.6.0",
-    "bourbon": "^4.2.6",
-    "compass": "^0.1.1",
-    "css-loader": "^0.23.1",
-    "exports-loader": "^0.6.3",
-    "expose-loader": "^0.7.1",
-    "extract-text-webpack-plugin": "^1.0.1",
-    "file-loader": "^0.8.5",
-    "imports-loader": "^0.6.5",
-    "node-sass": "^3.4.2",
-    "path": "^0.12.7",
-    "postcss-loader": "^0.8.1",
-    "sass-loader": "^3.1.2",
-    "style-loader": "^0.13.0",
-    "webpack": "^1.12.14"
-  }
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-typescript": "^7.1.0",
+    "@types/jquery": "^3.3.22",
+    "autoprefixer": "^9.3.1",
+    "babel-loader": "^8.0.4",
+    "bourbon": "^5.1.0",
+    "css-loader": "^1.0.0",
+    "file-loader": "^2.0.0",
+    "mini-css-extract-plugin": "^0.4.4",
+    "node-sass": "^4.9.4",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "uglifyjs-webpack-plugin": "^2.0.1",
+    "webpack": "^4.23.1",
+    "webpack-merge": "^4.1.4"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.0.0",
+    "jquery": "^3.3.1"
+  },
+  "type-check": "tsc"
 }

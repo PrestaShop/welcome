@@ -1,7 +1,14 @@
-.idea
+.idea/
+
+package-lock.json
+yarn.lock
+yarn-error.log
+node_modules/
+*.js.map
+*.css.map
 
 composer.lock
 composer.phar
-node_modules
+
 config_*
 .sass-cache

@@ -1,3 +1,5 @@
+@import "_bourbonrem.scss";
+
 .page-sidebar-closed {
   .onboarding-navbar.displayed {
     display: none;
@@ -13,18 +15,18 @@
   font-weight: normal;
   box-sizing: border-box;
   width: $size-navbar-width;
-  padding: rem(10px);
-  padding-bottom: rem(35px); // Forced because of old theme
+  padding: bourbonFourRem(10px);
+  padding-bottom: bourbonFourRem(35px); // Forced because of old theme
   background: $navbar-footer-color;
   position: fixed;
   bottom: 0;
-  font-size: rem(11px);
+  font-size: bourbonFourRem(11px);
   text-align: center;
 
   > .text {
     text-align: left;
     color: $navbar-text-color;
-    padding-bottom: rem(10px);
+    padding-bottom: bourbonFourRem(10px);
   }
 
   .onboarding-button-resume { // Forced because of old theme
@@ -37,19 +39,19 @@
     color: $navbar-text-color;
     text-transform: uppercase; // Forced because of old theme
     margin: 0 auto;
-    font-size: rem(10px);
-    padding: rem(6px) rem(15px);
+    font-size: bourbonFourRem(10px);
+    padding: bourbonFourRem(6px) bourbonFourRem(15px);
     &:hover { // Forced because of old theme
       color: #95a7ad !important; // Forced because of old theme
     }
   }
   .btn.-small {
-    margin-top: rem(2px);
-    font-size: rem(8px);
-    padding: rem(4px);
+    margin-top: bourbonFourRem(2px);
+    font-size: bourbonFourRem(8px);
+    padding: bourbonFourRem(4px);
     text-transform: none;
     background: $navbar-footer-color;
-    font-size: rem(10px) !important; // Forced because of old theme
+    font-size: bourbonFourRem(10px) !important; // Forced because of old theme
     text-transform: none; // Forced because of old theme
     color: #95a7ad !important; // Forced because of old theme
     &:hover { // Forced because of old theme
