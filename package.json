@@ -5,8 +5,8 @@
   "main": "welcome.php",
   "scripts": {
     "postinstall": "webpack --progress",
-    "build": "webpack --progress --colors --debug --display-chunks --config webpack.dev.js",
-    "watch": "webpack --progress --colors --debug --display-chunks --watch --config webpack.prod.js"
+    "build": "webpack --progress --colors --debug --display-chunks",
+    "watch": "webpack --progress --colors --debug --display-chunks --watch --config webpack.config.dev.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-typescript": "^7.1.0",
     "@types/jquery": "^3.3.22",
+    "@types/lodash": "^4.14.117",
     "autoprefixer": "^9.3.1",
     "babel-loader": "^8.0.4",
     "bourbon": "^5.1.0",
@@ -40,7 +41,9 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
-    "jquery": "^3.3.1"
+    "jquery": "^3.3.1",
+    "lodash": "^4.17.11",
+    "resize-observer-polyfill": "^1.5.0"
   },
   "type-check": "tsc"
 }

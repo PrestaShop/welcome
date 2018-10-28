@@ -64,15 +64,15 @@
       if ($(this).is('.with-spinner')) {
         if (!$(this).is('.animated')) {
           $(this).addClass('animated');
-          onBoarding.gotoNextStep();
+          onBoarding.gotoNextStep().then();
         }
       } else {
-        onBoarding.gotoNextStep();
+        onBoarding.gotoNextStep().then();
       }
     }).delegate('.onboarding-button-shut-down', 'click', function () {
-      onBoarding.setShutDown(true);
+      onBoarding.setShutDown(true).then();
     }).delegate('.onboarding-button-resume', 'click', function () {
-      onBoarding.setShutDown(false);
+      onBoarding.setShutDown(false).then();
     }).delegate('.onboarding-button-goto-current', 'click', function () {
       onBoarding.gotoLastSavePoint();
     }).delegate('.onboarding-button-stop', 'click', function () {

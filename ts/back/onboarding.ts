@@ -22,11 +22,14 @@
  * @license   http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
+// Polyfills
 import '@babel/polyfill';
-
-import '../../scss/module.scss';
-
+// Modules
 import $ from 'jquery';
+import ResizeObserver from 'resize-observer-polyfill';
+import { throttle as _throttle } from 'lodash';
+// Local
+import '../../scss/module.scss';
 
 declare let window: any;
 
@@ -72,6 +75,7 @@ export default class OnBoarding {
   private tooltip: JQuery;
   private tooltipElement: JQuery;
   private tooltipPlacementInterval: number;
+  private static navbarObserver: ResizeObserver;
 
   /**
    * Constructor.
@@ -127,7 +131,7 @@ export default class OnBoarding {
         this.updateAdvancement();
       } else {
         $('.onboarding-advancement').toggle(false);
-        this.setShutDown(true);
+        this.setShutDown(true).then();
       }
     }
   }
@@ -149,8 +153,15 @@ export default class OnBoarding {
   /**
    * Move to the next step.
    */
-  gotoNextStep() {
-    this.gotoStep(this.currentStep + 1);
+  async gotoNextStep(): Promise<boolean> {
+    try {
+      await this.gotoStep(this.currentStep + 1);
+    } catch (e) {
+      console.error(e);
+      return false;
+    }
+
+    return true;
   }
 
   /**
@@ -158,31 +169,35 @@ export default class OnBoarding {
    *
    * @param {int} stepIndex Step index
    */
-  gotoStep(stepIndex: number) {
-    this.save({ action: 'setCurrentStep', value: stepIndex }, ((error: any) => {
-      if (!error) {
-        let currentStep = this.getStep(this.currentStep);
-        let nextStep = this.getStep(stepIndex);
+  async gotoStep(stepIndex: number): Promise<boolean> {
+    try {
+      await this.save({ action: 'setCurrentStep', value: stepIndex });
+      let currentStep = this.getStep(this.currentStep);
+      let nextStep = this.getStep(stepIndex);
 
-        if (null == nextStep) {
-          $('.onboarding-popup').remove();
-          $('.onboarding-navbar').remove();
-          $('.onboarding-tooltip').remove();
-          return;
-        }
+      if (null == nextStep) {
+        $('.onboarding-popup').remove();
+        $('.onboarding-navbar').remove();
+        $('.onboarding-tooltip').remove();
+        return;
+      }
 
-        if (null != currentStep.action) {
-          $(currentStep.action.selector)[currentStep.action.action]();
+      if (null != currentStep.action) {
+        $(currentStep.action.selector)[currentStep.action.action]();
+      } else {
+        this.currentStep++;
+        if (!OnBoarding.isCurrentPage(nextStep.page)) {
+          window.location.href = OnBoarding.getRedirectUrl(nextStep);
         } else {
-          this.currentStep++;
-          if (!OnBoarding.isCurrentPage(nextStep.page)) {
-            window.location.href = OnBoarding.getRedirectUrl(nextStep);
-          } else {
-            this.showCurrentStep();
-          }
+          this.showCurrentStep();
         }
       }
-    }));
+    } catch (e) {
+      console.error(e);
+      return false;
+    }
+
+    return true;
   }
 
   static getTokenAsString(redirectUrl: string) {
@@ -251,15 +266,19 @@ export default class OnBoarding {
   /**
    * Stop the OnBoarding
    */
-  stop() {
-    this.save({ action: 'setCurrentStep', value: this.getTotalSteps() }, (error: any) => {
-      if (!error) {
-        $('.onboarding-advancement').remove();
-        $('.onboarding-navbar').remove();
-        $('.onboarding-popup').remove();
-        $('.onboarding-tooltip').remove();
-      }
-    });
+  async stop(): Promise<boolean> {
+    try {
+      await this.save({ action: 'setCurrentStep', value: this.getTotalSteps() });
+      $('.onboarding-advancement').remove();
+      $('.onboarding-navbar').remove();
+      $('.onboarding-popup').remove();
+      $('.onboarding-tooltip').remove();
+    } catch (e) {
+      console.error(e);
+      return false;
+    }
+
+    return true;
   }
 
   /**
@@ -352,6 +371,28 @@ export default class OnBoarding {
   }
 
   /**
+   * Call the save ajax api of the module.
+   *
+   * @param {object} settings Settings to save via POST
+   */
+  save(settings: IModuleSettings): Promise<void> {
+    return new Promise((resolve, reject) => {
+      $.ajax({
+        method: 'POST',
+        url: this.apiLocation,
+        data: settings
+      }).done((result) => {
+        if ('0' !== result) {
+          return reject();
+        }
+        return resolve();
+      }).fail(() => {
+        return reject();
+      });
+    });
+  }
+
+  /**
    * Return the element configuration fot a step or a group.
    *
    * @param {int}    stepID      Step ID for the element to get
@@ -380,27 +421,9 @@ export default class OnBoarding {
   }
 
   /**
-   * Call the save ajax api of the module.
-   *
-   * @param {object}   settings Settings to save via POST
-   * @param {function} callback Callback function called after the execution
-   */
-  save(settings: IModuleSettings, callback: Function) {
-    $.ajax({
-      method: 'POST',
-      url: this.apiLocation,
-      data: settings
-    }).done((result) => {
-      callback('0' !== result);
-    }).fail(() => {
-      callback(true);
-    });
-  }
-
-  /**
    * Update the advancement footer.
    */
-  updateAdvancement() {
+  updateAdvancement(): void {
     let advancementFooter = $('.onboarding-advancement');
     let advancementNav = $('.onboarding-navbar');
     let totalSteps = 0;
@@ -449,7 +472,7 @@ export default class OnBoarding {
    *
    * @return {int} Total steps.
    */
-  getTotalSteps() {
+  getTotalSteps(): number {
     let total = 0;
     this.steps.groups.forEach((group) => {
       total += group.steps.length;
@@ -462,7 +485,7 @@ export default class OnBoarding {
    *
    * @return {int} Total groups.
    */
-  getTotalGroups() {
+  getTotalGroups(): number {
     return this.steps.groups.length;
   }
 
@@ -471,27 +494,30 @@ export default class OnBoarding {
    *
    * @param {boolean} value True to shut down, false to activate.
    */
-  setShutDown(value: boolean) {
+  async setShutDown(value: boolean): Promise<boolean> {
     this.isShutDown = value;
 
     if (this.isShutDown) {
       OnBoarding.hideWidget();
     }
 
-    this.save({ action: 'setShutDown', value: this.isShutDown ? 1 : 0 }, ((error: boolean) => {
-      if (!error) {
-        if (!this.isShutDown) {
-          if (OnBoarding.isCurrentPage(this.getStep(this.currentStep).page)) {
-            this.showCurrentStep();
-          } else {
-            this.gotoLastSavePoint();
-          }
+    try {
+      await this.save({ action: 'setShutDown', value: this.isShutDown ? 1 : 0 });
+      if (!this.isShutDown) {
+        if (OnBoarding.isCurrentPage(this.getStep(this.currentStep).page)) {
+          this.showCurrentStep();
+        } else {
+          this.gotoLastSavePoint();
         }
-      } else {
-        // Hide widget on errors
-        OnBoarding.hideWidget();
       }
-    }));
+    } catch (e) {
+      console.error(e);
+      return false;
+    } finally {
+      OnBoarding.hideWidget();
+    }
+
+    return true;
   };
 
   /**
@@ -501,7 +527,7 @@ export default class OnBoarding {
    *
    * @return {boolean} True if the url correspond to the current page
    */
-  static isCurrentPage(url: string|Array<string>) {
+  static isCurrentPage(url: string|Array<string>): boolean {
     const currentPage = window.location.href;
 
     if (!Array.isArray(url)) {
@@ -526,7 +552,7 @@ export default class OnBoarding {
    *
    * @param {object} step Step configuration
    */
-  placeToolTip(step: IStep) {
+  placeToolTip(step: IStep): void {
     this.tooltipElement = $(step.selector);
     this.tooltip = $('.onboarding-tooltip');
 
@@ -581,7 +607,7 @@ export default class OnBoarding {
   /**
    * Update the position of the tooltip.
    */
-  updateToolTipPosition() {
+  updateToolTipPosition(): void {
     const middleX = this.tooltipElement.offset().top - (this.tooltipElement.outerHeight() / 2) - (this.tooltip.outerHeight() / 2);
     const middleY = this.tooltipElement.offset().top + (this.tooltipElement.outerHeight() / 2) - (this.tooltip.outerHeight() / 2);
     const topY = this.tooltipElement.offset().top + (this.tooltipElement.outerHeight() / 2) - (this.tooltip.outerHeight() / 2);
@@ -601,7 +627,9 @@ export default class OnBoarding {
     }
   }
 
-  static recalculateWidth() {
+  static recalculateWidth(): void {
+    OnBoarding.initCheckResize();
+
     const $navBar = $('nav.nav-bar');
     const $onBoardingWidget = $('.onboarding-navbar.displayed');
     const $mainMenu = $('nav.nav-bar ul.main-menu');
@@ -621,11 +649,29 @@ export default class OnBoarding {
     }
   }
 
-  static hideWidget() {
+  static hideWidget(): void {
     $('.onboarding-advancement').toggle(false);
     $('.onboarding-navbar').toggleClass('displayed', true);
     $('.onboarding-popup').remove();
     $('.onboarding-tooltip').remove();
     OnBoarding.recalculateWidth();
+  }
+
+  /**
+   * Check if resize is necessary
+   */
+  static initCheckResize(): void {
+    if (!(OnBoarding.navbarObserver instanceof ResizeObserver)) {
+      // The navbar will be observed for changes
+      const $navBar = $('nav.nav-bar > ul.main-menu');
+      if (!$navBar.length) {
+        return;
+      }
+
+      const navBar = $navBar[0];
+      // Create an observer instance
+      OnBoarding.navbarObserver = new ResizeObserver(_throttle(OnBoarding.recalculateWidth, 100));
+      OnBoarding.navbarObserver.observe(navBar);
+    }
   }
 }
