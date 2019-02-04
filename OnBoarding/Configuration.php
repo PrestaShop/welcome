@@ -1,6 +1,6 @@
 <?php
 /**
- * 2007-2016 PrestaShop
+ * 2007-2016 PrestaShop.
  *
  * NOTICE OF LICENSE
  *
@@ -32,7 +32,7 @@ use PrestaShopBundle\Service\Routing\Router;
 class Configuration
 {
     /**
-     * Module Dependency
+     * Module Dependency.
      */
     const MODULE_MBO = 'ps_mbo';
 
@@ -274,7 +274,7 @@ class Configuration
 
     /**
      * generate url pattern to recognize the route as the current step url
-     * here we replace the route specific parameters with wildcard to allow regexp matching
+     * here we replace the route specific parameters with wildcard to allow regexp matching.
      *
      * @param \PrestaShopBundle\Service\Routing\Router $router
      * @param                                          $controller
