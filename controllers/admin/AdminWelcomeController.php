@@ -24,7 +24,7 @@
  * International Registered Trademark & Property of PrestaShop SA
  */
 
-require_once(_PS_MODULE_DIR_.'/welcome/welcome.php');
+require_once _PS_MODULE_DIR_.'/welcome/welcome.php';
 
 class AdminWelcomeController extends ModuleAdminController
 {
