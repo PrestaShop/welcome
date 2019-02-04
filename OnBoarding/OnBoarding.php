@@ -207,7 +207,7 @@ class OnBoarding
      */
     private function getCurrentStep()
     {
-        return (int)LegacyConfiguration::get('ONBOARDINGV2_CURRENT_STEP');
+        return (int) LegacyConfiguration::get('ONBOARDINGV2_CURRENT_STEP');
     }
 
     /**
@@ -235,6 +235,6 @@ class OnBoarding
      */
     private function isShutDown()
     {
-        return (int)LegacyConfiguration::get('ONBOARDINGV2_SHUT_DOWN');
+        return (int) LegacyConfiguration::get('ONBOARDINGV2_SHUT_DOWN');
     }
 }

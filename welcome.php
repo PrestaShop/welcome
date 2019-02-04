@@ -112,7 +112,7 @@ class Welcome extends Module
 
     public function uninstallTab()
     {
-        $id_tab = (int)Tab::getIdFromClassName(static::CLASS_NAME);
+        $id_tab = (int) Tab::getIdFromClassName(static::CLASS_NAME);
         if ($id_tab) {
             $tab = new Tab($id_tab);
             return $tab->delete();
