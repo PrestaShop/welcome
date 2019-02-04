@@ -29,7 +29,7 @@ if (!defined('_PS_VERSION_'))
 
 require_once __DIR__.'/vendor/autoload.php';
 
-use \OnBoarding\OnBoarding;
+use OnBoarding\OnBoarding;
 use PrestaShop\PrestaShop\Adapter\SymfonyContainer;
 
 /**
