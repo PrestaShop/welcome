@@ -62,15 +62,15 @@ class OnBoarding
      */
     public function showModuleContent()
     {
-        $templates = array();
+        $templates = [];
         foreach ($this->configuration['templates'] as $template) {
-            $templates[] = array(
+            $templates[] = [
                 'name'    => $template,
-                'content' => str_replace(array("\n", "\r", "\t"), "", $this->getTemplateContent("templates/$template")),
-            );
+                'content' => str_replace(["\n", "\r", "\t"], "", $this->getTemplateContent("templates/$template")),
+            ];
         }
 
-        echo $this->getTemplateContent('content', array(
+        echo $this->getTemplateContent('content', [
             'currentStep' => $this->getCurrentStep(),
             'totalSteps'  => $this->getTotalSteps(),
             'percent_real' => ($this->getCurrentStep() / $this->getTotalSteps()) * 100,
@@ -79,7 +79,7 @@ class OnBoarding
             'steps'       => $this->configuration['steps'],
             'jsonSteps'   => json_encode($this->configuration['steps']),
             'templates'   => $templates,
-        ));
+        ]);
     }
 
     /**
@@ -87,13 +87,13 @@ class OnBoarding
      */
     public function showModuleContentForNavBar($link)
     {
-        echo $this->getTemplateContent('navbar', array(
+        echo $this->getTemplateContent('navbar', [
             'currentStep' => $this->getCurrentStep(),
             'totalSteps'  => $this->getTotalSteps(),
             'percent_real' => ($this->getCurrentStep() / $this->getTotalSteps()) * 100,
             'percent_rounded' => round(($this->getCurrentStep() / $this->getTotalSteps())*100),
             'link' => $link->getAdminLink('AdminWelcome'),
-        ));
+        ]);
     }
 
     /**
@@ -194,7 +194,7 @@ class OnBoarding
      *
      * @return string Parsed template
      */
-    private function getTemplateContent($templateName, $additionnalParameters = array())
+    private function getTemplateContent($templateName, $additionnalParameters = [])
     {
         $this->smarty->assign($additionnalParameters);
         return $this->module->fetch(__DIR__.'/../views/'.$templateName.'.tpl');

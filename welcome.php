@@ -54,8 +54,8 @@ class Welcome extends Module
 
         parent::__construct();
 
-        $this->displayName = $this->trans('Welcome', array(), 'Modules.Welcome.Admin');
-        $this->description = $this->trans('Help the user to create his first product.', array(), 'Modules.Welcome.Admin');
+        $this->displayName = $this->trans('Welcome', [], 'Modules.Welcome.Admin');
+        $this->description = $this->trans('Help the user to create his first product.', [], 'Modules.Welcome.Admin');
         $this->ps_versions_compliancy = [
             'min' => '1.7.4.0',
             'max' => _PS_VERSION_,
@@ -102,7 +102,7 @@ class Welcome extends Module
         $tab = new Tab();
         $tab->active = 1;
         $tab->class_name = static::CLASS_NAME;
-        $tab->name = array();
+        $tab->name = [];
         foreach (Language::getLanguages(true) as $lang) {
             $tab->name[$lang['id_lang']] = "Welcome";
         }
