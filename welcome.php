@@ -104,7 +104,7 @@ class Welcome extends Module
         $tab->class_name = static::CLASS_NAME;
         $tab->name = array();
         foreach (Language::getLanguages(true) as $lang) {
-            $tab->name[$lang['id_lang']] = "Welcome";
+            $tab->name[$lang['id_lang']] = 'Welcome';
         }
         $tab->module = $this->name;
         return $tab->add();

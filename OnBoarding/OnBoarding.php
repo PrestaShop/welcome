@@ -66,7 +66,7 @@ class OnBoarding
         foreach ($this->configuration['templates'] as $template) {
             $templates[] = array(
                 'name'    => $template,
-                'content' => str_replace(array("\n", "\r", "\t"), "", $this->getTemplateContent("templates/$template")),
+                'content' => str_replace(array("\n", "\r", "\t"), '', $this->getTemplateContent("templates/$template")),
             );
         }
 
