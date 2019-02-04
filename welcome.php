@@ -38,6 +38,7 @@ use PrestaShop\PrestaShop\Adapter\SymfonyContainer;
 class Welcome extends Module
 {
     const CLASS_NAME = 'AdminWelcome';
+
     /**
      * @var OnBoarding
      */
@@ -95,7 +96,6 @@ class Welcome extends Module
             && $this->registerHook('displayAdminAfterHeader')
             && $this->registerHook('displayBackOfficeHeader');
     }
-
 
     public function installTab()
     {

@@ -41,6 +41,7 @@ class OnBoarding
     private $translator;
 
     private $smarty;
+
     private $module;
 
     /**
