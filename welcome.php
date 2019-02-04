@@ -27,7 +27,7 @@
 if (!defined('_PS_VERSION_'))
     exit;
 
-require_once __DIR__.'/vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 use \OnBoarding\OnBoarding;
 use PrestaShop\PrestaShop\Adapter\SymfonyContainer;
@@ -140,8 +140,8 @@ class Welcome extends Module
     public function hookDisplayBackOfficeHeader()
     {
         if (!$this->onBoarding->isFinished()) {
-            $this->context->controller->addCSS($this->_path.'public/module.css', 'all');
-            $this->context->controller->addJS($this->_path.'public/module.js', 'all');
+            $this->context->controller->addCSS($this->_path . 'public/module.css', 'all');
+            $this->context->controller->addJS($this->_path . 'public/module.js', 'all');
         }
     }
 

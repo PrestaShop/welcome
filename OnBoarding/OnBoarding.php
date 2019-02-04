@@ -169,7 +169,7 @@ class OnBoarding
         if (is_array($text)) {
             switch ($text['type']) {
                 case 'template':
-                    return $this->getTemplateContent('contents/'.$text['src']);
+                    return $this->getTemplateContent('contents/' . $text['src']);
             }
         }
 
@@ -197,7 +197,7 @@ class OnBoarding
     private function getTemplateContent($templateName, $additionnalParameters = array())
     {
         $this->smarty->assign($additionnalParameters);
-        return $this->module->fetch(__DIR__.'/../views/'.$templateName.'.tpl');
+        return $this->module->fetch(__DIR__ . '/../views/' . $templateName . '.tpl');
     }
 
     /**
