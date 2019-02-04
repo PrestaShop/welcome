@@ -107,6 +107,7 @@ class Welcome extends Module
             $tab->name[$lang['id_lang']] = "Welcome";
         }
         $tab->module = $this->name;
+
         return $tab->add();
     }
 
@@ -115,6 +116,7 @@ class Welcome extends Module
         $id_tab = (int)Tab::getIdFromClassName(static::CLASS_NAME);
         if ($id_tab) {
             $tab = new Tab($id_tab);
+
             return $tab->delete();
         } else {
             return false;

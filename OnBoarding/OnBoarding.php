@@ -198,6 +198,7 @@ class OnBoarding
     private function getTemplateContent($templateName, $additionnalParameters = array())
     {
         $this->smarty->assign($additionnalParameters);
+
         return $this->module->fetch(__DIR__.'/../views/'.$templateName.'.tpl');
     }
 
