@@ -55,7 +55,6 @@ class Configuration
             ['id' => static::FAKE_ID]
         );
 
-
         $data = [
             'templates' => [
                 'lost',
@@ -234,7 +233,6 @@ class Configuration
             ];
         }
         $data['steps']['groups'][] = $shippingSteps;
-
 
         $moduleSteps = [
             'title' => $this->translator->trans('Improve your shop with modules', [], 'Modules.Welcome.Admin'),
