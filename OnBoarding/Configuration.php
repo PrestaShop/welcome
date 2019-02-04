@@ -277,8 +277,8 @@ class Configuration
      * here we replace the route specific parameters with wildcard to allow regexp matching.
      *
      * @param \PrestaShopBundle\Service\Routing\Router $router
-     * @param                                          $controller
-     * @param array                                    $fakeParameters
+     * @param $controller
+     * @param array $fakeParameters
      *
      * @return mixed|string
      */

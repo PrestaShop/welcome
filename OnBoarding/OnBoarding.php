@@ -189,8 +189,8 @@ class OnBoarding
     /**
      * Return a template.
      *
-     * @param string $templateName          Template name
-     * @param array  $additionnalParameters Additionnal parameters to inject on the Twig template
+     * @param string $templateName Template name
+     * @param array $additionnalParameters Additionnal parameters to inject on the Twig template
      *
      * @return string Parsed template
      */

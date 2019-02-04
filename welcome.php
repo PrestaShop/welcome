@@ -169,7 +169,7 @@ class Welcome extends Module
      * Execute an API like action for the OnBoarding.
      *
      * @param string $action Action to perform
-     * @param mixed  $value  Value to assign to the action
+     * @param mixed $value Value to assign to the action
      *
      * @throws Exception
      */
