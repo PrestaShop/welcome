@@ -148,7 +148,7 @@ class Configuration
                                     'savepoint',
                                 ],
                                 'page' => $contextLink->getAdminLink('AdminThemes'),
-                                'selector' => '#js_theme_form_container .tab-content.panel .btn:first-child',
+                                'selector' => '#form_shop_logos_header_logo',
                                 'position' => 'right',
                             ],
                             [
