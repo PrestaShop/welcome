@@ -21,7 +21,8 @@
     ]
   },
   "config": {
-    "preferred-install": "dist"
+    "preferred-install": "dist",
+    "prepend-autoloader": false
   },
   "scripts": {
     "post-install-cmd": [
