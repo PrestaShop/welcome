@@ -25,7 +25,7 @@
     "bourbon": "^4.2.6",
     "compass": "^0.1.1",
     "css-loader": "^0.28.11",
-    "exports-loader": "^0.6.3",
+    "exports-loader": "^0.7.0",
     "expose-loader": "^0.7.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
