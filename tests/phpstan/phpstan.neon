@@ -9,5 +9,6 @@ parameters:
     - ../../OnBoarding/
   ignoreErrors:
     - '#Call to method assign\(\) on an unknown class Smarty_Data#'
+    - '#Property TabCore::\$name \(string\) does not accept array.#'
   reportUnmatchedIgnoredErrors: false
   level: 5

@@ -17,13 +17,13 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
-
-if (!defined('_PS_VERSION_'))
+if (!defined('_PS_VERSION_')) {
     exit;
+}
 
-require_once __DIR__.'/vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
-use \OnBoarding\OnBoarding;
+use OnBoarding\OnBoarding;
 use PrestaShop\PrestaShop\Adapter\SymfonyContainer;
 
 /**
@@ -48,8 +48,8 @@ class Welcome extends Module
 
         parent::__construct();
 
-        $this->displayName = $this->trans('Welcome', array(), 'Modules.Welcome.Admin');
-        $this->description = $this->trans('Help the user to create his first product.', array(), 'Modules.Welcome.Admin');
+        $this->displayName = $this->trans('Welcome', [], 'Modules.Welcome.Admin');
+        $this->description = $this->trans('Help the user to create his first product.', [], 'Modules.Welcome.Admin');
         $this->ps_versions_compliancy = [
             'min' => '1.7.6.0',
             'max' => _PS_VERSION_,
@@ -90,25 +90,26 @@ class Welcome extends Module
             && $this->registerHook('displayBackOfficeHeader');
     }
 
-
     public function installTab()
     {
         $tab = new Tab();
-        $tab->active = 1;
+        $tab->active = true;
         $tab->class_name = static::CLASS_NAME;
-        $tab->name = array();
+        $tab->name = [];
         foreach (Language::getLanguages(true) as $lang) {
-            $tab->name[$lang['id_lang']] = "Welcome";
+            $tab->name[$lang['id_lang']] = 'Welcome';
         }
         $tab->module = $this->name;
+
         return $tab->add();
     }
 
     public function uninstallTab()
     {
-        $id_tab = (int)Tab::getIdFromClassName(static::CLASS_NAME);
+        $id_tab = (int) Tab::getIdFromClassName(static::CLASS_NAME);
         if ($id_tab) {
             $tab = new Tab($id_tab);
+
             return $tab->delete();
         } else {
             return false;
@@ -134,8 +135,8 @@ class Welcome extends Module
     public function hookDisplayBackOfficeHeader()
     {
         if (!$this->onBoarding->isFinished()) {
-            $this->context->controller->addCSS($this->_path.'public/module.css', 'all');
-            $this->context->controller->addJS($this->_path.'public/module.js', 'all');
+            $this->context->controller->addCSS($this->_path . 'public/module.css', 'all');
+            $this->context->controller->addJS($this->_path . 'public/module.js');
         }
     }
 
@@ -163,7 +164,7 @@ class Welcome extends Module
      * Execute an API like action for the OnBoarding.
      *
      * @param string $action Action to perform
-     * @param mixed  $value  Value to assign to the action
+     * @param mixed $value Value to assign to the action
      *
      * @throws Exception
      */

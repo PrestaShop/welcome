@@ -26,11 +26,5 @@
     "exclude-from-classmap": [
     ]
   },
-  "scripts": {
-    "post-install-cmd": [
-      "compass compile",
-      "rm -rf .sass-cache"
-    ]
-  },
   "type": "prestashop-module"
 }

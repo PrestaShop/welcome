@@ -18,4 +18,5 @@
  */
 import '../scss/module.scss';
 
+// eslint-disable-next-line import/no-webpack-loader-syntax
 require('expose?OnBoarding!./src/OnBoarding.js');
