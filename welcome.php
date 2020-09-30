@@ -67,7 +67,10 @@ class Welcome extends Module
         }
 
         if (Module::isInstalled($this->name)) {
-            $this->displayHeader = $this->smarty->getTemplateVars('display_header');
+            $smartyDisplayHeader = $this->smarty->getTemplateVars('display_header');
+            $this->displayHeader = (null !== $smartyDisplayHeader && is_bool($smartyDisplayHeader)) ?
+                $smartyDisplayHeader :
+                true;
 
             $this->onBoarding = new OnBoarding(
                 $this->getTranslator(),
@@ -144,7 +147,7 @@ class Welcome extends Module
     {
         if ($this->displayHeader && !$this->onBoarding->isFinished()) {
             $this->context->controller->addCSS($this->_path . 'public/module.css', 'all');
-            $this->context->controller->addJS($this->_path . 'public/module.js', 'all');
+            $this->context->controller->addJS($this->_path . 'public/module.js');
         }
     }
 
@@ -163,7 +166,7 @@ class Welcome extends Module
      */
     public function hookDisplayAdminNavBarBeforeEnd()
     {
-        if ($this->displayHeader &&!$this->onBoarding->isFinished()) {
+        if ($this->displayHeader && !$this->onBoarding->isFinished()) {
             $this->onBoarding->showModuleContentForNavBar($this->context->link);
         }
     }
