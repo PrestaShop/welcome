@@ -124,6 +124,7 @@ class Welcome extends Module
     public function uninstall()
     {
         $this->onBoarding->setCurrentStep(0);
+        $this->onBoarding->setShutDown(false);
         $this->uninstallTab();
 
         return parent::uninstall();
