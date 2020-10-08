@@ -17,8 +17,7 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
-
-require_once(_PS_MODULE_DIR_.'/welcome/welcome.php');
+require_once _PS_MODULE_DIR_ . '/welcome/welcome.php';
 
 class AdminWelcomeController extends ModuleAdminController
 {

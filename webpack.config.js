@@ -16,35 +16,35 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  * International Registered Trademark & Property of PrestaShop SA
  */
-var path = require('path');
-var webpack = require('webpack');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path = require('path');
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: [
-    './js/module.js'
+    './js/module.js',
   ],
   output: {
     path: './public',
-    filename: 'module.js'
+    filename: 'module.js',
   },
   module: {
     loaders: [{
       test: path.join(__dirname, 'js'),
       loader: 'babel',
       query: {
-        presets: ['es2015']
-      }
+        presets: ['es2015'],
+      },
     }, {
       test: /\.scss$/,
-      loader: ExtractTextPlugin.extract('style', 'css!sass')
+      loader: ExtractTextPlugin.extract('style', 'css!sass'),
     }, {
       test: /\.css$/,
-      loader: ExtractTextPlugin.extract('style', 'css?sourceMap!postcss!sass?sourceMap')
+      loader: ExtractTextPlugin.extract('style', 'css?sourceMap!postcss!sass?sourceMap'),
     }, {
-      test: /.(png|woff(2)?|eot|ttf|svg)(\?[a-z0-9=\.]+)?$/,
-      loader: 'file-loader?name=[hash].[ext]'
-    }]
+      test: /.(png|woff(2)?|eot|ttf|svg)(\?[a-z0-9=]+)?$/,
+      loader: 'file-loader?name=[hash].[ext]',
+    }],
   },
   plugins: [
     new ExtractTextPlugin('module.css'),
@@ -56,11 +56,11 @@ module.exports = {
         booleans: true,
         if_return: true,
         join_vars: true,
-        drop_console: true
+        drop_console: true,
       },
       output: {
-        comments: false
-      }
-    })
-  ]
+        comments: false,
+      },
+    }),
+  ],
 };

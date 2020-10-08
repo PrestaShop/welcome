@@ -49,7 +49,6 @@ class Configuration
             ['id' => static::FAKE_ID]
         );
 
-
         $data = [
             'templates' => [
                 'lost',
@@ -229,7 +228,6 @@ class Configuration
         }
         $data['steps']['groups'][] = $shippingSteps;
 
-
         $moduleSteps = [
             'title' => $this->translator->trans('Improve your shop with modules', [], 'Modules.Welcome.Admin'),
             'subtitle' => [
@@ -271,12 +269,12 @@ class Configuration
      * here we replace the route specific parameters with wildcard to allow regexp matching
      *
      * @param \PrestaShopBundle\Service\Routing\Router $router
-     * @param                                          $controller
-     * @param array                                    $fakeParameters
+     * @param string $controller
+     * @param array $fakeParameters
      *
      * @return mixed|string
      */
-    protected function generateSfBaseUrl(Router $router, $controller, $fakeParameters = [])
+    protected function generateSfBaseUrl(Router $router, string $controller, $fakeParameters = [])
     {
         $url = $router->getGenerator()->generate($controller, $fakeParameters);
         $url = substr($url, strlen(basename(__PS_BASE_URI__)) + 1);
