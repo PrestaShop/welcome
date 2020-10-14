@@ -10,20 +10,20 @@
     }
   ],
   "require": {
-    "php": ">=5.4.0"
+    "php": ">=5.4"
+  },
+  "require-dev": {
+    "prestashop/php-dev-tools": "^3.4"
+  },
+  "config": {
+    "preferred-install": "dist",
+    "classmap-authoritative": true,
+    "optimize-autoloader": true,
+    "prepend-autoloader": false
   },
   "autoload": {
     "psr-4": {"OnBoarding\\": "OnBoarding/"},
     "exclude-from-classmap": [
-    ]
-  },
-  "config": {
-    "preferred-install": "dist"
-  },
-  "scripts": {
-    "post-install-cmd": [
-      "compass compile",
-      "rm -rf .sass-cache"
     ]
   },
   "type": "prestashop-module"

@@ -1,7 +1,5 @@
-.idea
-
-composer.lock
-composer.phar
-node_modules
-config_*
-.sass-cache
+config_*.xml
+node_modules/
+translations/
+vendor/
+.php_cs.cache
