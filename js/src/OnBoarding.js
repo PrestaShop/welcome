@@ -99,19 +99,19 @@ class OnBoarding {
    * @param {int} stepIndex Step index
    */
   gotoStep(stepIndex) {
-    this.save({action: 'setCurrentStep', value: stepIndex}, ((error) => {
+    this.save({action: 'setCurrentStep', value: stepIndex}, (error) => {
       if (!error) {
         const currentStep = this.getStep(this.currentStep);
         const nextStep = this.getStep(stepIndex);
 
-        if (nextStep === null) {
+        if (!nextStep) {
           $('.onboarding-popup').remove();
           $('.onboarding-navbar').remove();
           $('.onboarding-tooltip').remove();
           return;
         }
 
-        if (currentStep.action !== null) {
+        if (currentStep.action) {
           $(currentStep.action.selector)[currentStep.action.action]();
         } else {
           this.currentStep += 1;
@@ -122,7 +122,7 @@ class OnBoarding {
           }
         }
       }
-    }));
+    });
   }
 
   getTokenAsString(redirectUrl) {
@@ -160,8 +160,10 @@ class OnBoarding {
   static parseQueryString(queryString) {
     const queryStringParts = queryString.split('&');
     const queryParams = {};
-    let parts; let i; let key; let
-      value;
+    let parts;
+    let i;
+    let key;
+    let value;
     for (i = 0; i < queryStringParts.length; i += 1) {
       parts = queryStringParts[i].split('=');
       [key, value] = parts;
@@ -329,11 +331,13 @@ class OnBoarding {
       method: 'POST',
       url: this.apiLocation,
       data: settings,
-    }).done((result) => {
-      callback(result !== '0');
-    }).fail(() => {
-      callback(true);
-    });
+    })
+      .done((result) => {
+        callback(result !== '0');
+      })
+      .fail(() => {
+        callback(true);
+      });
   }
 
   /**
@@ -345,11 +349,10 @@ class OnBoarding {
     let totalSteps = 0;
 
     this.steps.groups.forEach((group, index) => {
-      const positionOnChunk = Math.min((this.currentStep + 1) - totalSteps, group.steps.length);
-      advancementFooter.find(`.group-${index} .advancement`).css(
-        'width',
-        `${(positionOnChunk / group.steps.length) * 100}%`,
-      );
+      const positionOnChunk = Math.min(this.currentStep + 1 - totalSteps, group.steps.length);
+      advancementFooter
+        .find(`.group-${index} .advancement`)
+        .css('width', `${(positionOnChunk / group.steps.length) * 100}%`);
       totalSteps += group.steps.length;
       if (positionOnChunk === group.steps.length) {
         const id = advancementFooter.find(`.group-${index} .id`);
@@ -359,29 +362,30 @@ class OnBoarding {
       }
     });
 
-    advancementFooter.find('.group-title').html(
-      `${this.getCurrentGroupID() + 1}/${this.getTotalGroups()
-      } - ${
-        this.getGroupForStep(this.currentStep).title}`,
-    );
+    advancementFooter
+      .find('.group-title')
+      .html(
+        `${this.getCurrentGroupID() + 1}/${this.getTotalGroups()} - ${this.getGroupForStep(this.currentStep).title}`,
+      );
 
     if (this.getGroupForStep(this.currentStep).subtitle) {
       if (this.getGroupForStep(this.currentStep).subtitle[1]) {
-        advancementFooter.find('.step-title-1').html(
-          `<i class="material-icons">check</i> ${
-            this.getGroupForStep(this.currentStep).subtitle[1]}`,
-        );
+        advancementFooter
+          .find('.step-title-1')
+          .html(`<i class="material-icons">check</i> ${this.getGroupForStep(this.currentStep).subtitle[1]}`);
       }
       if (this.getGroupForStep(this.currentStep).subtitle[2]) {
-        advancementFooter.find('.step-title-2').html(
-          `<i class="material-icons">check</i> ${
-            this.getGroupForStep(this.currentStep).subtitle[2]}`,
-        );
+        advancementFooter
+          .find('.step-title-2')
+          .html(`<i class="material-icons">check</i> ${this.getGroupForStep(this.currentStep).subtitle[2]}`);
       }
     }
 
     const totalAdvancement = this.currentStep / this.getTotalSteps();
-    advancementNav.find('.text').find('.text-right').html(`${Math.floor(totalAdvancement * 100)}%`);
+    advancementNav
+      .find('.text')
+      .find('.text-right')
+      .html(`${Math.floor(totalAdvancement * 100)}%`);
     advancementNav.find('.progress-bar').width(`${totalAdvancement * 100}%`);
   }
 
@@ -422,7 +426,7 @@ class OnBoarding {
       $('.onboarding-tooltip').remove();
     }
 
-    this.save({action: 'setShutDown', value: this.isShutDown}, ((error) => {
+    this.save({action: 'setShutDown', value: this.isShutDown}, (error) => {
       if (!error) {
         if (this.isShutDown === 0) {
           if (OnBoarding.isCurrentPage(this.getStep(this.currentStep).page)) {
@@ -432,7 +436,7 @@ class OnBoarding {
           }
         }
       }
-    }));
+    });
   }
 
   /**
@@ -489,7 +493,6 @@ class OnBoarding {
       this.updateToolTipPosition(step);
     }, 100);
 
-
     this.tooltip.show();
 
     this.tooltip.addClass(`-${step.position}`);
@@ -513,8 +516,8 @@ class OnBoarding {
     }
 
     setTimeout(() => {
-      if (this.tooltipElement.offset().top > ((window.screen.height / 2) - 200)) {
-        window.scrollTo(0, this.tooltipElement.offset().top - ((window.screen.height / 2) - 200));
+      if (this.tooltipElement.offset().top > window.screen.height / 2 - 200) {
+        window.scrollTo(0, this.tooltipElement.offset().top - (window.screen.height / 2 - 200));
       }
     }, 200);
 
@@ -525,15 +528,14 @@ class OnBoarding {
    * Update the position of the tooltip.
    */
   updateToolTipPosition() {
-    const middleX = this.tooltipElement.offset().top
-      - (this.tooltipElement.outerHeight() / 2)
-      - (this.tooltip.outerHeight() / 2);
-    const middleY = this.tooltipElement.offset().top
-      + (this.tooltipElement.outerHeight() / 2)
-      - (this.tooltip.outerHeight() / 2);
-    const topY = this.tooltipElement.offset().top
-      + (this.tooltipElement.outerHeight() / 2)
-      - (this.tooltip.outerHeight() / 2);
+    /* eslint-disable */
+    const middleX =
+      this.tooltipElement.offset().top - this.tooltipElement.outerHeight() / 2 - this.tooltip.outerHeight() / 2;
+    const middleY =
+      this.tooltipElement.offset().top + this.tooltipElement.outerHeight() / 2 - this.tooltip.outerHeight() / 2;
+    const topY =
+      this.tooltipElement.offset().top + this.tooltipElement.outerHeight() / 2 - this.tooltip.outerHeight() / 2;
+    /* eslint-enable */
     const leftX = this.tooltipElement.offset().left - this.tooltip.outerWidth();
     const rightX = this.tooltipElement.offset().left + this.tooltipElement.outerWidth();
 
