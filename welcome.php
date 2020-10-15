@@ -21,7 +21,10 @@ if (!defined('_PS_VERSION_')) {
     exit;
 }
 
-require_once __DIR__ . '/vendor/autoload.php';
+$autoloadPath = __DIR__ . '/vendor/autoload.php';
+if (file_exists($autoloadPath)) {
+    require_once $autoloadPath;
+}
 
 use OnBoarding\OnBoarding;
 use PrestaShop\PrestaShop\Adapter\SymfonyContainer;
@@ -48,7 +51,7 @@ class Welcome extends Module
     public function __construct()
     {
         $this->name = 'welcome';
-        $this->version = '6.0.1';
+        $this->version = '6.0.2';
         $this->author = 'PrestaShop';
 
         parent::__construct();
