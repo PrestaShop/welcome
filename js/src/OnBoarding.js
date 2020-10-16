@@ -47,7 +47,10 @@ class OnBoarding {
     if ($('#nav-sidebar').length) {
       $('#nav-sidebar').css('padding-bottom', `${onBoardingHeight + 50}px`);
     } else {
-      $('nav.nav-bar ul.main-menu').css('margin-bottom', `${onBoardingHeight}px`);
+      $('nav.nav-bar ul.main-menu').css(
+        'margin-bottom',
+        `${onBoardingHeight}px`,
+      );
     }
 
     if (!this.isShutDown) {
@@ -60,7 +63,9 @@ class OnBoarding {
           this.placeToolTip(step);
         }
 
-        $('.onboarding-advancement').toggle($.inArray('hideFooter', step.options) === -1);
+        $('.onboarding-advancement').toggle(
+          $.inArray('hideFooter', step.options) === -1,
+        );
         this.updateAdvancement();
       } else {
         $('.onboarding-advancement').toggle(false);
@@ -194,14 +199,17 @@ class OnBoarding {
    * Stop the OnBoarding
    */
   stop() {
-    this.save({action: 'setCurrentStep', value: this.getTotalSteps()}, (error) => {
-      if (!error) {
-        $('.onboarding-advancement').remove();
-        $('.onboarding-navbar').remove();
-        $('.onboarding-popup').remove();
-        $('.onboarding-tooltip').remove();
-      }
-    });
+    this.save(
+      {action: 'setCurrentStep', value: this.getTotalSteps()},
+      (error) => {
+        if (!error) {
+          $('.onboarding-advancement').remove();
+          $('.onboarding-navbar').remove();
+          $('.onboarding-popup').remove();
+          $('.onboarding-tooltip').remove();
+        }
+      },
+    );
   }
 
   /**
@@ -213,7 +221,10 @@ class OnBoarding {
 
     this.steps.groups.forEach((group) => {
       group.steps.forEach((step) => {
-        if (stepCount <= this.currentStep && $.inArray('savepoint', step.options) !== -1) {
+        if (
+          stepCount <= this.currentStep
+          && $.inArray('savepoint', step.options) !== -1
+        ) {
           lastSavePointStep = stepCount;
         }
         stepCount += 1;
@@ -349,7 +360,10 @@ class OnBoarding {
     let totalSteps = 0;
 
     this.steps.groups.forEach((group, index) => {
-      const positionOnChunk = Math.min(this.currentStep + 1 - totalSteps, group.steps.length);
+      const positionOnChunk = Math.min(
+        this.currentStep + 1 - totalSteps,
+        group.steps.length,
+      );
       advancementFooter
         .find(`.group-${index} .advancement`)
         .css('width', `${(positionOnChunk / group.steps.length) * 100}%`);
@@ -365,19 +379,29 @@ class OnBoarding {
     advancementFooter
       .find('.group-title')
       .html(
-        `${this.getCurrentGroupID() + 1}/${this.getTotalGroups()} - ${this.getGroupForStep(this.currentStep).title}`,
+        `${this.getCurrentGroupID() + 1}/${this.getTotalGroups()} - ${
+          this.getGroupForStep(this.currentStep).title
+        }`,
       );
 
     if (this.getGroupForStep(this.currentStep).subtitle) {
       if (this.getGroupForStep(this.currentStep).subtitle[1]) {
         advancementFooter
           .find('.step-title-1')
-          .html(`<i class="material-icons">check</i> ${this.getGroupForStep(this.currentStep).subtitle[1]}`);
+          .html(
+            `<i class="material-icons">check</i> ${
+              this.getGroupForStep(this.currentStep).subtitle[1]
+            }`,
+          );
       }
       if (this.getGroupForStep(this.currentStep).subtitle[2]) {
         advancementFooter
           .find('.step-title-2')
-          .html(`<i class="material-icons">check</i> ${this.getGroupForStep(this.currentStep).subtitle[2]}`);
+          .html(
+            `<i class="material-icons">check</i> ${
+              this.getGroupForStep(this.currentStep).subtitle[2]
+            }`,
+          );
       }
     }
 
@@ -421,7 +445,7 @@ class OnBoarding {
 
     if (this.isShutDown === 1) {
       $('.onboarding-advancement').toggle(false);
-      $('.onboarding-navbar').toggleClass('onboarding-navbar', true);
+      $('.onboarding-navbar').toggleClass('displayed', true);
       $('.onboarding-popup').remove();
       $('.onboarding-tooltip').remove();
     }
@@ -501,7 +525,9 @@ class OnBoarding {
     const currentStepIDOnGroup = this.getCurrentStepIDOnGroup();
     const groupStepsCount = this.getGroupForStep(this.currentStep).steps.length;
 
-    this.tooltip.find('.count').html(`${currentStepIDOnGroup + 1}/${groupStepsCount}`);
+    this.tooltip
+      .find('.count')
+      .html(`${currentStepIDOnGroup + 1}/${groupStepsCount}`);
 
     const bullsContainer = this.tooltip.find('.bulls');
     for (let idStep = 0; idStep < groupStepsCount; idStep += 1) {
@@ -517,7 +543,10 @@ class OnBoarding {
 
     setTimeout(() => {
       if (this.tooltipElement.offset().top > window.screen.height / 2 - 200) {
-        window.scrollTo(0, this.tooltipElement.offset().top - (window.screen.height / 2 - 200));
+        window.scrollTo(
+          0,
+          this.tooltipElement.offset().top - (window.screen.height / 2 - 200),
+        );
       }
     }, 200);
 
@@ -530,11 +559,17 @@ class OnBoarding {
   updateToolTipPosition() {
     /* eslint-disable */
     const middleX =
-      this.tooltipElement.offset().top - this.tooltipElement.outerHeight() / 2 - this.tooltip.outerHeight() / 2;
+      this.tooltipElement.offset().top -
+      this.tooltipElement.outerHeight() / 2 -
+      this.tooltip.outerHeight() / 2;
     const middleY =
-      this.tooltipElement.offset().top + this.tooltipElement.outerHeight() / 2 - this.tooltip.outerHeight() / 2;
+      this.tooltipElement.offset().top +
+      this.tooltipElement.outerHeight() / 2 -
+      this.tooltip.outerHeight() / 2;
     const topY =
-      this.tooltipElement.offset().top + this.tooltipElement.outerHeight() / 2 - this.tooltip.outerHeight() / 2;
+      this.tooltipElement.offset().top +
+      this.tooltipElement.outerHeight() / 2 -
+      this.tooltip.outerHeight() / 2;
     /* eslint-enable */
     const leftX = this.tooltipElement.offset().left - this.tooltip.outerWidth();
     const rightX = this.tooltipElement.offset().left + this.tooltipElement.outerWidth();
