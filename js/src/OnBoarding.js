@@ -421,7 +421,7 @@ class OnBoarding {
 
     if (this.isShutDown === 1) {
       $('.onboarding-advancement').toggle(false);
-      $('.onboarding-navbar').toggleClass('onboarding-navbar-displayed', true);
+      $('.onboarding-navbar').toggleClass('onboarding-navbar', true);
       $('.onboarding-popup').remove();
       $('.onboarding-tooltip').remove();
     }
