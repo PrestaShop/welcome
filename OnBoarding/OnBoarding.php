@@ -247,6 +247,6 @@ class OnBoarding
      */
     private function isShutDown()
     {
-        return (int) LegacyConfiguration::get('ONBOARDINGV2_SHUT_DOWN');
+        return (bool) LegacyConfiguration::get('ONBOARDINGV2_SHUT_DOWN');
     }
 }
