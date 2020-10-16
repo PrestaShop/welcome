@@ -36,7 +36,7 @@ class OnBoarding {
    * Display the needed elements for the current step.
    */
   showCurrentStep() {
-    $('.onboarding-navbar').toggleClass('displayed', this.isShutDown === true);
+    $('.onboarding-navbar').toggleClass('displayed', this.isShutDown);
     $('.onboarding-advancement').toggle(this.isShutDown === false);
     $('.onboarding-popup').remove();
     $('.onboarding-tooltip').remove();
@@ -99,7 +99,7 @@ class OnBoarding {
    * @param {int} stepIndex Step index
    */
   gotoStep(stepIndex) {
-    this.save({action: 'setCurrentStep', value: stepIndex}, (error) => {
+    this.save({action: 'setCurrentStep', value: stepIndex}, error => {
       if (!error) {
         const currentStep = this.getStep(this.currentStep);
         const nextStep = this.getStep(stepIndex);
@@ -194,7 +194,7 @@ class OnBoarding {
    * Stop the OnBoarding
    */
   stop() {
-    this.save({action: 'setCurrentStep', value: this.getTotalSteps()}, (error) => {
+    this.save({action: 'setCurrentStep', value: this.getTotalSteps()}, error => {
       if (!error) {
         $('.onboarding-advancement').remove();
         $('.onboarding-navbar').remove();
@@ -211,8 +211,8 @@ class OnBoarding {
     let lastSavePointStep = 0;
     let stepCount = 0;
 
-    this.steps.groups.forEach((group) => {
-      group.steps.forEach((step) => {
+    this.steps.groups.forEach(group => {
+      group.steps.forEach(step => {
         if (stepCount <= this.currentStep && $.inArray('savepoint', step.options) !== -1) {
           lastSavePointStep = stepCount;
         }
@@ -244,7 +244,7 @@ class OnBoarding {
     let currentStepID = 0;
     let returnValue = 0;
 
-    this.steps.groups.forEach((group) => {
+    this.steps.groups.forEach(group => {
       group.steps.forEach(() => {
         if (currentStepID === this.currentStep) {
           returnValue = currentGroupID;
@@ -267,7 +267,7 @@ class OnBoarding {
     let stepID = 0;
     let stepIDOnGroup = 0;
 
-    this.steps.groups.forEach((group) => {
+    this.steps.groups.forEach(group => {
       stepIDOnGroup = 0;
       group.steps.forEach(() => {
         if (currentStepID === this.currentStep) {
@@ -304,8 +304,8 @@ class OnBoarding {
     let currentStepID = 0;
     let element = null;
 
-    this.steps.groups.forEach((group) => {
-      group.steps.forEach((step) => {
+    this.steps.groups.forEach(group => {
+      group.steps.forEach(step => {
         if (currentStepID === stepID) {
           if (elementType === 'step') {
             element = step;
@@ -330,9 +330,9 @@ class OnBoarding {
     $.ajax({
       method: 'POST',
       url: this.apiLocation,
-      data: settings,
+      data: settings
     })
-      .done((result) => {
+      .done(result => {
         callback(result !== '0');
       })
       .fail(() => {
@@ -365,7 +365,7 @@ class OnBoarding {
     advancementFooter
       .find('.group-title')
       .html(
-        `${this.getCurrentGroupID() + 1}/${this.getTotalGroups()} - ${this.getGroupForStep(this.currentStep).title}`,
+        `${this.getCurrentGroupID() + 1}/${this.getTotalGroups()} - ${this.getGroupForStep(this.currentStep).title}`
       );
 
     if (this.getGroupForStep(this.currentStep).subtitle) {
@@ -396,7 +396,7 @@ class OnBoarding {
    */
   getTotalSteps() {
     let total = 0;
-    this.steps.groups.forEach((group) => {
+    this.steps.groups.forEach(group => {
       total += group.steps.length;
     });
     return total;
@@ -426,7 +426,7 @@ class OnBoarding {
       $('.onboarding-tooltip').remove();
     }
 
-    this.save({action: 'setShutDown', value: this.isShutDown}, (error) => {
+    this.save({action: 'setShutDown', value: this.isShutDown}, error => {
       if (!error) {
         if (this.isShutDown === 0) {
           if (OnBoarding.isCurrentPage(this.getStep(this.currentStep).page)) {
@@ -457,7 +457,7 @@ class OnBoarding {
     }
 
     let isCurrentUrl = false;
-    urls.forEach((currentUrl) => {
+    urls.forEach(currentUrl => {
       // replace special chars for correct regexp testing
       const currentUrlFixed = currentUrl.replace(/[\?\$]/g, '\\$&');
       const urlRegexp = new RegExp(currentUrlFixed, 'i');

@@ -148,7 +148,7 @@ class Welcome extends Module
      */
     public function hookDisplayBackOfficeHeader()
     {
-        if ($this->displayHeader && !$this->onBoarding->isFinished()) {
+        if (!$this->onBoarding->isFinished()) {
             $this->context->controller->addCSS($this->_path . 'public/module.css', 'all');
             $this->context->controller->addJS($this->_path . 'public/module.js');
         }
@@ -159,7 +159,7 @@ class Welcome extends Module
      */
     public function hookDisplayAdminAfterHeader()
     {
-        if ($this->displayHeader && !$this->onBoarding->isFinished()) {
+        if (!$this->onBoarding->isFinished()) {
             $this->onBoarding->showModuleContent();
         }
     }
@@ -169,7 +169,7 @@ class Welcome extends Module
      */
     public function hookDisplayAdminNavBarBeforeEnd()
     {
-        if ($this->displayHeader && !$this->onBoarding->isFinished()) {
+        if (!$this->onBoarding->isFinished()) {
             $this->onBoarding->showModuleContentForNavBar($this->context->link);
         }
     }
