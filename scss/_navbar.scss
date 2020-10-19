@@ -27,7 +27,8 @@
     padding-bottom: rem(10px);
   }
 
-  .onboarding-button-resume { // Forced because of old theme
+  .onboarding-button-resume {
+    // Forced because of old theme
     background: #1e2024;
     color: #95a7ad;
   }
@@ -39,10 +40,13 @@
     margin: 0 auto;
     font-size: rem(10px);
     padding: rem(6px) rem(15px);
-    &:hover { // Forced because of old theme
+
+    &:hover {
+      // Forced because of old theme
       color: #95a7ad !important; // Forced because of old theme
     }
   }
+
   .btn.-small {
     margin-top: rem(2px);
     font-size: rem(8px);
@@ -52,11 +56,14 @@
     font-size: rem(10px) !important; // Forced because of old theme
     text-transform: none; // Forced because of old theme
     color: #95a7ad !important; // Forced because of old theme
-    &:hover { // Forced because of old theme
-      color: #95a7ad !important;; // Forced because of old theme
+
+    &:hover {
+      // Forced because of old theme
+      color: #95a7ad !important; // Forced because of old theme
       text-decoration: underline; // Forced because of old theme
     }
   }
+
   > .btn.-small:hover {
     text-decoration: underline;
   }
@@ -65,7 +72,9 @@
     border-radius: $navbar-progress-size;
     height: $navbar-progress-size;
     background: $navbar-progress-secondary-color;
+    margin-bottom: 1rem;
   }
+
   > .progress > .bar {
     border-radius: $navbar-progress-size;
     background: $navbar-progress-primary-color;
