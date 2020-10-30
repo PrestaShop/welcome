@@ -2,7 +2,7 @@
 
 ## About
 
-This module helps merchants create their first product and discover their new shop's main features.
+Sell your first product quicker than you would have wished with our nice onboarding process.
 
 ## How to customize the OnBoarding
 
