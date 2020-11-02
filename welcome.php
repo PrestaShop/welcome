@@ -57,7 +57,7 @@ class Welcome extends Module
         parent::__construct();
 
         $this->displayName = $this->trans('Welcome', [], 'Modules.Welcome.Admin');
-        $this->description = $this->trans('Help the user to create his first product.', [], 'Modules.Welcome.Admin');
+        $this->description = $this->trans('Sell your first product quicker than you would have wished with our nice onboarding process.', [], 'Modules.Welcome.Admin');
         $this->ps_versions_compliancy = [
             'min' => '1.7.6.0',
             'max' => _PS_VERSION_,
