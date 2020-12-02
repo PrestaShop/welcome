@@ -96,14 +96,13 @@ class OnBoarding
     /**
      * Show the OnBoarding content for the nav bar.
      */
-    public function showModuleContentForNavBar($link)
+    public function showModuleContentForNavBar()
     {
         echo $this->getTemplateContent('navbar', [
             'currentStep' => $this->getCurrentStep(),
             'totalSteps' => $this->getTotalSteps(),
             'percent_real' => ($this->getCurrentStep() / $this->getTotalSteps()) * 100,
             'percent_rounded' => round(($this->getCurrentStep() / $this->getTotalSteps()) * 100),
-            'link' => $link->getAdminLink('AdminWelcome'),
         ]);
     }
 
@@ -203,7 +202,7 @@ class OnBoarding
      * @param string $templateName Template name
      * @param array $additionnalParameters Additionnal parameters to inject on the Twig template
      *
-     * @return string|null
+     * @return string
      */
     private function getTemplateContent($templateName, $additionnalParameters = [])
     {
