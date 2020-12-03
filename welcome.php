@@ -170,7 +170,7 @@ class Welcome extends Module
     public function hookDisplayAdminNavBarBeforeEnd()
     {
         if (!$this->onBoarding->isFinished()) {
-            $this->onBoarding->showModuleContentForNavBar($this->context->link);
+            $this->onBoarding->showModuleContentForNavBar();
         }
     }
 
