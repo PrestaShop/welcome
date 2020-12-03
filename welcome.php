@@ -51,13 +51,13 @@ class Welcome extends Module
     public function __construct()
     {
         $this->name = 'welcome';
-        $this->version = '6.0.3';
+        $this->version = '6.0.4';
         $this->author = 'PrestaShop';
 
         parent::__construct();
 
         $this->displayName = $this->trans('Welcome', [], 'Modules.Welcome.Admin');
-        $this->description = $this->trans('Help the user to create his first product.', [], 'Modules.Welcome.Admin');
+        $this->description = $this->trans('Sell your first product quicker than you would have wished with our nice onboarding process.', [], 'Modules.Welcome.Admin');
         $this->ps_versions_compliancy = [
             'min' => '1.7.6.0',
             'max' => _PS_VERSION_,
@@ -170,7 +170,7 @@ class Welcome extends Module
     public function hookDisplayAdminNavBarBeforeEnd()
     {
         if (!$this->onBoarding->isFinished()) {
-            $this->onBoarding->showModuleContentForNavBar($this->context->link);
+            $this->onBoarding->showModuleContentForNavBar();
         }
     }
 

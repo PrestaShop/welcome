@@ -40,7 +40,7 @@
   var onBoarding;
 
   $(function(){
-    onBoarding = new OnBoarding({$currentStep}, {$jsonSteps nofilter}, {$isShutDown}, "{$link}", baseAdminDir);
+    onBoarding = new OnBoarding({$currentStep}, {$jsonSteps nofilter}, {$isShutDown}, "{$link->getAdminLink('AdminWelcome')}", baseAdminDir);
 
     {foreach from=$templates item=template}
       onBoarding.addTemplate('{$template['name']}', '{$template['content']}');
