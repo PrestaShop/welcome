@@ -69,9 +69,10 @@ class Welcome extends Module
             'max' => _PS_VERSION_,
         ];
 
-        // If the symfony container is not available this constructor will fail
+        // If the symfony container is not available or if we are not in the admin directory
+        // this constructor will fail.
         // This can happen during the upgrade process
-        if (null == SymfonyContainer::getInstance()) {
+        if (null == SymfonyContainer::getInstance() || !defined('_PS_ADMIN_DIR_')) {
             return;
         }
 
