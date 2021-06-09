@@ -153,6 +153,7 @@ class OnBoarding {
 
   getRedirectUrl(nextStep) {
     let redirectUrl;
+
     if (Array.isArray(nextStep.page)) {
       [redirectUrl] = nextStep.page;
     } else {
@@ -169,6 +170,7 @@ class OnBoarding {
     let i;
     let key;
     let value;
+
     for (i = 0; i < queryStringParts.length; i += 1) {
       parts = queryStringParts[i].split('=');
       [key, value] = parts;
@@ -370,6 +372,7 @@ class OnBoarding {
       totalSteps += group.steps.length;
       if (positionOnChunk === group.steps.length) {
         const id = advancementFooter.find(`.group-${index} .id`);
+
         if (!id.hasClass('-done')) {
           id.addClass('-done');
         }
@@ -474,6 +477,7 @@ class OnBoarding {
     const currentPage = window.location.href;
 
     let urls;
+
     if (!$.isArray(url)) {
       urls = [String(url)];
     } else {
@@ -485,6 +489,7 @@ class OnBoarding {
       // replace special chars for correct regexp testing
       const currentUrlFixed = currentUrl.replace(/[\?\$]/g, '\\$&');
       const urlRegexp = new RegExp(currentUrlFixed, 'i');
+
       if (urlRegexp.test(currentPage)) {
         isCurrentUrl = true;
       }
@@ -522,6 +527,7 @@ class OnBoarding {
     this.tooltip.addClass(`-${step.position}`);
     this.tooltip.data('position', step.position);
 
+
     const currentStepIDOnGroup = this.getCurrentStepIDOnGroup();
     const groupStepsCount = this.getGroupForStep(this.currentStep).steps.length;
 
@@ -530,8 +536,10 @@ class OnBoarding {
       .html(`${currentStepIDOnGroup + 1}/${groupStepsCount}`);
 
     const bullsContainer = this.tooltip.find('.bulls');
+
     for (let idStep = 0; idStep < groupStepsCount; idStep += 1) {
       const newElement = $('<div></div>').addClass('bull');
+
       if (idStep < currentStepIDOnGroup) {
         newElement.addClass('-done');
       }

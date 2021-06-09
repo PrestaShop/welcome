@@ -1,9 +1,14 @@
-change-template: '- $TITLE (#$NUMBER)'
+branches:
+  - master
+name-template: v$NEXT_PATCH_VERSION
+tag-template: v$NEXT_PATCH_VERSION
+categories:
+  - title: 🚀 Improvements
+    label: enhancement
+  - title: 🐛 Bug Fixes
+    label: bug
+change-template: '- #$NUMBER: $TITLE by @$AUTHOR'
 template: |
-    ## Changelog
+  # Changes
 
-    $CHANGES
-
-    ### Contributors
-
-    $CONTRIBUTORS
+  $CHANGES

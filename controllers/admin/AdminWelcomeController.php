@@ -33,6 +33,6 @@ class AdminWelcomeController extends ModuleAdminController
         $onBoarding = new Welcome();
         $onBoarding->apiCall($_POST['action'], $_POST['value']);
 
-        die('0');
+        exit('0');
     }
 }
