@@ -141,7 +141,7 @@ class Configuration
                                     'savepoint',
                                 ],
                                 'page' => $contextLink->getAdminLink('AdminThemes'),
-                                'selector' => '#form_shop_logos_header_logo',
+                                'selector' => '#form_shop_logos_header_logo, #form_header_logo',
                                 'position' => 'right',
                             ],
                             [
