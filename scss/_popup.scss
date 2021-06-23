@@ -19,7 +19,7 @@
     padding: 0;
 
     background: white;
-    box-shadow: rem(2px) rem(2px) rem(3px) 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.1);
   }
 }
 
@@ -27,21 +27,21 @@
 
   .welcome {
     background: url('../images/preston-clouds.png') top no-repeat;
-    background-size: rem(560px) rem(164px);
-    padding-top: 164px;
-    height: rem(52px);
+    background-size: 35rem 10.25rem;
+    padding-top: 10.25rem;
+    height: 3.25rem;
     color: black;
-    font-size: rem(24px);
+    font-size: 1.5rem;
     text-align: center;
     margin-bottom: 0;
   }
 
   > .content {
-    padding-bottom: rem(90px);
-    min-height: rem(200px);
-    font-size: rem(14px);
+    padding-bottom: 5.625rem;
+    min-height: 12.5rem;
+    font-size: 0.875rem;
     background: url('../images/balloons.png') bottom no-repeat;
-    background-size: rem(240px) rem(81px);
+    background-size: 15rem 5.0625rem;
     margin-top: 2.5rem;
     display: flex;
     flex-direction: column;
@@ -50,34 +50,34 @@
       display: flex;
       text-align: center;
       align-self: center;
-      width: rem(400px);
+      width: 25rem;
     }
   }
 
   .started {
     display: flex;
     font-weight: 600;
-    font-size: rem(17px);
+    font-size: 1.0625rem;
     justify-content: center;
   }
 
   > .content {
-    margin-bottom: rem(20px);
+    margin-bottom: 1.25rem;
   }
 
   > .material-icons {
     color: $background-tertiary-color;
     position: absolute;
-    top: rem(10px);
-    right: rem(15px);
+    top: 0.625rem;
+    right: 0.9375rem;
     cursor: pointer;
-    font-size: rem(30px);
+    font-size: 1.875rem;
   }
 
   .buttons {
     display: flex;
     justify-content: center;
-    margin-bottom: rem(25px);
+    margin-bottom: 1.5625rem;
   }
 
   .btn-primary.blue-balloon {
@@ -98,12 +98,12 @@
 
 .onboarding-popup {
   h2 {
-    font-size: rem(24px);
+    font-size: 1.5rem;
   }
 
   #onboarding-welcome {
     &.modal-header {
-      padding: rem(24px);
+      padding: 1.5rem;
 
       .close {
         color: #000;
@@ -116,7 +116,7 @@
 
     .btn {
       background-color: $blue-balloon;
-      font-size: rem(15px);
+      font-size: 0.9375rem;
       font-weight: normal;
       letter-spacing: normal;
     }
@@ -133,8 +133,8 @@
       .video-tutorial,
       .forum,
       .training {
-        width: rem(150px);
-        height: rem(130px);
+        width: 9.375rem;
+        height: 8.125rem;
       }
 
       .starter-guide {
@@ -164,10 +164,10 @@
         margin-left: auto;
         margin-right: auto;
         text-align: center;
-        width: rem(150px);
+        width: 9.375rem;
 
         &:hover {
-          box-shadow: rem(2px) rem(2px) rem(4px) 0 rgba(0, 0, 0, 0.25);
+          box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.25);
         }
 
         .link {
