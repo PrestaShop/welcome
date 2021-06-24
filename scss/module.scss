@@ -1,4 +1,4 @@
-@import "~bourbon/app/assets/stylesheets/bourbon";
+@import "~bourbon/core/bourbon";
 @import "settings";
 
 @import 'advancement';
@@ -10,15 +10,15 @@
   .final-link {
     display: block;
     border: 1px solid #BBCDD2;
-    border-radius: rem(3px);
-    padding: rem(20px);
-    margin: rem(7px) 0;
+    border-radius: 3px;
+    padding: 1.25rem;
+    margin: 0.4375rem 0;
     text-decoration: none;
 
     > i {
       color: #BBCDD2;
-      font-size: rem(64px);
-      margin-bottom: rem(24px);
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
     }
   }
 }
@@ -39,18 +39,18 @@
 
     &:after {
       position: absolute;
-      width: rem(30px);
-      height: rem(30px);
+      width: 1.875rem;
+      height: 1.875rem;
       left: 50%;
       top: 50%;
       margin: {
-        top: rem(-15px);
-        left: rem(-15px);
+        top: -0.9375rem;
+        left: -0.9375rem;
       }
       display: block;
       border: 3px solid $primary-color;
       border-top-color: transparent;
-      border-radius: rem(50px);
+      border-radius: 3.125rem;
       background: transparent;
       content: '';
       -webkit-animation:spin 4s linear infinite;
