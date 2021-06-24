@@ -2,7 +2,7 @@
 
 ## About
 
-Sell your first product quicker than you would have wished with our nice onboarding process.
+Sell your first product quicker than you would have expected with our nice onboarding process.
 
 ## How to customize the OnBoarding
 
