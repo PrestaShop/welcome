@@ -20,6 +20,7 @@
 
 namespace OnBoarding;
 
+use Hook;
 use Module;
 use PrestaShopBundle\Service\Routing\Router;
 
@@ -29,6 +30,8 @@ class Configuration
      * Module Dependency
      */
     const FAKE_ID = 123456789;
+
+    const HOOK_CONFIGURATION = 'welcome_configuration';
 
     private $translator;
 
@@ -55,7 +58,7 @@ class Configuration
             ],
             'steps' => [
                 'groups' => [
-                    [
+                    'dashboard' => [
                         'steps' => [
                             [
                                 'type' => 'popup',
@@ -71,7 +74,7 @@ class Configuration
                             ],
                         ],
                     ],
-                    [
+                    'product' => [
                         'title' => $this->translator->trans('Let\'s create your first product', [], 'Modules.Welcome.Admin'),
                         'subtitle' => [
                             '1' => $this->translator->trans('What do you want to tell about it? Think about what your customers want to know.', [], 'Modules.Welcome.Admin'),
@@ -125,7 +128,7 @@ class Configuration
                             ],
                         ],
                     ],
-                    [
+                    'theme' => [
                         'title' => $this->translator->trans('Give your shop its own identity', [], 'Modules.Welcome.Admin'),
                         'subtitle' => [
                             '1' => $this->translator->trans('How do you want your shop to look? What makes it so special?', [], 'Modules.Welcome.Admin'),
@@ -174,7 +177,7 @@ class Configuration
             ],
         ];
 
-        $data['steps']['groups'][] = $paymentSteps;
+        $data['steps']['groups']['payment'] = $paymentSteps;
 
         $shippingSteps = [
             'title' => $this->translator->trans('Choose your shipping solutions', [], 'Modules.Welcome.Admin'),
@@ -195,7 +198,9 @@ class Configuration
             ],
         ];
 
-        $data['steps']['groups'][] = $shippingSteps;
+        $data['steps']['groups']['shipping'] = $shippingSteps;
+
+        Hook::exec(static::HOOK_CONFIGURATION, ['data' => &$data]);
 
         return $data;
     }
