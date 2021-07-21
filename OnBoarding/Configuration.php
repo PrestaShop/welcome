@@ -28,8 +28,6 @@ class Configuration
     /**
      * Module Dependency
      */
-    const MODULE_MBO = 'ps_mbo';
-
     const FAKE_ID = 123456789;
 
     private $translator;
@@ -176,20 +174,6 @@ class Configuration
             ],
         ];
 
-        if (Module::isInstalled(self::MODULE_MBO) && Module::isEnabled(self::MODULE_MBO)) {
-            $paymentSteps['subtitle']['2'] = $this->translator->trans(
-                'Adapt your offer to your market: add the most popular payment methods for your customers!',
-                [],
-                'Modules.Welcome.Admin'
-            );
-            $paymentSteps['steps'][] = [
-                'type' => 'tooltip',
-                'text' => $this->translator->trans('And you can choose to add other payment methods from here!', [], 'Modules.Welcome.Admin'),
-                'page' => $contextLink->getAdminLink('AdminPayment'),
-                'selector' => '.panel:eq(1) table tr:eq(0) td:eq(1), .card:eq(1) .module-item-list div:eq(0) div:eq(1)',
-                'position' => 'top',
-            ];
-        }
         $data['steps']['groups'][] = $paymentSteps;
 
         $shippingSteps = [
@@ -211,55 +195,7 @@ class Configuration
             ],
         ];
 
-        if (Module::isInstalled(self::MODULE_MBO) && Module::isEnabled(self::MODULE_MBO)) {
-            $shippingSteps['subtitle']['2'] = $this->translator->trans(
-                'Select the shipping solutions the most likely to suit your customers! Create your own carrier or add a ready-made module.',
-                [],
-                'Modules.Welcome.Admin'
-            );
-
-            $shippingSteps['steps'][] = [
-                'type' => 'tooltip',
-                'text' => $this->translator->trans('You can offer more delivery options by setting up additional carriers', [], 'Modules.Welcome.Admin'),
-                'page' => $contextLink->getAdminLink('AdminCarriers'),
-                'selector' => '.modules_list_container_tab tr:eq(0) .text-muted',
-                'position' => 'right',
-            ];
-        }
         $data['steps']['groups'][] = $shippingSteps;
-
-        $moduleSteps = [
-            'title' => $this->translator->trans('Improve your shop with modules', [], 'Modules.Welcome.Admin'),
-            'subtitle' => [
-                '1' => $this->translator->trans('Add new features and manage existing ones thanks to modules.', [], 'Modules.Welcome.Admin'),
-                '2' => $this->translator->trans('Some modules are already pre-installed, others may be free or paid modules - browse our selection and find out what is available!', [], 'Modules.Welcome.Admin'),
-            ],
-            'steps' => [
-                [
-                    'type' => 'tooltip',
-                    'text' => $this->translator->trans('Discover our module selection in the first tab. Manage your modules on the second one and be aware of notifications in the third tab.', [], 'Modules.Welcome.Admin'),
-                    'options' => [
-                        'savepoint',
-                    ],
-                    'page' => $router->generate('admin_module_catalog'),
-                    'selector' => '.page-head-tabs .tab:eq(0)',
-                    'position' => 'right',
-                ],
-                [
-                    'type' => 'popup',
-                    'text' => [
-                        'type' => 'template',
-                        'src' => 'end',
-                    ],
-                    'options' => [
-                        'savepoint',
-                        'hideFooter',
-                    ],
-                    'page' => $this->generateSfBaseUrl($router, 'admin_module_catalog'),
-                ],
-            ],
-        ];
-        $data['steps']['groups'][] = $moduleSteps;
 
         return $data;
     }
