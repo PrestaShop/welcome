@@ -19,10 +19,11 @@
 
 <div class="onboarding-advancement" style="display: none">
   <div class="advancement-groups">
+    {assign var=index value=1}
     {foreach from=$steps.groups item=group key=k}
       <div class="group group-{$k}" style="width: {math equation="(x / y) * 100" x=$group.steps|@count y=$totalSteps}%;">
         <div class="advancement" style="width: {$percent_real}%;"></div>
-        <div class="id">{$k+1}</div>
+        <div class="id">{$index+1}</div>
       </div>
     {/foreach}
   </div>
