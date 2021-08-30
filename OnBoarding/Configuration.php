@@ -199,6 +199,18 @@ class Configuration
                                 'selector' => '#table-carrier tr:eq(2) td:eq(3)',
                                 'position' => 'right',
                             ],
+                            [
+                                'type' => 'popup',
+                                'text' => [
+                                    'type' => 'template',
+                                    'src' => 'end',
+                                ],
+                                'options' => [
+                                    'savepoint',
+                                    'hideFooter',
+                                ],
+                                'page' => $contextLink->getAdminLink('AdminDashboard'),
+                            ],
                         ],
                     ],
                 ],
