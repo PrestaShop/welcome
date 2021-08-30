@@ -33,6 +33,12 @@ class Configuration
 
     const HOOK_CONFIGURATION = 'welcome_configuration';
 
+    const STEP_DASHBOARD = 'dashboard';
+    const STEP_PRODUCT = 'product';
+    const STEP_THEME = 'theme';
+    const STEP_PAYMENT = 'payment';
+    const STEP_SHIPPING = 'shipping';
+
     private $translator;
 
     public function __construct($translator)
@@ -58,7 +64,8 @@ class Configuration
             ],
             'steps' => [
                 'groups' => [
-                    'dashboard' => [
+                    [
+                        'name' => static::STEP_DASHBOARD,
                         'steps' => [
                             [
                                 'type' => 'popup',
@@ -74,7 +81,8 @@ class Configuration
                             ],
                         ],
                     ],
-                    'product' => [
+                    [
+                        'name' => static::STEP_PRODUCT,
                         'title' => $this->translator->trans('Let\'s create your first product', [], 'Modules.Welcome.Admin'),
                         'subtitle' => [
                             '1' => $this->translator->trans('What do you want to tell about it? Think about what your customers want to know.', [], 'Modules.Welcome.Admin'),
@@ -128,7 +136,8 @@ class Configuration
                             ],
                         ],
                     ],
-                    'theme' => [
+                    [
+                        'name' => static::STEP_THEME,
                         'title' => $this->translator->trans('Give your shop its own identity', [], 'Modules.Welcome.Admin'),
                         'subtitle' => [
                             '1' => $this->translator->trans('How do you want your shop to look? What makes it so special?', [], 'Modules.Welcome.Admin'),
@@ -154,51 +163,59 @@ class Configuration
                             ],
                         ],
                     ],
-                ],
-            ],
-        ];
-
-        $paymentSteps = [
-            'title' => $this->translator->trans('Get your shop ready for payments', [], 'Modules.Welcome.Admin'),
-            'subtitle' => [
-                '1' => $this->translator->trans('How do you want your customers to pay you?', [], 'Modules.Welcome.Admin'),
-            ],
-            'steps' => [
-                [
-                    'type' => 'tooltip',
-                    'text' => $this->translator->trans('These payment methods are already available to your customers.', [], 'Modules.Welcome.Admin'),
-                    'options' => [
-                        'savepoint',
+                    [
+                        'name' => static::STEP_PAYMENT,
+                        'title' => $this->translator->trans('Get your shop ready for payments', [], 'Modules.Welcome.Admin'),
+                        'subtitle' => [
+                            '1' => $this->translator->trans('How do you want your customers to pay you?', [], 'Modules.Welcome.Admin'),
+                        ],
+                        'steps' => [
+                            [
+                                'type' => 'tooltip',
+                                'text' => $this->translator->trans('These payment methods are already available to your customers.', [], 'Modules.Welcome.Admin'),
+                                'options' => [
+                                    'savepoint',
+                                ],
+                                'page' => $contextLink->getAdminLink('AdminPayment'),
+                                'selector' => '.modules_list_container_tab:first tr:first-child .text-muted, .card:eq(0) .text-muted:eq(0)',
+                                'position' => 'right',
+                            ],
+                        ],
                     ],
-                    'page' => $contextLink->getAdminLink('AdminPayment'),
-                    'selector' => '.modules_list_container_tab:first tr:first-child .text-muted, .card:eq(0) .text-muted:eq(0)',
-                    'position' => 'right',
-                ],
-            ],
-        ];
-
-        $data['steps']['groups']['payment'] = $paymentSteps;
-
-        $shippingSteps = [
-            'title' => $this->translator->trans('Choose your shipping solutions', [], 'Modules.Welcome.Admin'),
-            'subtitle' => [
-                '1' => $this->translator->trans('How do you want to deliver your products?', [], 'Modules.Welcome.Admin'),
-            ],
-            'steps' => [
-                [
-                    'type' => 'tooltip',
-                    'text' => $this->translator->trans('Here are the shipping methods available on your shop today.', [], 'Modules.Welcome.Admin'),
-                    'options' => [
-                        'savepoint',
+                    [
+                        'name' => static::STEP_SHIPPING,
+                        'title' => $this->translator->trans('Choose your shipping solutions', [], 'Modules.Welcome.Admin'),
+                        'subtitle' => [
+                            '1' => $this->translator->trans('How do you want to deliver your products?', [], 'Modules.Welcome.Admin'),
+                        ],
+                        'steps' => [
+                            [
+                                'type' => 'tooltip',
+                                'text' => $this->translator->trans('Here are the shipping methods available on your shop today.', [], 'Modules.Welcome.Admin'),
+                                'options' => [
+                                    'savepoint',
+                                ],
+                                'page' => $contextLink->getAdminLink('AdminCarriers'),
+                                'selector' => '#table-carrier tr:eq(2) td:eq(3)',
+                                'position' => 'right',
+                            ],
+                            [
+                                'type' => 'popup',
+                                'text' => [
+                                    'type' => 'template',
+                                    'src' => 'end',
+                                ],
+                                'options' => [
+                                    'savepoint',
+                                    'hideFooter',
+                                ],
+                                'page' => $contextLink->getAdminLink('AdminDashboard'),
+                            ],
+                        ],
                     ],
-                    'page' => $contextLink->getAdminLink('AdminCarriers'),
-                    'selector' => '#table-carrier tr:eq(2) td:eq(3)',
-                    'position' => 'right',
                 ],
             ],
         ];
-
-        $data['steps']['groups']['shipping'] = $shippingSteps;
 
         Hook::exec(static::HOOK_CONFIGURATION, ['data' => &$data]);
 
