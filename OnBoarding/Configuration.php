@@ -20,6 +20,7 @@
 
 namespace OnBoarding;
 
+use Hook;
 use Module;
 use PrestaShopBundle\Service\Routing\Router;
 
@@ -28,9 +29,15 @@ class Configuration
     /**
      * Module Dependency
      */
-    const MODULE_MBO = 'ps_mbo';
-
     const FAKE_ID = 123456789;
+
+    const HOOK_CONFIGURATION = 'welcome_configuration';
+
+    const STEP_DASHBOARD = 'dashboard';
+    const STEP_PRODUCT = 'product';
+    const STEP_THEME = 'theme';
+    const STEP_PAYMENT = 'payment';
+    const STEP_SHIPPING = 'shipping';
 
     private $translator;
 
@@ -58,6 +65,7 @@ class Configuration
             'steps' => [
                 'groups' => [
                     [
+                        'name' => static::STEP_DASHBOARD,
                         'steps' => [
                             [
                                 'type' => 'popup',
@@ -74,6 +82,7 @@ class Configuration
                         ],
                     ],
                     [
+                        'name' => static::STEP_PRODUCT,
                         'title' => $this->translator->trans('Let\'s create your first product', [], 'Modules.Welcome.Admin'),
                         'subtitle' => [
                             '1' => $this->translator->trans('What do you want to tell about it? Think about what your customers want to know.', [], 'Modules.Welcome.Admin'),
@@ -128,6 +137,7 @@ class Configuration
                         ],
                     ],
                     [
+                        'name' => static::STEP_THEME,
                         'title' => $this->translator->trans('Give your shop its own identity', [], 'Modules.Welcome.Admin'),
                         'subtitle' => [
                             '1' => $this->translator->trans('How do you want your shop to look? What makes it so special?', [], 'Modules.Welcome.Admin'),
@@ -153,113 +163,61 @@ class Configuration
                             ],
                         ],
                     ],
+                    [
+                        'name' => static::STEP_PAYMENT,
+                        'title' => $this->translator->trans('Get your shop ready for payments', [], 'Modules.Welcome.Admin'),
+                        'subtitle' => [
+                            '1' => $this->translator->trans('How do you want your customers to pay you?', [], 'Modules.Welcome.Admin'),
+                        ],
+                        'steps' => [
+                            [
+                                'type' => 'tooltip',
+                                'text' => $this->translator->trans('These payment methods are already available to your customers.', [], 'Modules.Welcome.Admin'),
+                                'options' => [
+                                    'savepoint',
+                                ],
+                                'page' => $contextLink->getAdminLink('AdminPayment'),
+                                'selector' => '.modules_list_container_tab:first tr:first-child .text-muted, .card:eq(0) .text-muted:eq(0)',
+                                'position' => 'right',
+                            ],
+                        ],
+                    ],
+                    [
+                        'name' => static::STEP_SHIPPING,
+                        'title' => $this->translator->trans('Choose your shipping solutions', [], 'Modules.Welcome.Admin'),
+                        'subtitle' => [
+                            '1' => $this->translator->trans('How do you want to deliver your products?', [], 'Modules.Welcome.Admin'),
+                        ],
+                        'steps' => [
+                            [
+                                'type' => 'tooltip',
+                                'text' => $this->translator->trans('Here are the shipping methods available on your shop today.', [], 'Modules.Welcome.Admin'),
+                                'options' => [
+                                    'savepoint',
+                                ],
+                                'page' => $contextLink->getAdminLink('AdminCarriers'),
+                                'selector' => '#table-carrier tr:eq(2) td:eq(3)',
+                                'position' => 'right',
+                            ],
+                            [
+                                'type' => 'popup',
+                                'text' => [
+                                    'type' => 'template',
+                                    'src' => 'end',
+                                ],
+                                'options' => [
+                                    'savepoint',
+                                    'hideFooter',
+                                ],
+                                'page' => $contextLink->getAdminLink('AdminDashboard'),
+                            ],
+                        ],
+                    ],
                 ],
             ],
         ];
 
-        $paymentSteps = [
-            'title' => $this->translator->trans('Get your shop ready for payments', [], 'Modules.Welcome.Admin'),
-            'subtitle' => [
-                '1' => $this->translator->trans('How do you want your customers to pay you?', [], 'Modules.Welcome.Admin'),
-            ],
-            'steps' => [
-                [
-                    'type' => 'tooltip',
-                    'text' => $this->translator->trans('These payment methods are already available to your customers.', [], 'Modules.Welcome.Admin'),
-                    'options' => [
-                        'savepoint',
-                    ],
-                    'page' => $contextLink->getAdminLink('AdminPayment'),
-                    'selector' => '.modules_list_container_tab:first tr:first-child .text-muted, .card:eq(0) .text-muted:eq(0)',
-                    'position' => 'right',
-                ],
-            ],
-        ];
-
-        if (Module::isInstalled(self::MODULE_MBO) && Module::isEnabled(self::MODULE_MBO)) {
-            $paymentSteps['subtitle']['2'] = $this->translator->trans(
-                'Adapt your offer to your market: add the most popular payment methods for your customers!',
-                [],
-                'Modules.Welcome.Admin'
-            );
-            $paymentSteps['steps'][] = [
-                'type' => 'tooltip',
-                'text' => $this->translator->trans('And you can choose to add other payment methods from here!', [], 'Modules.Welcome.Admin'),
-                'page' => $contextLink->getAdminLink('AdminPayment'),
-                'selector' => '.panel:eq(1) table tr:eq(0) td:eq(1), .card:eq(1) .module-item-list div:eq(0) div:eq(1)',
-                'position' => 'top',
-            ];
-        }
-        $data['steps']['groups'][] = $paymentSteps;
-
-        $shippingSteps = [
-            'title' => $this->translator->trans('Choose your shipping solutions', [], 'Modules.Welcome.Admin'),
-            'subtitle' => [
-                '1' => $this->translator->trans('How do you want to deliver your products?', [], 'Modules.Welcome.Admin'),
-            ],
-            'steps' => [
-                [
-                    'type' => 'tooltip',
-                    'text' => $this->translator->trans('Here are the shipping methods available on your shop today.', [], 'Modules.Welcome.Admin'),
-                    'options' => [
-                        'savepoint',
-                    ],
-                    'page' => $contextLink->getAdminLink('AdminCarriers'),
-                    'selector' => '#table-carrier tr:eq(2) td:eq(3)',
-                    'position' => 'right',
-                ],
-            ],
-        ];
-
-        if (Module::isInstalled(self::MODULE_MBO) && Module::isEnabled(self::MODULE_MBO)) {
-            $shippingSteps['subtitle']['2'] = $this->translator->trans(
-                'Select the shipping solutions the most likely to suit your customers! Create your own carrier or add a ready-made module.',
-                [],
-                'Modules.Welcome.Admin'
-            );
-
-            $shippingSteps['steps'][] = [
-                'type' => 'tooltip',
-                'text' => $this->translator->trans('You can offer more delivery options by setting up additional carriers', [], 'Modules.Welcome.Admin'),
-                'page' => $contextLink->getAdminLink('AdminCarriers'),
-                'selector' => '.modules_list_container_tab tr:eq(0) .text-muted',
-                'position' => 'right',
-            ];
-        }
-        $data['steps']['groups'][] = $shippingSteps;
-
-        $moduleSteps = [
-            'title' => $this->translator->trans('Improve your shop with modules', [], 'Modules.Welcome.Admin'),
-            'subtitle' => [
-                '1' => $this->translator->trans('Add new features and manage existing ones thanks to modules.', [], 'Modules.Welcome.Admin'),
-                '2' => $this->translator->trans('Some modules are already pre-installed, others may be free or paid modules - browse our selection and find out what is available!', [], 'Modules.Welcome.Admin'),
-            ],
-            'steps' => [
-                [
-                    'type' => 'tooltip',
-                    'text' => $this->translator->trans('Discover our module selection in the first tab. Manage your modules on the second one and be aware of notifications in the third tab.', [], 'Modules.Welcome.Admin'),
-                    'options' => [
-                        'savepoint',
-                    ],
-                    'page' => $router->generate('admin_module_catalog'),
-                    'selector' => '.page-head-tabs .tab:eq(0)',
-                    'position' => 'right',
-                ],
-                [
-                    'type' => 'popup',
-                    'text' => [
-                        'type' => 'template',
-                        'src' => 'end',
-                    ],
-                    'options' => [
-                        'savepoint',
-                        'hideFooter',
-                    ],
-                    'page' => $this->generateSfBaseUrl($router, 'admin_module_catalog'),
-                ],
-            ],
-        ];
-        $data['steps']['groups'][] = $moduleSteps;
+        Hook::exec(static::HOOK_CONFIGURATION, ['data' => &$data]);
 
         return $data;
     }
