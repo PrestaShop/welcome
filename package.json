@@ -30,7 +30,7 @@
     "css-loader": "^0.28.11",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.2.0",
-    "eslint-config-prestashop": "0.1.0",
+    "eslint-config-prestashop": "0.1.1",
     "eslint-plugin-import": "^2.24.2",
     "exports-loader": "^0.7.0",
     "expose-loader": "^1.0.3",
