@@ -1,5 +1,11 @@
 # OnBoarding
 
+[![PHP tests](https://github.com/PrestaShop/welcome/actions/workflows/php.yml/badge.svg)](https://github.com/PrestaShop/welcome/actions/workflows/php.yml)
+[![JS tests](https://github.com/PrestaShop/welcome/actions/workflows/js.yml/badge.svg)](https://github.com/PrestaShop/welcome/actions/workflows/js.yml)
+[![Latest Stable Version](https://poser.pugx.org/PrestaShop/welcome/v)](//packagist.org/packages/PrestaShop/welcome)
+[![Total Downloads](https://poser.pugx.org/PrestaShop/welcome/downloads)](//packagist.org/packages/PrestaShop/welcome)
+[![GitHub license](https://img.shields.io/github/license/PrestaShop/welcome)](https://github.com/PrestaShop/welcome/LICENSE.md)
+
 ## About
 
 Sell your first product quicker than you would have expected with our nice onboarding process.
